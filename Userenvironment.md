@@ -37,7 +37,7 @@ drwxr-xr-x. 4 root root  38 May  4 00:17 ..
 -rw-r--r--. 1 1001 1001 193 Aug  8  2019 .bash_profile
 -rw-r--r--. 1 1001 1001 231 Aug  8  2019 .bashrc
 ```
-*Tuy nhiên, điều này sẽ để lại thư mục `/home` nguyên vẹn. Điều này có thể hữu ích nếu nó là tạm thời hoãn hoạt động. Để xóa thư mục chính trong khi xóa tài khoản, người ta cần sử dụng tùy chọn liên quan *
+*Tuy nhiên, điều này sẽ để lại thư mục `/home` nguyên vẹn. Điều này có thể hữu ích nếu nó là tạm thời hoãn hoạt động. Để xóa thư mục chính trong khi xóa tài khoản, người ta cần sử dụng tùy chọn liên quan*
 ```
 [root@localhost ~]# useradd namdachbdmo
 [root@localhost ~]# useradd namdachbdemo
