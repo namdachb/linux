@@ -38,3 +38,9 @@ anaconda-ks.cfg  file  namdachb  namdachb.zip  name.zip  nam.txt  newfile  newfi
 64 bytes from 8.8.8.8: icmp_seq=5 ttl=128 time=32.3 ms
 64 bytes from 8.8.8.8: icmp_seq=6 ttl=128 time=32.8 ms
 ```
+### 1.3) Job ID với Process ID
+* **Backgroup process** và **foregroud** thường được thao tác thông qua **job ID**. Số này khác với **Process ID** và được sử dụng bởi vì nó ngắn hơn.
+* Ngoài ra, một công việc có thể bao gồm nhiều **process** đang chạy trong seri hoặc tại cùng một thời gian, song song, vì thế sử dụng **job ID** là dễ dàng hơn theo dõi các tiến trình riêng lẻ.
+### 1.4) Parent Process (PPID) và Child Process (PID)
+* Mỗi một tiến trình Unix có hai ID được gán cho nó: Process ID(pid) và Parent Process ID (ppid).
+* Mỗi tiến trình trong hệ thống có một Parent Process (gốc).
