@@ -37,7 +37,7 @@ drwxr-xr-x. 4 root root  38 May  4 00:17 ..
 -rw-r--r--. 1 1001 1001 193 Aug  8  2019 .bash_profile
 -rw-r--r--. 1 1001 1001 231 Aug  8  2019 .bashrc
 ```
-*Tuy nhiên, điều này sẽ để lại thư mục `/home` nguyên vẹn. Điều này có thể hữu ích nếu nó là tạm thời hoãn hoạt động. Để xóa thư mục chính trong khi xóa tài khoản, người ta cần sử dụng tùy chọn liên quan 
+*Tuy nhiên, điều này sẽ để lại thư mục `/home` nguyên vẹn. Điều này có thể hữu ích nếu nó là tạm thời hoãn hoạt động. Để xóa thư mục chính trong khi xóa tài khoản, người ta cần sử dụng tùy chọn liên quan *
 ```
 [root@localhost ~]# useradd namdachbdmo
 [root@localhost ~]# useradd namdachbdemo
@@ -46,3 +46,54 @@ drwxr-xr-x. 4 root root  38 May  4 00:17 ..
 [root@localhost ~]# ls -la /home/namdachbdemo
 ls: cannot access /home/namdachbdemo: No such file or directory
 ```
+*Lệnh `id` không có đối số cung cấp thông tin về người dùng hiện tại. Nếu được đặt tên của người khác làm đối số, id sẽ báo cáo thông tin về người dùng khác đó. Đối với người dùng root*
+```
+[root@localhost ~]# id
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+```
+*Đối với người dùng user:*
+```
+[root@localhost ~]# id nam
+uid=1002(nam) gid=1002(nam) groups=1002(nam)
+```
+*Sử dụng lệnh passwd để thay đổi mật khẩu cho người dùng mới:*
+```
+[root@localhost ~]# useradd user123
+[root@localhost ~]# passwd user123
+Changing password for user user123.
+New password:
+BAD PASSWORD: The password contains the user name in some form
+Retype new password:
+passwd: all authentication tokens updated successfully.
+```
+*Thêm một nhóm mới được thực hiện với lệnh `groupadd` và loại bỏ bằng lệnh `groupdel`*
+```
+[root@localhost ~]# groupadd testgroup
+[root@localhost ~]# groupdel testgroup
+```
+*Thêm người dùng vào một nhóm đã tồn tại được thực hiện bằng lệnh `usermod`.*
+```
+[root@localhost ~]# groupadd newgroup
+[root@localhost ~]# usermod -G newgroup nam
+[root@localhost ~]# groups nam
+nam : nam newgroup
+[root@localhost ~]# usermod -g newgroup nam
+[root@localhost ~]# groups nam
+nam : newgroup
+```
+*Cú pháp:*
+* `usermod [option] [name_group] [name_user]
+  * option:
+    * `-g` : Thêm user vào một group
+    * `-G` : Thêm user vào nhiều group(mỗi group được phân tách group tiếp theo bằng dấu phẩy, không có sự can thiệp từ khoảng trắng)
+*Tất cả các tệp này cập nhật khi cần thiết tại thư mục `/etc/group`. Các lệnh `group` có thể được sử dụng để thay đổi các nhóm thuộc nhóm như Nhóm ID hoặc tên*
+```
+[root@localhost ~]# groupmod newgroup -n groupnewgroup2
+[root@localhost ~]# groups nam
+nam : groupnewgroup2
+```
+## Người dùng root
+*Các tài khoản **gốc** có quyền truy cập đầy đủ vào hệ thống. Các hệ điều hành khác thường gọi đây là tài khoản quản trị viên; trong linux, nó thường được gọi là tài khoản **superuser**. Bạn phải cực kỳ thận trọng khi cấp quyền truy cập root đầy đủ cho người dùng; Ví dụ trong các cuộc tấn công bên ngoài thường bao gồm các thủ thuật được sử dụng để nâng lên tài khoản root. Tuy nhiên, bạn có thể sử dụng tính năng sudo để gắn các đặc quyền hạn chế hơn cho các tài khoản người dùng chuẩn:*
+1. Chỉ trên cơ sở tạm thời 
+2. Chỉ cho một tập con cụ thể của lệnh 
+*Khi gán đặc quyền nâng cao, bạn có thể sử dụng lệnh `su`(chuyển đổi người dùng) để khởi chạy shell mới chạy với tư cách người dùng khác(bạn phải nhập mật khẩu của người mà bạn muốn trở thành). Thông thường người dùng khác này là root hoặc shell mới cho phép sử dụng các đặc quyền nâng cao cho đến khi thoát. Nó hầu như luôn luôn là một thực hành xấu(nguy hiểm cho cả bảo mật và ổn định) để sử dụng `su` thành root. Lỗi kết quả có thể bao gồm xóa các tệp tin quan trọng khởi hệ thống và vi phạm bảo mật.*
