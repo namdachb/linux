@@ -27,3 +27,14 @@ rtt min/avg/max/mdev = 32.775/47.243/76.930/17.961 ms
 * Để bắt đầu một **background process**, thêm dấu "`&`" tại cuối lệnh.
 
      `# ping -c 10 8.8.8.8`
+```
+[root@localhost ~]# PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=128 time=33.0 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=128 time=32.9 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=128 time=37.2 ms
+ls
+anaconda-ks.cfg  file  namdachb  namdachb.zip  name.zip  nam.txt  newfile  newfile.zip
+[root@localhost ~]# 64 bytes from 8.8.8.8: icmp_seq=4 ttl=128 time=37.7 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=128 time=32.3 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=128 time=32.8 ms
+```
