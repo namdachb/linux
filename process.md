@@ -44,3 +44,25 @@ anaconda-ks.cfg  file  namdachb  namdachb.zip  name.zip  nam.txt  newfile  newfi
 ### 1.4) Parent Process (PPID) và Child Process (PID)
 * Mỗi một tiến trình Unix có hai ID được gán cho nó: Process ID(pid) và Parent Process ID (ppid).
 * Mỗi tiến trình trong hệ thống có một Parent Process (gốc).
+### 1.5) Zombie Process và Orphan Process
+* Thông thường, khi một **child process** bị `kill`, **parent process** được thông báo qua ký hiệu `SIGCHLD`. Sau đó, **parent process** có thể thực hiện một vài công việc khác hoặc bắt đầu lại **child process** nếu cần thiết.
+* Tuy nhiên, đôi khi **parent process** bị `kill` trước khi **child process** của nó bị `kill`. Trong trường hợp này, **parent process** của tất cả các **process**, **"init process"**, trở thành **PPID** mới. Đôi khi những **process** này được là **Orphan Process**.
+* Khi một **process** bị `kill`, danh sách liệt kê `ps` có thể vẫn chỉ **process** với trạng thái `z`. Đây là trạng thái `zombie`, hoặc **process** không tồn tại. **Process** này bị `kill` và không được sử dụng. Những **process** này khác với **orphan process**. Nó là những **process** mà đã chạy hoàn thành nhưng vẫn có một cổng vào trong bảng **process**.
+ ### 1.6) Deamon Process
+ * **Deamon là các **background process** liên quan tới hệ thống mà thường chạy với quyền hạn truy cập của `root` và các dịch vụ yêu cầu từ **process** khác.
+ * Một **deamon** không có terminal điều khiển. Nó không thể mở `/dev/tty`. Nếu thực hiện lệnh `ps-aux` và quan sát vào trường `tty` , tất cả **deamon** sẽ có một dấu `?` cho `tty`.
+ ```
+ [root@localhost ~]# ps -aux
+USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          1  0.0  0.6 127952  6564 ?        Ss   May03   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+root          2  0.0  0.0      0     0 ?        S    May03   0:00 [kthreadd]
+root          4  0.0  0.0      0     0 ?        S<   May03   0:00 [kworker/0:0H]
+root          6  0.0  0.0      0     0 ?        S    May03   0:00 [ksoftirqd/0]
+root          7  0.0  0.0      0     0 ?        S    May03   0:00 [migration/0]
+root          8  0.0  0.0      0     0 ?        S    May03   0:00 [rcu_bh]
+root          9  0.0  0.0      0     0 ?        R    May03   0:01 [rcu_sched]
+root         10  0.0  0.0      0     0 ?        S<   May03   0:00 [lru-add-drain]
+root         11  0.0  0.0      0     0 ?        S    May03   0:00 [watchdog/0]
+```
+* **Deamon** chỉ là một **process** mà chạy trong backgroup, thường đợi cho cái gì đó xảy ra mà nó có khả năng làm việc với, giống như máy in deamon đang đợi các lệnh in.
+ 
