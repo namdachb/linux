@@ -83,3 +83,13 @@ UID         PID   PPID  C STIME TTY          TIME CMD
 root       2093   2080  0 01:03 pts/2    00:00:00 -bash
 root       2596   2093  0 04:27 pts/2    00:00:00 ps -f
 ```
+|Name|Meanings|
+|-|-|
+|UID|UID mà process này thuộc về (người chạy nó)|
+|PID|Process ID|
+|PPID|Process ID gốc (ID của process mà bắt đầu nó)|
+|C|CPU sử dụng của process|
+|STIME|Thời gian bắt đầu process|
+|TTY|Kiểu terminal liên kết với process|
+|TIME|Thời gian CPU bị sử dụng bởi process|
+|CMD|Lệnh mà bắt đầu process này|
