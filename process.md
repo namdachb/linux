@@ -93,3 +93,26 @@ root       2596   2093  0 04:27 pts/2    00:00:00 ps -f
 |TTY|Kiểu terminal liên kết với process|
 |TIME|Thời gian CPU bị sử dụng bởi process|
 |CMD|Lệnh mà bắt đầu process này|
+### 2.2) `top`
+* Ý nghĩa tương tự lệnh `ps`.
+* Nội dung hiển thị tương tự lệnh "`ps -aux`"
+* Cấu trúc lệnh:
+  `# top [options]
+   * Options:
+     * `-n number` : chỉ định số dòng hiển thị
+* Gõ `q` để thoát khỏi quá trình `top`.
+* Output :
+```
+[root@localhost ~]# top
+top - 04:51:38 up  7:40,  2 users,  load average: 0.00, 0.01, 0.05
+Tasks: 104 total,   2 running, 102 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.3 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :   995748 total,   700180 free,   174972 used,   120596 buff/cache
+KiB Swap:  3145720 total,  3145720 free,        0 used.   685152 avail Mem
+
+   PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+  2651 root      20   0  159216   6248   4748 S  0.3  0.6   0:00.35 sshd
+  2679 root      20   0  162016   2224   1544 R  0.3  0.2   0:00.09 top
+     1 root      20   0  127952   6564   4120 S  0.0  0.7   0:02.05 systemd
+     2 root      20   0       0      0 
+```
