@@ -97,3 +97,23 @@ nam : groupnewgroup2
 1. Chỉ trên cơ sở tạm thời 
 2. Chỉ cho một tập con cụ thể của lệnh 
 *Khi gán đặc quyền nâng cao, bạn có thể sử dụng lệnh `su`(chuyển đổi người dùng) để khởi chạy shell mới chạy với tư cách người dùng khác(bạn phải nhập mật khẩu của người mà bạn muốn trở thành). Thông thường người dùng khác này là root hoặc shell mới cho phép sử dụng các đặc quyền nâng cao cho đến khi thoát. Nó hầu như luôn luôn là một thực hành xấu(nguy hiểm cho cả bảo mật và ổn định) để sử dụng `su` thành root. Lỗi kết quả có thể bao gồm xóa các tệp tin quan trọng khởi hệ thống và vi phạm bảo mật.*
+## Tập tin khởi động
+*Trong linux, chương trình shell lệnh, nói chung bash sử dụng một hoặc nhiểu tệp khởi động để cấu hình môi trường. Các tệp trong `/etc` thư mục xác định cài đặt chung cho tất cả người dùng trong khi cái tệp khởi tạo trong thư mục chính của người dùng có thể bao gồm và ghi đè chung. Các tệp khởi động có thể làm bất cứ điều gì mà người dùng muốn làm trong lệnh shell, chẳng hạn như:*
+* Tùy chỉnh lời nhắc của người dùng
+* Xác định các phím tắ và bí dang của dòng lệnh
+* Đặt trình soạn thảo văn bản mặc định
+* Đặt đường dẫn cho nơi tìm chương trình thực thi
+*Khi bạn đăng nhập lần đầu vào linux, `/etc/profile` tệp sẽ được đọc và đánh giá, sau đó các lệnh sau được tìm kiếm theo thứ tự được liệt kê:*
+1. `~/.bash_profile`
+2. `~/.bash_login`
+3. `~/'profile`
+*Shell đăng nhập linux đánh giá bất kỳ tệp khởi động nào mà có xuất hiện đầu tiên và bỏ qua phần còn lại. Điều này có nghĩa là nếu nó tìm thấy `~/.bash_profile`, nó bỏ qua phần còn lại. Các bạn phân phối khác nhau có thể sử dụng các tệp khởi động khác nhau. Tuy nhiên, mỗi khi bạn tạo shell mới hoặc cửa sổ terminal,v.v, bạn không thể đăng nhập toàn hệ thống; chỉ có tệp tin `~/.bashrc` được đọc và đánh giá. Mặc dù tệp này không được đọc và đánh giá cùng login shell. Trong các bản phân phối Ubuntu và CentOS, người dùng phải thực hiện các thay đổi phug hợp trong tệp `~/.bash_profile` để bảo gồm tệp `~/.bashrc`. Các tệp `~/.bash_profilee` sẽ có một số dòng thêm, do đó sẽ thu nhập thông số tùy yêu cầu từ `~/.bashrc`.*
+## Biến môi trường
+*Các biến môi trường được đặt tên đơn giản là các đại lượng có giá trị cụ thể và được hiểu bởi lệnh shell, chẳng hạn như **bash**. Một số trong số này được hệ thống cài đặt sẵn và một số khác được dùng đặt ở dòng lệnh hoặc khi khởi động và các tệp lệnh khác. Một biến môi trường thực sự không nhiều hơn một chuỗi ký tự thông tin được sử dụng bởi một hoặc nhiều ứng dụng. Có một số các để xem các giá trị của các biến môi trường hiện được đặt. Tất cả các lệnh `set`, `env`và `export` hiện thị các biến môi trường.*
+
+*Theo mặc định, các biến được tạo trong một tệp lệnh chỉ có sẵn cho chương trình bao hiện tại. Tất cả các tiến trình con(shell phụ) sẽ không có quyền truy cập vào các giá trị đã được đặt hoặc sửa đổi. Cho phép các tiến trình con xem các giá trị, yêu cầu sử dụng lệnh export.*
+|task|command|
+|-|-|
+|hiển thị giá trị của một biến cụ thể|`echo $SHELL|
+|Xuất một biến mới|export VAR=value|
+|Thêm một biến vĩnh viễn|Add the line export VAR=value to ~/.bashrc|
