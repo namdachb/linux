@@ -49,7 +49,7 @@ anaconda-ks.cfg  file  namdachb  namdachb.zip  name.zip  nam.txt  newfile  newfi
 * Tuy nhiên, đôi khi **parent process** bị `kill` trước khi **child process** của nó bị `kill`. Trong trường hợp này, **parent process** của tất cả các **process**, **"init process"**, trở thành **PPID** mới. Đôi khi những **process** này được là **Orphan Process**.
 * Khi một **process** bị `kill`, danh sách liệt kê `ps` có thể vẫn chỉ **process** với trạng thái `z`. Đây là trạng thái `zombie`, hoặc **process** không tồn tại. **Process** này bị `kill` và không được sử dụng. Những **process** này khác với **orphan process**. Nó là những **process** mà đã chạy hoàn thành nhưng vẫn có một cổng vào trong bảng **process**.
  ### 1.6) Deamon Process
- * **Deamon là các **background process** liên quan tới hệ thống mà thường chạy với quyền hạn truy cập của `root` và các dịch vụ yêu cầu từ **process** khác.
+ * **Deamon** là các **background process** liên quan tới hệ thống mà thường chạy với quyền hạn truy cập của `root` và các dịch vụ yêu cầu từ **process** khác.
  * Một **deamon** không có terminal điều khiển. Nó không thể mở `/dev/tty`. Nếu thực hiện lệnh `ps-aux` và quan sát vào trường `tty` , tất cả **deamon** sẽ có một dấu `?` cho `tty`.
  ```
  [root@localhost ~]# ps -aux
@@ -65,4 +65,21 @@ root         10  0.0  0.0      0     0 ?        S<   May03   0:00 [lru-add-drain
 root         11  0.0  0.0      0     0 ?        S    May03   0:00 [watchdog/0]
 ```
 * **Deamon** chỉ là một **process** mà chạy trong backgroup, thường đợi cho cái gì đó xảy ra mà nó có khả năng làm việc với, giống như máy in deamon đang đợi các lệnh in.
- 
+## 2) Các lệnh về Process
+### 2.1) `ps` - process status
+* Dùng để quan sát các **process** đang chạy.
+* Cấu trúc lệnh:
+   `# ps [options]`
+  * Optinos:
+    * `-f` : hiển thị đầy đủ thông tin về các **process**
+    * `-e` : hiển thị đầy đủ các **process** (bao gồm cả **system process**)
+    * `-aux` = `-ef` : hiển thị đầy đủ thông tin về tất cả các **process**
+    * `-u` : hiển thị các **process** liên quan đến user hiện hành 
+    * `-p PID` : hiển thị thông tin **process** cụ thể.
+* Ý nghĩa output lệnh `ps -f` :
+```
+[root@localhost ~]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root       2093   2080  0 01:03 pts/2    00:00:00 -bash
+root       2596   2093  0 04:27 pts/2    00:00:00 ps -f
+```
