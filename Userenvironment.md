@@ -96,6 +96,7 @@ nam : groupnewgroup2
 *Các tài khoản **gốc** có quyền truy cập đầy đủ vào hệ thống. Các hệ điều hành khác thường gọi đây là tài khoản quản trị viên; trong linux, nó thường được gọi là tài khoản **superuser**. Bạn phải cực kỳ thận trọng khi cấp quyền truy cập root đầy đủ cho người dùng; Ví dụ trong các cuộc tấn công bên ngoài thường bao gồm các thủ thuật được sử dụng để nâng lên tài khoản root. Tuy nhiên, bạn có thể sử dụng tính năng sudo để gắn các đặc quyền hạn chế hơn cho các tài khoản người dùng chuẩn:*
 1. Chỉ trên cơ sở tạm thời 
 2. Chỉ cho một tập con cụ thể của lệnh 
+
 *Khi gán đặc quyền nâng cao, bạn có thể sử dụng lệnh `su`(chuyển đổi người dùng) để khởi chạy shell mới chạy với tư cách người dùng khác(bạn phải nhập mật khẩu của người mà bạn muốn trở thành). Thông thường người dùng khác này là root hoặc shell mới cho phép sử dụng các đặc quyền nâng cao cho đến khi thoát. Nó hầu như luôn luôn là một thực hành xấu(nguy hiểm cho cả bảo mật và ổn định) để sử dụng `su` thành root. Lỗi kết quả có thể bao gồm xóa các tệp tin quan trọng khởi hệ thống và vi phạm bảo mật.*
 ## Tập tin khởi động
 *Trong linux, chương trình shell lệnh, nói chung bash sử dụng một hoặc nhiểu tệp khởi động để cấu hình môi trường. Các tệp trong `/etc` thư mục xác định cài đặt chung cho tất cả người dùng trong khi cái tệp khởi tạo trong thư mục chính của người dùng có thể bao gồm và ghi đè chung. Các tệp khởi động có thể làm bất cứ điều gì mà người dùng muốn làm trong lệnh shell, chẳng hạn như:*
