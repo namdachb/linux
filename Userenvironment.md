@@ -107,6 +107,7 @@ nam : groupnewgroup2
 1. `~/.bash_profile`
 2. `~/.bash_login`
 3. `~/'profile`
+
 *Shell đăng nhập linux đánh giá bất kỳ tệp khởi động nào mà có xuất hiện đầu tiên và bỏ qua phần còn lại. Điều này có nghĩa là nếu nó tìm thấy `~/.bash_profile`, nó bỏ qua phần còn lại. Các bạn phân phối khác nhau có thể sử dụng các tệp khởi động khác nhau. Tuy nhiên, mỗi khi bạn tạo shell mới hoặc cửa sổ terminal,v.v, bạn không thể đăng nhập toàn hệ thống; chỉ có tệp tin `~/.bashrc` được đọc và đánh giá. Mặc dù tệp này không được đọc và đánh giá cùng login shell. Trong các bản phân phối Ubuntu và CentOS, người dùng phải thực hiện các thay đổi phug hợp trong tệp `~/.bash_profile` để bảo gồm tệp `~/.bashrc`. Các tệp `~/.bash_profilee` sẽ có một số dòng thêm, do đó sẽ thu nhập thông số tùy yêu cầu từ `~/.bashrc`.*
 ## Biến môi trường
 *Các biến môi trường được đặt tên đơn giản là các đại lượng có giá trị cụ thể và được hiểu bởi lệnh shell, chẳng hạn như **bash**. Một số trong số này được hệ thống cài đặt sẵn và một số khác được dùng đặt ở dòng lệnh hoặc khi khởi động và các tệp lệnh khác. Một biến môi trường thực sự không nhiều hơn một chuỗi ký tự thông tin được sử dụng bởi một hoặc nhiều ứng dụng. Có một số các để xem các giá trị của các biến môi trường hiện được đặt. Tất cả các lệnh `set`, `env`và `export` hiện thị các biến môi trường.*
