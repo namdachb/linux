@@ -25,4 +25,5 @@ rtt min/avg/max/mdev = 32.775/47.243/76.930/17.961 ms
 * **Background process** chạy mà không được kết nối với bàn phím của bạn. Nếu **Backround process** yêu cầu bất cứ đầu vào từ bàn phím, nó đợi.
 * Lợi thế của chạy một chương trinh tỏng **background** là có thể chạy các lệnh khác : không phải đợi tới khi nó kết thúc để bắt đầu một **process** mới !
 * Để bắt đầu một **background process**, thêm dấu "`&`" tại cuối lệnh.
+
 `# ping -c 10 8.8.8.8`
