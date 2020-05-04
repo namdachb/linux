@@ -116,3 +116,14 @@ KiB Swap:  3145720 total,  3145720 free,        0 used.   685152 avail Mem
      1 root      20   0  127952   6564   4120 S  0.0  0.7   0:02.05 systemd
      2 root      20   0       0      0 
 ```
+|Name|Meanings|
+|-|-|
+|top|Cho biết thời gian `uptime`(từ lúc khởi động) cũng như số người dùng thực tế đang hoạt động|
+|Tasks|Thống kế về số lượng tiến trình, bao gồm tổng số tiến trình (total), số đang hoạt động(running), số đang ngủ/chờ (sleeing), số đã dừng (stopped) và số không thể dừng hẳn (zombie)|
+|%Cpu(s)|Cho biết thông tin về CPU|
+|KiB Mem|Cho biết thông tin về RAM|
+|KiB Swap|Cho biết thông tin về Swap|
+|PID|Process ID|
+|User|Người dùng thực thi|
+|PR|Độ ưu tiên của process|
+|ni|
