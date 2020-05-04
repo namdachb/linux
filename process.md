@@ -4,7 +4,7 @@
 * Mỗi **process** có 1 **PID**(**process ID**) đại diện. **PID** gồm tối đa `5` chữ số và là duy nhất tại một thời điểm. **PID** của **process** A có thể được tận dụng cho **process** B nếu **process** A kết thúc.
 * Có 2 loại **process**:
  * **Foregroud Process**
- * **Backgroup Process**
+ * **Backgroud Process**
 ### 1.1) Foregroup Process
 * Theo mặc định, mọi **process** mà bạn bắt đầu chạy là **foregroup process**. Nó nhận input từ bàn phím và gửi output tới màn hình.
 * Trong khi một chương trình đang chạy trong **foregroupd** và cần một khoảng thời gian dài, chúng ta không thể chạy bất kỳ lệnh khác(bắt đầu **process** khác) bởi vì dòng nhắc lệnh không có sẵn tới khi chương trình đang chạy kết thúc **process** và thoát ra.
@@ -142,4 +142,7 @@ KiB Swap:  3145720 total,  3145720 free,        0 used.   685152 avail Mem
    `# kill [optins] [pid]
    * Options:
     * `-9` : kill toàn bộ các **process** liên quan
-    
+*So sánh `ps` và `top`
+ * `ps` chỉ hiện thị từ dòng thứ `6` của lệnh `top`
+ * Nếu `top` hiển thị một cách realtime các tiến trình thì `ps` chỉ hiển thị thông tin tại thời điểm khởi chạy lệnh
+ * `top` và `ps` đều có thể dùng kết hợp với pipe tuy nhiên như vậy thì tính realtime của `top` sẽ không có ý nghĩa.
