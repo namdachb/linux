@@ -114,6 +114,18 @@ nam : groupnewgroup2
 *Theo mặc định, các biến được tạo trong một tệp lệnh chỉ có sẵn cho chương trình bao hiện tại. Tất cả các tiến trình con(shell phụ) sẽ không có quyền truy cập vào các giá trị đã được đặt hoặc sửa đổi. Cho phép các tiến trình con xem các giá trị, yêu cầu sử dụng lệnh export.*
 |task|command|
 |-|-|
-|hiển thị giá trị của một biến cụ thể|`echo $SHELL|
+|hiển thị giá trị của một biến cụ thể|`echo $SHELL`|
 |Xuất một biến mới|export VAR=value|
-|Thêm một biến vĩnh viễn|Add the line export VAR=value to ~/.bashrc|
+|Thêm một biến vĩnh viễn|Add the line export VAR=value to ~/.bashrc
+**HOME** *là một biến môi trường đại diện cho HOME hoặc đăng nhập thư mục của người dùng. Các lệnh `cd` có đối số sẽ thay đổi thư mục làm việc hiện tại với giá trị của HOME. Lưu ý ký tự dấu ngã(~). Thường được sử dụng làm chữ viết cho $HOME.*
+
+*Biến môi trường **PATH**, là một danh sách có thứ tự thư mục được quét khi lệnh được đưa ra để tìm các chương trình hay kịch bản thích hợp để chạy. Mỗi thư mục trong đường dẫn được phân tách bằng dấu hai chấm(:). Tên thư mục trống cho biết thư mục hiện tại tại bất kỳ thời điểm nào*
+
+*Các biến môi trường **PS** được sử dụng để tùy chỉnh chuỗi dấu nhắc của bạn trong cửa sở terminal của bạn để hiện thị các thông tin mà bạn muốn. **PS1** là biến dấu nhắc chính điều khiển dấu nhắc dòng lệnh của bạn trông như thế nào. Các ký tự đặc biệt sau đây có thể bao gồm trong **PS1**:*
+|Ký tự|Sử dụng|
+|-|-|
+|\u|Tên tài khoản|
+|\h|Tên máy chủ|
+|\W|Thư mục làm việc hiện tại|
+|\!|Số lịch sử dòng lênh|
+|\d|Ngày|
