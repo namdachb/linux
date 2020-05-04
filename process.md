@@ -146,3 +146,32 @@ KiB Swap:  3145720 total,  3145720 free,        0 used.   685152 avail Mem
  * `ps` chỉ hiện thị từ dòng thứ `6` của lệnh `top`
  * Nếu `top` hiển thị một cách realtime các tiến trình thì `ps` chỉ hiển thị thông tin tại thời điểm khởi chạy lệnh
  * `top` và `ps` đều có thể dùng kết hợp với pipe tuy nhiên như vậy thì tính realtime của `top` sẽ không có ý nghĩa.
+ ## 3) Sơ đồ `pstree`
+ *Lệnh `pstree` hiện thị các quy tình đang chạy trên hệ thống dưới dạng sơ đồ cây thể hiện mối quan hệ giữa một quy trình và quy trình mẹ của nó và bất kỳ quy trình nào khác mà nó tạo ra. Các mục lặp lại của một quá trình không được hiển thị và các luồng được hiển thị trong dấu "{}"*
+
+ *Nếu chưa cài đặt `psmisc` thì sẽ không thể thực hiện lệnh `pstree`*
+
+*Ta cài đặt 1 cách đơn giản như sau:*
+`# yum install -y psmisc` sau đó sử dụng lệnh `pstree`:
+```
+[root@localhost ~]# pstree
+systemd─┬─NetworkManager─┬─dhclient
+        │                └─2*[{NetworkManager}]
+        ├─auditd───{auditd}
+        ├─chronyd
+        ├─crond
+        ├─dbus-daemon───{dbus-daemon}
+        ├─firewalld───{firewalld}
+        ├─login───bash───su───bash
+        ├─lvmetad
+        ├─master─┬─pickup
+        │        └─qmgr
+        ├─polkitd───6*[{polkitd}]
+        ├─rsyslogd───2*[{rsyslogd}]
+        ├─sshd─┬─sshd───bash───pstree
+        │      └─sshd───sftp-server
+        ├─systemd-journal
+        ├─systemd-logind
+        ├─systemd-udevd
+        └─tuned───4*[{tuned}]
+```
