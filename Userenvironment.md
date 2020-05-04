@@ -15,7 +15,7 @@ root     pts/0        2020-05-03 23:33 (192.168.213.1)
 [root@localhost ~]# cat /etc/passwd | grep usertest
 usertest:x:1001:1001::/home/usertest:/bin/bash
 ```
-*Theo mặc định, thư mục chính và một số tệp lệnh cơ bản của `usertest` là `/home/usertest` và đặt shell mặc định thành `/bin/bash`
+*Theo mặc định, thư mục chính và một số tệp lệnh cơ bản của `usertest` là `/home/usertest` và đặt shell mặc định thành `/bin/bash`*
 ```
 [root@localhost ~]# ls -la /home/usertest
 total 12
