@@ -126,4 +126,20 @@ KiB Swap:  3145720 total,  3145720 free,        0 used.   685152 avail Mem
 |PID|Process ID|
 |User|Người dùng thực thi|
 |PR|Độ ưu tiên của process|
-|ni|
+|NI|
+|VIRT|
+|RES|
+|SHR|
+|S|
+|%CPU|Tỉ lệ sử dụng CPU của process|
+|%MEM|Tỉ lệ sử dụng RAM của process|
+|TIME+|Thời gian sử dụng CPU, giống như TIME nhưng phản ánh mức độ chi tiết hơn qua một phần trăm giây|
+|COMMAND|Lệnh mà bắt đầu process này|
+### 2.3) `kill`
+* Là lệnh tắt **process** đang chạy
+* Khi sử dụng lệnh `kill` với một tiến trình con thì chỉ tiến trình đó được tắt nhưng nếu sử dụng `kill` với tiến trình cha thì toàn bộ con của nó cũng được tắt theo.
+* Cú pháp:
+   `# kill [optins] [pid]
+   * Options:
+    * `-9` : kill toàn bộ các **process** liên quan
+    
