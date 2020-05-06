@@ -196,6 +196,76 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
  * `-n` <ten_logical_volume>
  * `-L` : Sử dụng kích thước cố định
  * `-l` : Sử dụng % của không gian còn lại trong Volume
+ ```
+ [root@localhost ~]# lvdisplay
+  --- Logical volume ---
+  LV Path                /dev/centos/swap
+  LV Name                swap
+  VG Name                centos
+  LV UUID                0mMoiO-QaOd-nrEb-XjOS-MX9y-WndX-t70F4h
+  LV Write Access        read/write
+  LV Creation host, time localhost, 2020-04-08 11:23:30 -0400
+  LV Status              available
+  # open                 2
+  LV Size                2.00 GiB
+  Current LE             512
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:1
+
+  --- Logical volume ---
+  LV Path                /dev/centos/root
+  LV Name                root
+  VG Name                centos
+  LV UUID                bCoCuP-bsH0-Khup-IHs5-kXdB-fRFV-JFmb31
+  LV Write Access        read/write
+  LV Creation host, time localhost, 2020-04-08 11:23:31 -0400
+  LV Status              available
+  # open                 1
+  LV Size                <17.00 GiB
+  Current LE             4351
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:0
+
+  --- Logical volume ---
+  LV Path                /dev/VG0/Data
+  LV Name                Data
+  VG Name                VG0
+  LV UUID                0zSoK3-kXy3-Lkhg-3AeY-xPEc-vnvN-r2Py04
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 03:50:37 -0400
+  LV Status              available
+  # open                 0
+  LV Size                3.00 GiB
+  Current LE             768
+  Segments               2
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+  --- Logical volume ---
+  LV Path                /dev/VG0/Backups
+  LV Name                Backups
+  VG Name                VG0
+  LV UUID                MmzQvV-MyTs-URnM-Ivnb-hXhN-R565-NovVP0
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 03:51:03 -0400
+  LV Status              available
+  # open                 0
+  LV Size                2.99 GiB
+  Current LE             766
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+```
  ### Định dạng Logical Volume
  *`Ext4`: cũng giống như `Ext3`, lưu giữ được những ưu điểm và tính tương thích ngược với phiên bản trước đó. Như vậy, chúng ta có thể dễ dàng kết hợp các phân vùng định dạng `Ext2`, `Ext3` và `Ext4` trong cùng 1 ổ đĩa trong Ubuntu để tăng hiệu suất hoạt động. Trên thực tế, `Ext4` có thể giảm bớt hiện tượng phân mảnh dữ liệu trong ổ cứng, hỗ trợ các file phân vùng và dung lượng lớn... Thích hớp với ở SSD so với `Ext3`, tốc độ hoạt động nhanh hơn so với 2 phiên bản Ext trước đó, cũng khá phù hợp để hoạt động trên server, nhưng lại không bằng `Ext3`*
 
@@ -291,3 +361,56 @@ drwxr-xr-x.  19 root root        267 Apr  8 11:31 var
  * Giảm kích thước Logical Volume hơn kích thước hiện tại
  * Kiểm tra lỗi cho file system
  * Mount lại file system và kiểm tra kích thước của nó
+*Ta sẽ giảm kích thước của LV `Backups` từ 2.99GB xuống còn 2GB mà không làm mất dữ liệu*
+### Kiểm tra dung lượng của Logical Volume và kiểm tra file system trước khi thực hiện giảm
+ `# lvdisplay VG0`
+ ```
+ [root@localhost ~]# lvdisplay VG0
+  --- Logical volume ---
+  LV Path                /dev/VG0/Data
+  LV Name                Data
+  VG Name                VG0
+  LV UUID                0zSoK3-kXy3-Lkhg-3AeY-xPEc-vnvN-r2Py04
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 03:50:37 -0400
+  LV Status              available
+  # open                 0
+  LV Size                3.00 GiB
+  Current LE             768
+  Segments               2
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+  --- Logical volume ---
+  LV Path                /dev/VG0/Backups
+  LV Name                Backups
+  VG Name                VG0
+  LV UUID                MmzQvV-MyTs-URnM-Ivnb-hXhN-R565-NovVP0
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 03:51:03 -0400
+  LV Status              available
+  # open                 0
+  LV Size                2.99 GiB
+  Current LE             766
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+```
+ `# df -TH`
+```
+[root@localhost ~]# df -TH
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  498M     0  498M   0% /dev
+tmpfs                   tmpfs     510M     0  510M   0% /dev/shm
+tmpfs                   tmpfs     510M  8.1M  502M   2% /run
+tmpfs                   tmpfs     510M     0  510M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        19G  3.5G   15G  19% /
+/dev/sda1               xfs       1.1G  143M  921M  14% /boot
+tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
+```
+### Unmount Logical volume Backups và Kiểm tra trạng thái mount
+ `# umount /Backups/`
