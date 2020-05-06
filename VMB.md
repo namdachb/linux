@@ -411,6 +411,36 @@ tmpfs                   tmpfs     510M     0  510M   0% /sys/fs/cgroup
 /dev/mapper/centos-root xfs        19G  3.5G   15G  19% /
 /dev/sda1               xfs       1.1G  143M  921M  14% /boot
 tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
+/dev/mapper/VG0-Data    ext4      3.2G  9.5M  3.0G   1% /Data
+/dev/mapper/VG0-Backups ext4      3.1G  9.5M  3.0G   1% /Backups
 ```
 ### Unmount Logical volume Backups và Kiểm tra trạng thái mount
  `# umount /Backups/`
+```
+[root@localhost ~]# umount /Backups/
+[root@localhost ~]# df -Th
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  475M     0  475M   0% /dev
+tmpfs                   tmpfs     487M     0  487M   0% /dev/shm
+tmpfs                   tmpfs     487M  7.7M  479M   2% /run
+tmpfs                   tmpfs     487M     0  487M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        17G  3.2G   14G  19% /
+/dev/sda1               xfs      1014M  136M  879M  14% /boot
+tmpfs                   tmpfs      98M     0   98M   0% /run/user/0
+/dev/mapper/VG0-Data    ext4      2.9G  9.0M  2.8G   1% /Data
+```
+-> Ta thấy không còn `/VG0-Backups` nữa
+### Kiểm tra lỗi
+*Ta dùng lệnh: ` #e2fsck -f /dev/VG0/Backups`
+```
+[root@localhost ~]# e2fsck -f /dev/VG0/Backups
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/VG0/Backups: 11/196224 files (0.0% non-contiguous), 31006/784384 blocks
+```
+-> Không thấy lỗi
+
