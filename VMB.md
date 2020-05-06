@@ -89,30 +89,29 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
   Allocated PE          4863
   PV UUID               nZb4Zl-Polk-kvSL-QqxR-j1pJ-wVEZ-RwZii6
 
-  "/dev/sdc" is a new physical volume of "2.00 GiB"
-  --- NEW Physical volume ---
-  PV Name               /dev/sdc
-  VG Name
-  PV Size               2.00 GiB
-  Allocatable           NO
-  PE Size               0
-  Total PE              0
-  Free PE               0
-  Allocated PE          0
-  PV UUID               yne0BJ-phId-tUmT-YWJO-P6aI-PYe5-lZA4DF
-
-  "/dev/sdb" is a new physical volume of "5.00 GiB"
+  "/dev/sdb" is a new physical volume of "3.00 GiB"
   --- NEW Physical volume ---
   PV Name               /dev/sdb
   VG Name
-  PV Size               5.00 GiB
+  PV Size               3.00 GiB
   Allocatable           NO
   PE Size               0
   Total PE              0
   Free PE               0
   Allocated PE          0
-  PV UUID               5Ca55i-tNFW-T61a-rK9T-v9c2-4Va2-PQoWFK
+  PV UUID               CmogSY-zmny-UF04-QTi1-8mJW-Y49p-aneOyX
 
+  "/dev/sdc" is a new physical volume of "3.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/sdc
+  VG Name
+  PV Size               3.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               sasKRo-h0xa-08QT-Vo4b-90iD-WFqX-74Cy9V
 ```
 ### Tạo Volume Groups (VG)
 *Lệnh kiểm tra những VG hiện có: `# vgs`*
@@ -165,12 +164,12 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
   Max PV                0
   Cur PV                2
   Act PV                2
-  VG Size               6.99 GiB
+  VG Size               5.99 GiB
   PE Size               4.00 MiB
-  Total PE              1790
+  Total PE              1534
   Alloc PE / Size       0 / 0
-  Free  PE / Size       1790 / 6.99 GiB
-  VG UUID               6rGYwA-XS2k-eIjG-mFcA-dff7-6I3R-GlROlx
+  Free  PE / Size       1534 / 5.99 GiB
+  VG UUID               PFNAZ2-pou2-GZSs-VrBD-2gM3-jmoN-GWOsA5
 ```
 ### Tạo Logical Volume
 *Lệnh kiểm tra xem có những LV nào: `# lvs`*
