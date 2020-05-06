@@ -90,6 +90,7 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
 ```
 [root@localhost ~]# vgs
   VG     #PV #LV #SN Attr   VSize   VFree
+  VG0      2   3   0 wz--n-   6.99g    0
   centos   1   2   0 wz--n- <19.00g    0
 ```
 *Tạo 1 VG có tên VG0 từ 2 Physical Volume vừa tạo ở trên: `# vgcreate VG0 /dev/sdb /dev/sdc`*
@@ -163,3 +164,8 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
   Logical volume "Backups" created.
 ```
 
+*Trong đó:*
+ * `-n` <ten_logical_volume>
+ * `-L` : Sử dụng kích thước cố định
+ * `-l` : Sử dụng % của không gian còn lại trong Volume
+ 
