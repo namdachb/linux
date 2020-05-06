@@ -614,4 +614,40 @@ tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
   * Umnount Data: `# umount /Data/
   * Disable LV Data `# lvchange -an /dev/VG0/Data
   * Xóa LV Data:
-  
+```
+[root@localhost ~]# lvremove /dev/VG0/Data
+  Logical volume "Data" successfully removed
+```
+  * Kiểm tra lại danh sách LV:
+```
+[root@localhost ~]# lvs
+  LV      VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  Backups VG0    -wi-ao----   2.00g
+  root    centos -wi-ao---- <17.00g
+  swap    centos -wi-ao----   2.00g
+```
+### Xóa 1 Group Volume
+ `# vgremove /dev/<têm_Group_Volume>`
+  * Kiểm tra các danh sách GV: `# vgs`
+```
+[root@localhost ~]# vgs
+  VG     #PV #LV #SN Attr   VSize   VFree
+  VG0      2   1   0 wz--n-   5.99g 3.99g
+  centos   1   2   0 wz--n- <19.00g    0
+```
+  * Disable Volume Group : `# vgchange -an /dev/VG0`
+  * Remove GV:
+```
+[root@localhost ~]# vgremove /dev/VG0
+  Volume group "VG0" successfully removed
+```
+  * Kiểm tra lại các VG :
+```
+[root@localhost ~]# vgs
+  VG     #PV #LV #SN Attr   VSize   VFree
+  centos   1   2   0 wz--n- <19.00g    0
+```
+### Xóa Physical Volume
+*Cuối cùng là xóa Physical Volume:
+ `# pvremove /dev/sdb`
+ 
