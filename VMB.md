@@ -443,4 +443,76 @@ Pass 5: Checking group summary information
 /dev/VG0/Backups: 11/196224 files (0.0% non-contiguous), 31006/784384 blocks
 ```
 -> Không thấy lỗi
+### Giảm kích thước Logical volume `Backups`
+*Ta sử dụng lệnh ` # lvreduce -L (n) /dev/<tên_group>/<tên_lgical>`*
+*Trong đó: lvreduce : là lệnh dùng để giảm dung lượng -L : là option của lênh (n) : là số dùng để tăng giảm dung lượng theo ý muốn*
+```
+[root@localhost ~]# lvreduce -L 2G /dev/VG0/Backups
+  WARNING: Reducing active logical volume to 2.00 GiB.
+  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+Do you really want to reduce VG0/Backups? [y/n]: y
+  Size of logical volume VG0/Backups changed from 2.99 GiB (766 extents) to 2.00 GiB (51extents).
+  Logical volume VG0/Backups successfully resized.
+  ```
+*Sau đó, ta xác nhận thay đổi bằng cách sử dụng lệnh `resize2fs`*
+ ` # resize2fs /dev/<tên_group>/<tên_volume>`
+```
+[root@localhost ~]# resize2fs /dev/VG0/Backups
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/VG0/Backups to 524288 (4k) blocks.
+resize2fs: Can't read a block bitmap while trying to resize /dev/VG0/Backups
+Please run 'e2fsck -fy /dev/VG0/Backups' to fix the filesystem
+after the aborted resize operation.
+```
+*Định đạng lại Volume về ext4:*
+```
+[root@localhost ~]# mkfs.ext4 /dev/VG0/Backups
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+131072 inodes, 524288 blocks
+26214 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=536870912
+16 block groups
+32768 blocks per group, 32768 fragments per group
+8192 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912
 
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (16384 blocks): done
+Writing superblocks and filesystem accounting information: done
+```
+*Kiểm tra lại lỗi:*
+```
+[root@localhost ~]# e2fsck -f /dev/VG0/Backups
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/VG0/Backups: 11/131072 files (0.0% non-contiguous), 26156/524288 blocks
+```
+*Mount lại file system và kiểm tra kích thước của nó. `# mount /dev/VG0/Backups /Backups/`
+```
+[root@localhost ~]# mount /dev/VG0/Backups /Backups/
+[root@localhost ~]# df -TH
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  498M     0  498M   0% /dev
+tmpfs                   tmpfs     510M     0  510M   0% /dev/shm
+tmpfs                   tmpfs     510M  8.1M  502M   2% /run
+tmpfs                   tmpfs     510M     0  510M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        19G  3.5G   15G  19% /
+/dev/sda1               xfs       1.1G  143M  921M  14% /boot
+tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
+/dev/mapper/VG0-Data    ext4      3.2G  9.5M  3.0G   1% /Data
+/dev/mapper/VG0-Backups ext4      2.1G  6.3M  2.0G   1% /Backups
+```
+### Tăng kích thước LV
+### Kiểm tra kích thước và unmount LV `Data`
