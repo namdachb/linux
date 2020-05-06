@@ -3,4 +3,3 @@
 2. [process](process.md)
 
 # fundamentals
-15. [shell embedding and options] (shell embedding and options.md)
