@@ -3,3 +3,4 @@
 2. [process](process.md)
 
 # fundamentals
+1. [shell history](shellhistory.md)
