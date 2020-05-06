@@ -222,10 +222,10 @@ Writing superblocks and filesystem accounting information: done
 ```
 ### Mount logical volume 
 *Ta cần Mount Logical volume để kiểm tra việc tạo thành công:*
- ` # mkdir /Data`
- ` # mount /dev/VG0/Data /Data/`
- ` # mkdir /Backups`
- ` # mount /dev/VG0/Backups /Backups/`
+ * ` # mkdir /Data`
+ * ` # mount /dev/VG0/Data /Data/`
+ * ` # mkdir /Backups`
+ * ` # mount /dev/VG0/Backups /Backups/`
 ```
 [root@localhost ~]# ls -la /
 total 2097112
