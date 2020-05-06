@@ -34,21 +34,21 @@
  * Windows không thể nhận ra vùng dữ liệu của LVM. Nếu dual-boot Windows  sẽ không thể truy cập dữ liệu chứa trong LVM
 ## Các lệnh trong LVM
  * Physical Volume:
-  * `pvcreate` : tạo **physical volume**
-  * `pvdisplay` , `pvs` : xem **physical volume** đã tạo
-  * `pvremove` : xóa **physical volume**
+   * `pvcreate` : tạo **physical volume**
+   * `pvdisplay` , `pvs` : xem **physical volume** đã tạo
+   * `pvremove` : xóa **physical volume**
  * Volume Group :
-  * `vgcreate` : tạo **volume group**
-  * `vgdisplay` , `vgs` : xem **volume group** đã tạo
-  * `vgremove` : xóa **volume group**
-  * `vgextend` : tăng dung lượng của **volume group**
-  * `vgreduce` : giảm dung lượng của **volume group**
+   * `vgcreate` : tạo **volume group**
+   * `vgdisplay` , `vgs` : xem **volume group** đã tạo
+   * `vgremove` : xóa **volume group**
+   * `vgextend` : tăng dung lượng của **volume group**
+   * `vgreduce` : giảm dung lượng của **volume group**
  * Logical Volume:
-  * `lvcreate` : tạo **logical volume**
-  * `lvdisplay` , `lvs` : xem **logical Volume** đã tạo
-  * `lvremove` : xóa **logical volume**
-  * `lvextend` : tăng dung lượng **logical volume**
-  * `lvreduce` : giảm dung lượng **logical volume**
+   * `lvcreate` : tạo **logical volume**
+   * `lvdisplay` , `lvs` : xem **logical Volume** đã tạo
+   * `lvremove` : xóa **logical volume**
+   * `lvextend` : tăng dung lượng **logical volume**
+   * `lvreduce` : giảm dung lượng **logical volume**
 
 ## Thao tác trên LVM
 *Liệt kê các phân cùng ổ cứng trong hệ thống. `fdisk -l`. (hoặc để đơn giản. Ta dùng `# ls -la /dev/sd*`)
