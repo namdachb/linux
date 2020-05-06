@@ -172,6 +172,6 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
  *`Ext4`: cũng giống như `Ext3`, lưu giữ được những ưu điểm và tính tương thích ngược với phiên bản trước đó. Như vậy, chúng ta có thể dễ dàng kết hợp các phân vùng định dạng `Ext2`, `Ext3` và `Ext4` trong cùng 1 ổ đĩa trong Ubuntu để tăng hiệu suất hoạt động. Trên thực tế, `Ext4` có thể giảm bớt hiện tượng phân mảnh dữ liệu trong ổ cứng, hỗ trợ các file phân vùng và dung lượng lớn... Thích hớp với ở SSD so với `Ext3`, tốc độ hoạt động nhanh hơn so với 2 phiên bản Ext trước đó, cũng khá phù hợp để hoạt động trên server, nhưng lại không bằng `Ext3`*
 
  *Ta sẽ định dạng Logical Volume ở dạng `ext4`:*
-  * `# mkfs.ext4 /dev/VG0/Data
-  * `# mkfs.ext4 /dev/VG0/Backups
+  * `# mkfs.ext4 /dev/VG0/Data`
+  * `# mkfs.ext4 /dev/VG0/Backups`
 
