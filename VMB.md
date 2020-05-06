@@ -516,3 +516,102 @@ tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
 ```
 ### Tăng kích thước LV
 ### Kiểm tra kích thước và unmount LV `Data`
+```
+[root@localhost ~]# df -HT
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  498M     0  498M   0% /dev
+tmpfs                   tmpfs     510M     0  510M   0% /dev/shm
+tmpfs                   tmpfs     510M  8.1M  502M   2% /run
+tmpfs                   tmpfs     510M     0  510M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        19G  3.5G   15G  19% /
+/dev/sda1               xfs       1.1G  143M  921M  14% /boot
+tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
+/dev/mapper/VG0-Backups ext4      2.1G  6.3M  2.0G   1% /Backups
+```
+### Mở rộng kích thước LV
+*Ta sẽ tăng kích thước LV Data lên ~4G(dung lượng còn lại của tổng `sdb` và `sdc`) Ta sử dụng lệnh : `# lvextend -l 100%FREE /dev/VG0/Data*
+```
+[root@localhost ~]# lvextend -l +100%FREE /dev/VG0/Data
+  Size of logical volume VG0/Data changed from 3.00 GiB (768 extents) to 3.99 GiB (1022 extents).
+  Logical volume VG0/Data successfully resized.
+```
+*Kiểm tra lỗi và xác nhận thay đổi:*
+```
+[root@localhost ~]# e2fsck -f /dev/VG0/Data
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/VG0/Data: 11/196608 files (0.0% non-contiguous), 31036/786432 blocks
+```
+*Kiểm tra dung lượng :*
+```
+[root@localhost ~]# lvdisplay VG0
+  --- Logical volume ---
+  LV Path                /dev/VG0/Data
+  LV Name                Data
+  VG Name                VG0
+  LV UUID                4fUQ40-pGe2-c3do-U5Fv-HqgR-pARv-mHbMO3
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 04:12:56 -0400
+  LV Status              available
+  # open                 0
+  LV Size                3.99 GiB
+  Current LE             1022
+  Segments               3
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+  --- Logical volume ---
+  LV Path                /dev/VG0/Backups
+  LV Name                Backups
+  VG Name                VG0
+  LV UUID                dJkACe-g9Am-71ZS-jDNW-tUjG-1Amx-wfISQI
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2020-05-06 04:13:15 -0400
+  LV Status              available
+  # open                 1
+  LV Size                2.00 GiB
+  Current LE             512
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+
+```
+*Mount lại LV `Data` và kiểm tra kích thước:*
+```
+[root@localhost ~]# df -TH
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  498M     0  498M   0% /dev
+tmpfs                   tmpfs     510M     0  510M   0% /dev/shm
+tmpfs                   tmpfs     510M  8.1M  502M   2% /run
+tmpfs                   tmpfs     510M     0  510M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        19G  3.5G   15G  19% /
+/dev/sda1               xfs       1.1G  143M  921M  14% /boot
+tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
+/dev/mapper/VG0-Backups ext4      2.1G  6.3M  2.0G   1% /Backups
+/dev/mapper/VG0-Data    ext4      4.2G   13M  4.0G   1% /Data
+```
+## Xóa 1 Logical Volume và 1 Group Volume
+### Xóa 1 Logical Volume
+ `lvremove /dev/<ten_group>/<ten logical>`
+*Ta sẽ xóa LV Data theo các bước sau:
+  * Kiểm tra những LV hiện có:
+```
+[root@localhost ~]# lvs
+  LV      VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  Backups VG0    -wi-ao----   2.00g
+  Data    VG0    -wi-ao----   3.99g
+  root    centos -wi-ao---- <17.00g
+  swap    centos -wi-ao----   2.00g
+```
+  * Umnount Data: `# umount /Data/
+  * Disable LV Data `# lvchange -an /dev/VG0/Data
+  * Xóa LV Data:
+  
