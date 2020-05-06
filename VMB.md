@@ -10,6 +10,15 @@
  * Mã hóa nhiều phân vùng vật lý bằng một mật khẩu
 
 *Cơ bản, **LVM**(Logical Volume Manager) bao gồm:*
+ * **Hard drives - Drives**
+   * Là các thiết bị lưu trữ dữ liệu, có dạng `/dev/xxxx`
+ * **Partition**
+   * Là các phân vùng của **hard drives**, mỗi **hard drive** có `4` **partition** trong đó **partition** bao gồm 2 loại là **primary partition** và **extended partition**:
+   * **Primary Partition**:
+     * Là phân vùng chúng , có thể boot
+     * Mỗi đĩa cứng có thể có tối đa `4` phân vùng này
+   * **Extended Partition** :
+     * Là phân vùng mở rộng chứa dữ liệu , trong nó có thể tạo các **logical partition**
  * **Physical volumes**:
    * Là những đĩa cứng vật lý hoặc phân vùng trên nó. (`/dev/fileserver/share, /dev/fileserver/backup,/dev/fileserver/media`)
    * Là 1 tên gọi khác của **partition** trong kỹ thuật **LVM**, nó là những thành phần cơ bản được sử dụng bởi **LVM**
