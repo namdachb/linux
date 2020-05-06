@@ -648,6 +648,5 @@ tmpfs                   tmpfs     102M     0  102M   0% /run/user/0
   centos   1   2   0 wz--n- <19.00g    0
 ```
 ### Xóa Physical Volume
-*Cuối cùng là xóa Physical Volume:
+*Cuối cùng là xóa Physical Volume:*
  `# pvremove /dev/sdb`
- 
