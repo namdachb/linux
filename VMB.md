@@ -21,6 +21,16 @@
    * **Volume Group** được dùng để tạo ra các **Logical Volume**, trong đó người dùng có thể tạo, thay đổi kích thước, gỡ bỏ và sử dụng.
  * **Logical volumes**:
    * Có thể xem như là các "phân vùng ảo" trên "ổ đĩa cứng" bạn có thể thêm vào, gỡ bỏ và thay đổi kích thước một cách nhanh chonggs. (`/dev/sda1, /dev/sdb1, /dev/sdc1, /dev/sdd1`)
+## ƯU điểm và nhược điểm của LVM
+**Ưu điểm**
+ * Có thể gom nhiều đĩa cứng vật lý lại thành 1 đĩa ảo dung lượng lớn
+ * Có thể tạo ra các vùng dung lượng lớn nhỏ tùy ý
+ * Có thể thay đổi các vùng dung lượng đó dễ dàng, linh hoạt
+**Nhược điểm**
+ * Các bước thiết lập phức tạp, khó khăn hơn
+ * Càng gắn nhiều đĩa cứng và thiết lập càng nhiều LVM thì hệ thống khởi động càng lâu
+ * Khả năng mất dữ liệu khi 1 trong các đĩa cứng vật lý bị hỏng
+ * Windows không thể nhận ra vùng dữ liệu của LVM. Nếu dual-boot Windows  sẽ không thể truy cập dữ liệu chứa trong LVM
 ## Thao tác trên LVM
 *Liệt kê các phân cùng ổ cứng trong hệ thống. `fdisk -l`. (hoặc để đơn giản. Ta dùng `# ls -la /dev/sd*`)
  * Có 3 ổ cứng: sda, sdb, sdc
@@ -254,3 +264,12 @@ drwxrwxrwt.   9 root root        251 May  5 23:42 tmp
 drwxr-xr-x.  13 root root        155 Apr  8 11:23 usr
 drwxr-xr-x.  19 root root        267 Apr  8 11:31 var
 ```
+## Thay đổi kích thước Logical Volume
+### Giảm kích thước LV
+*Trước khi bắt đầu, cần sao lưu dữu liệu vì vậy sẽ được tránh sự cố xảy ra. Cần thực hiện cẩn thận 5 bước dưới đây:
+ * Ngắt kết nối file system
+ * Kiểm tra file system sau khi ngắt kết nối
+ * Giảm file system
+ * Giảm kích thước Logical Volume hơn kích thước hiện tại
+ * Kiểm tra lỗi cho file system
+ * Mount lại file system và kiểm tra kích thước của nó
