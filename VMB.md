@@ -10,6 +10,10 @@
  * Mã hóa nhiều phân vùng vật lý bằng một mật khẩu
 
 *Cơ bản, **LVM**(Logical Volume Manager) bao gồm:*
- * **Physical volumes**: là những đĩa cứng vật lý hoặc phân vùng trên nó. (`/dev/fileserver/share, /dev/fileserver/backup,/dev/fileserver/media`)
+ * **Physical volumes**:
+   * Là những đĩa cứng vật lý hoặc phân vùng trên nó. (`/dev/fileserver/share, /dev/fileserver/backup,/dev/fileserver/media`)
+   * Là 1 tên gọi khác của **partition** trong kỹ thuật **LVM**, nó là những thành phần cơ bản được sử dụng bởi **LVM**
+   * Một **Physical Volume không thể mở rộng ra ngoài phạm vi 1 ổ đĩa.
+   * Có thể kết hợp nhiều **Physical Volume** thành một **Volume Group**
  * **Volume groups**: là một nhóm bao gồm các Physical volume. Có thể xem Volume group như 1 "ổ đĩa ảo". (`fileserver`)
  * **Logical volumes**: có thể xem như là các "phân vùng ảo" trên "ổ đĩa cứng" bạn có thể thêm vào, gỡ bỏ và thay đổi kích thước một cách nhanh chonggs. (`/dev/sda1, /dev/sdb1, /dev/sdc1, /dev/sdd1`)
