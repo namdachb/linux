@@ -3,4 +3,5 @@
 2. [process](process.md)
 
 # fundamentals
-1. [shell history](shellhistory.md)
+15. [shellembeddingandoptions] (shellembeddingandoptions.md)
+16. [shell history](shellhistory.md)
