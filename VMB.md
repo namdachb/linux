@@ -26,11 +26,30 @@
  * Có thể gom nhiều đĩa cứng vật lý lại thành 1 đĩa ảo dung lượng lớn
  * Có thể tạo ra các vùng dung lượng lớn nhỏ tùy ý
  * Có thể thay đổi các vùng dung lượng đó dễ dàng, linh hoạt
+
 **Nhược điểm**
  * Các bước thiết lập phức tạp, khó khăn hơn
  * Càng gắn nhiều đĩa cứng và thiết lập càng nhiều LVM thì hệ thống khởi động càng lâu
  * Khả năng mất dữ liệu khi 1 trong các đĩa cứng vật lý bị hỏng
  * Windows không thể nhận ra vùng dữ liệu của LVM. Nếu dual-boot Windows  sẽ không thể truy cập dữ liệu chứa trong LVM
+## Các lệnh trong LVM
+ * Physical Volume:
+  * `pvcreate` : tạo **physical volume**
+  * `pvdisplay` , `pvs` : xem **physical volume** đã tạo
+  * `pvremove` : xóa **physical volume**
+ * Volume Group :
+  * `vgcreate` : tạo **volume group**
+  * `vgdisplay` , `vgs` : xem **volume group** đã tạo
+  * `vgremove` : xóa **volume group**
+  * `vgextend` : tăng dung lượng của **volume group**
+  * `vgreduce` : giảm dung lượng của **volume group**
+ * Logical Volume:
+  * `lvcreate` : tạo **logical volume**
+  * `lvdisplay` , `lvs` : xem **logical Volume** đã tạo
+  * `lvremove` : xóa **logical volume**
+  * `lvextend` : tăng dung lượng **logical volume**
+  * `lvreduce` : giảm dung lượng **logical volume**
+
 ## Thao tác trên LVM
 *Liệt kê các phân cùng ổ cứng trong hệ thống. `fdisk -l`. (hoặc để đơn giản. Ta dùng `# ls -la /dev/sd*`)
  * Có 3 ổ cứng: sda, sdb, sdc
