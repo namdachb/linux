@@ -220,5 +220,37 @@ Writing inode tables: done
 Creating journal (4096 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
-
-
+### Mount logical volume 
+*Ta cần Mount Logical volume để kiểm tra việc tạo thành công:*
+ ` # mkdir /Data`
+ ` # mount /dev/VG0/Data /Data/`
+ ` # mkdir /Backups`
+ ` # mount /dev/VG0/Backups /Backups/`
+```
+[root@localhost ~]# ls -la /
+total 2097112
+dr-xr-xr-x.  19 root root        267 May  6 00:51 .
+dr-xr-xr-x.  19 root root        267 May  6 00:51 ..
+drwxr-xr-x.   3 root root       4096 May  6 00:45 Backups
+lrwxrwxrwx.   1 root root          7 Apr  8 11:23 bin -> usr/bin
+dr-xr-xr-x.   5 root root       4096 Apr  8 11:30 boot
+drwxr-xr-x.   3 root root       4096 May  6 00:44 Data
+drwxr-xr-x.  21 root root       3360 May  6 00:58 dev
+drwxr-xr-x.  74 root root       8192 May  6 01:02 etc
+drwxr-xr-x.   8 root root         97 May  4 01:11 home
+lrwxrwxrwx.   1 root root          7 Apr  8 11:23 lib -> usr/lib
+lrwxrwxrwx.   1 root root          9 Apr  8 11:23 lib64 -> usr/lib64
+drwxr-xr-x.   2 root root          6 Apr 11  2018 media
+drwxr-xr-x.   2 root root          6 Apr 11  2018 mnt
+drwxr-xr-x.   2 root root          6 Apr 11  2018 opt
+dr-xr-xr-x. 128 root root          0 May  5 23:41 proc
+dr-xr-x---.   3 root root        264 Apr 22 03:36 root
+drwxr-xr-x.  24 root root        720 May  6 01:02 run
+lrwxrwxrwx.   1 root root          8 Apr  8 11:23 sbin -> usr/sbin
+drwxr-xr-x.   2 root root          6 Apr 11  2018 srv
+-rw-------.   1 root root 1073741824 Apr 20 05:49 swapfile
+dr-xr-xr-x.  13 root root          0 May  5 23:41 sys
+drwxrwxrwt.   9 root root        251 May  5 23:42 tmp
+drwxr-xr-x.  13 root root        155 Apr  8 11:23 usr
+drwxr-xr-x.  19 root root        267 Apr  8 11:31 var
+```
