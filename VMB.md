@@ -174,4 +174,51 @@ brw-rw----. 1 root disk 8, 32 May  5 23:41 /dev/sdc
  *Ta sẽ định dạng Logical Volume ở dạng `ext4`:*
   * `# mkfs.ext4 /dev/VG0/Data`
   * `# mkfs.ext4 /dev/VG0/Backups`
+```
+[root@localhost ~]# clear
+[root@localhost ~]# mkfs.ext4 /dev/VG0/Data
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+196608 inodes, 786432 blocks
+39321 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=805306368
+24 block groups
+32768 blocks per group, 32768 fragments per group
+8192 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (16384 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+[root@localhost ~]# mkfs.ext4 /dev/VG0/Backups
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+65024 inodes, 260096 blocks
+13004 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=266338304
+8 block groups
+32768 blocks per group, 32768 fragments per group
+8128 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+```
+
 
