@@ -69,7 +69,9 @@
  * B6 : Bảo mật file swap :
 
    `# chown root:root /var/swapfile`
+
    `# chmod 0600 /var/swapfile`
  * B7 : Kiểm tra lại swap :
    `# swapon -s`
 
+> ***Lưu ý : ** Khi thay đổi dung lượng , **Swappiness** vẫn được giữ nguyên .*
