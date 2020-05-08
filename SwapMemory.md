@@ -49,6 +49,27 @@
      `# sysctl vm.swappiness=10`
 
  * Lưu thông số **swappiness** vào file `/etc/sysctl.conf`
- 
+
      `# vi /etc/sysctl.conf`
- 
+  
+  => Thêm dòng "`vm.swappiness =10`"
+  => Khởi động lại Server và kiểm tra.
+
+### Thay đổi dung lượng Swapfile
+ * B1 : Tắt swap :
+   `# swappoff /var/swapfile`
+ * B2 : Xóa file swap :
+   `# rm -f /var/swapfile`
+ * B3 : Tạo mới lại file swap với dung lượng mong muốn :
+   `# dd if=/dev/zero of=/var/swapfile bs=1M count=4096`
+ * B4 : Tạo phân vùng swap mới :
+   `# mkswap /var/swapfile`
+ * B5 : Kích hoạt swap :
+   `# swapon /var/swapfile`
+ * B6 : Bảo mật file swap :
+
+   `# chown root:root /var/swapfile`
+   `# chmod 0600 /var/swapfile`
+ * B7 : Kiểm tra lại swap :
+   `# swapon -s`
+
