@@ -41,6 +41,14 @@
    * `= 60` : swap được sử dụng khi RAM còn `60%`
    * `= `100` : swap được sử dụng ưu tiên như là RAM 
      => Do **swap** chậm hơn RAM => nên đặt **swappiness** về gần `0` (hoặc chỉnh là `10`)
-    * Kiểm tra mức độ dùng swap của hệ thống bằng lệnh:
+ * Kiểm tra mức độ dùng swap của hệ thống bằng lệnh:
+
      `# cat /proc/sys/vm/swappiness`
-    * Chỉnh 
+ * Chỉnh thông số **swappiness** mặc định thành `10`:
+
+     `# sysctl vm.swappiness=10`
+
+ * Lưu thông số **swappiness** vào file `/etc/sysctl.conf`
+ 
+     `# vi /etc/sysctl.conf`
+ 
