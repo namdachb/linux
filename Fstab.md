@@ -29,3 +29,38 @@
 ### Cột thứ 5 và 6: Các tùy chọn cho lệnh dump và fsck
  * Cột 5 là tùy chọn cho chương trình dump, công cụ sao lưu filesystem. Điền 0: bỏ qua việc sao lưu. 1: thực hiện sao lưu
  * Cột 6 là tùy chọn cho chương trình fsck, công cụ dò lỗi trên filesystem. Điền 0: bỏ qua việc kiểm tra, 1: thực hiện kiểm tra
+
+### Một số câu lệnh 
+ * Lệnh để kiểm tra giá trị hiện hành
+```
+[root@localhost ~]# blkid
+/dev/sda1: UUID="38dbdb36-c094-41cd-8f97-3cf7f9407975" TYPE="xfs"
+/dev/sda2: UUID="yoB2U0-0RDw-Utnk-cEjt-P2A1-2C0V-7bxgC1" TYPE="LVM2_member"
+/dev/sr0: UUID="2020-03-11-04-39-23-00" LABEL="ESD_ISO" TYPE="udf"
+/dev/mapper/centos-root: UUID="0dc64c5d-a51c-4139-8ed3-24be55629e0d" TYPE="xfs"                                                                                                         
+/dev/mapper/centos-swap: UUID="5eafcd7c-ff74-4510-956b-179e7901a139" TYPE="swap                                                                                                         "
+```
+
+ * Lệnh lsblk hiển thị thông tin về các thiết bị lưu trữ. Tiện ích này thường được sử dụng để xác định tên thiết bị chính xác được truyền cho lệnh tiếp theo
+```
+[root@localhost ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0   20G  0 disk
+├─sda1            8:1    0  512M  0 part /boot
+└─sda2            8:2    0 19.5G  0 part
+  ├─centos-root 253:0    0 18.5G  0 lvm  /
+  └─centos-swap 253:1    0    1G  0 lvm  [SWAP]
+sr0              11:0    1    4G  0 rom  /test
+```
+
+### Mount thiết bị trong linux
+ * Cấu trúc lệnh:
+`# mount [options] [device_name] [mount_ponit]`
+   * Options:
+      * `-v` : chế độ chi tiết, cung cấp thêm thông tin về những gì mount định thực hiện
+      * `-w` : mount hệ thống tập tin với quyền đọc và ghi
+      * `-r` : mount hệ thống tập tin chỉ có quyền đọc
+      * `-t` : xác định lại hệ thống tập tin được mount. Những loại hợp lệ là `ext2`, `ext3`, `ext4`, `vfat`, `iso9600`...
+      * `-a` : mount tất cả các hệ thống tập tin được khai báo trong `fstab`
+      * `o` : remount (fs) chỉ định việc mount tại 1 file system nào đó
+       
