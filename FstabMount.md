@@ -53,6 +53,8 @@ sda               8:0    0   20G  0 disk
 sr0              11:0    1    4G  0 rom  /test
 ```
 
+## Mount là gì
+*Mount đề cập đến một quá trình cho phép máy tính truy cập các file trên nhiều thiết bị khác nhau, chẳng hạn như USB hoặc ổ cứng. Điều này là dó chúng bắt nguồn các hệ thống riêng biệt. Mount cũng xảy ra trong hầu hết các bản phân phối Linux do cách chúng tự sử dụng nhiều hệ thống file dưới dạng các phân vùng*
 ### Mount thiết bị trong linux
  * Cấu trúc lệnh:
 `# mount [options] [device_name] [mount_ponit]`
@@ -63,4 +65,3 @@ sr0              11:0    1    4G  0 rom  /test
       * `-t` : xác định lại hệ thống tập tin được mount. Những loại hợp lệ là `ext2`, `ext3`, `ext4`, `vfat`, `iso9600`...
       * `-a` : mount tất cả các hệ thống tập tin được khai báo trong `fstab`
       * `o` : remount (fs) chỉ định việc mount tại 1 file system nào đó
-       
