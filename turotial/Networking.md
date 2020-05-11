@@ -29,4 +29,54 @@
     inet6 fe80::b81b:2fda:5fbf:843f/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 ```
-
+### Hiển thị bảng định tuyến
+`ip route show`
+```
+[root@localhost ~]# ip route show
+default via 192.168.213.2 dev ens33 proto dhcp metric 100
+192.168.213.0/24 dev ens33 proto kernel scope link src 192.168.213.150 metric 100
+```
+### Gán IP cho một giao diện mạng:
+`# ip addr add  192.168.213.151 dev ens33`
+```
+[root@localhost ~]# ip addr show dev ens33
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:4c:36:8c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.150/24 brd 192.168.213.255 scope global noprefixroute dynamic ens33
+       valid_lft 1495sec preferred_lft 1495sec
+    inet 192.168.213.151/32 scope global ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b81b:2fda:5fbf:843f/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+### Gán nhiều IP cho một giao diện mạng:
+*Để gán nhiều IP cho giao diện mạng ta làm tương tự như trên*
+### Gỡ bỏ IP từ giao diện mạng
+`# ip addr del 192.168.213.152/32 dev ens33`
+```
+[root@localhost ~]# ip addr del 192.168.213.151/32 dev ens33
+[root@localhost ~]# ip addr show dev ens33
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:4c:36:8c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.150/24 brd 192.168.213.255 scope global noprefixroute dynamic ens33
+       valid_lft 1362sec preferred_lft 1362sec
+    inet6 fe80::b81b:2fda:5fbf:843f/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+### Hiển thị thông tin về một giao diện mạng
+```
+[root@localhost ~]# ip link show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 00:0c:29:4c:36:8c brd ff:ff:ff:ff:ff:ff
+```
+### Thay đổi trạng thái giao diện mạng (up/down)
+`ip link set dev {DEVICE} {up|down}`
+### Hiển thị bảng định tuyến'
+`ip route`
+```
+[root@localhost ~]# ip route
+default via 192.168.213.2 dev ens33 proto dhcp metric 100
+192.168.213.0/24 dev ens33 proto kernel scope link src 192.168.213.150 metric 100
+```
