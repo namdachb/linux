@@ -54,6 +54,12 @@
   
   => Thêm dòng "`vm.swappiness =10`"
   => Khởi động lại Server và kiểm tra.
+> *Lưu ý:*
+ * Với CentOS 7.2 có thể tune profile sẽ ghi đè `vm.swappiness` mỗi lần reboot, cần kiểm tra lại profile nào đang ghi đè cấu hình lại thủ công :
+   `# grep vm.swappiness /usr/lib/tuned/*/tuned.conf`
+ * Sau đô mở file `/usr/lib/tunedd/virtual-guest/tuned.conf`, tìm `vm.swappiness` và thay đổi `vm.swappiness=30` thành `vm.swappiness=10`
+   `# vi /usr/lib/tuned/virtual-guest/tuned.conf`
+   
 
 ### Thay đổi dung lượng Swapfile
  * B1 : Tắt swap :
