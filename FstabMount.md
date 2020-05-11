@@ -65,3 +65,16 @@ sr0              11:0    1    4G  0 rom  /test
       * `-t` : xác định lại hệ thống tập tin được mount. Những loại hợp lệ là `ext2`, `ext3`, `ext4`, `vfat`, `iso9600`...
       * `-a` : mount tất cả các hệ thống tập tin được khai báo trong `fstab`
       * `o` : remount (fs) chỉ định việc mount tại 1 file system nào đó
+
+### Tên thiết bị trong linux
+ * `cdrom` : đĩa CDROM / DVD
+ * `hd*` : ổ đĩa IDE , ATA
+    * `hda` : ổ cứng thứ nhất
+    * `hdb` : ổ cứng thứ hai
+      * `hdb1` : phân vùng thứ nhất của ổ cứng thứ nhất
+ * `nvme0*` : ổ cứng SSD NVMe
+    * `nvme0n1` : ổ nvme thứ nhất
+    * `nvme0n2` : ổ nvme thứ hai
+       * `nvme0n2p1` : phân vùng thứ nhất của ổ nvme thứ nhất 
+ * `tty*` : cổng giao tiếp (COM ,..)
+ * `eth*` : cổng Ethernet
