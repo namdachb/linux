@@ -61,6 +61,7 @@
  * Sau đô mở file `/usr/lib/tunedd/virtual-guest/tuned.conf`, tìm `vm.swappiness` và thay đổi `vm.swappiness=30` thành `vm.swappiness=10`
 
    `# vi /usr/lib/tuned/virtual-guest/tuned.conf`
+   
 => Khởi động lại Server
 
 ### Thay đổi dung lượng Swapfile
