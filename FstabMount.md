@@ -3,7 +3,7 @@
 
 *Tệp fstab dược đọc bỏi `mount` lệnh, tự động xảy ra khi khởi động để xác định cấu trúc hệ thống tệp tổng thể và sau đó khi người dùng thực thi `mount` lệnh để sửa đổi cấu trúc. Quản trị viên hệ thống có nhiệm vụ tạo và duy trì đúng tệp fstab* 
 
-## Mô tả sơ lược về fstab
+### Mô tả sơ lược về fstab
 *Cấu trúc một file /etc/fstab*
 `/dev/sr0 test udf auto 0 0`
 |1|2|3|4|5|6|
