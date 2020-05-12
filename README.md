@@ -7,4 +7,4 @@
 6. [Networking](turotial/Networking.md)
 
 # fundamental
-17. [FileGlobbing](fileglobbing.md)
+17. [FileGlobbing](fundamental/fileglobbing.md)
