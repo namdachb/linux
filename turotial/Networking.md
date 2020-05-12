@@ -343,3 +343,65 @@ Sinh lại tệp GRUB và ghi đè lên tệp hiện có
 
 `grub2-mkconfig -o /boot/grub2/grub.cfg`
 
+### 2. Chỉnh sửa file cấu hình mạng
+Chỉnh sửa file cấu hình mạng ban đầu là `ens33`. Tại mục `NAME` và `DEVICE`, ta đổi từ `ens33` thành `eth0`
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=eth0
+UUID=f5d23247-ecf1-4d4c-ae72-f7211e66e306
+DEVICE=eth0
+ONBOOT=yes
+```
+
+Sửa tên file cấu hình mạng: `ifcfg-ens33` thành `ifcfg-eth0`
+```
+[root@localhost network-scripts]# mv /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-eth0
+```
+### 3. Disable NetworkManager
+Đảm bảo rằng NetworkManager không hoàn nguyên các thay đổi khi khởi động lại máy hay khởi động lại mạng
+
+`systemctl disable NetworkManager`
+
+### 4. Reboot máy và kiểm tra lại
+Reboot máy để những thay đổi được thực hiện
+`reboot`
+
+Kiểm tra lại tên thiết bị 
+
+`ip a`
+```
+[root@localhost ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:4c:36:8c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.150/24 brd 192.168.213.255 scope global noprefixroute dynamic eth0
+       valid_lft 1499sec preferred_lft 1499sec
+    inet6 fe80::bfbb:895e:8cbb:7ab9/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+Kiểm tra kết nối Internet
+
+`ping 8.8.8.8`
+```
+[root@localhost ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=128 time=73.1 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=128 time=58.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=128 time=69.2 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=128 time=57.4 ms
+```
