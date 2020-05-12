@@ -160,6 +160,39 @@ ONBOOT=yes
 BOOTPROTO=dhcp
 USERCTL=no
 ```
+6. Cấu hình bằng `nmcli`
+ * Đây là công cụ giúp điều khiển trình quản lý mạng trong Linux bằng dòng lệnh
+ * Xem các trạng thái kết nối cơ bản: 
+   
+   `# nmcli [optins] [command] [arguments]`
+   * Options :
+     * `-a` : hiển thị đầy đủ thông tin về phần cứng card gồm MAC, MTU, IP ,..
+   * Commands + Arguments :
+     * `general` :
+       * `status`
+       * `hostname` : hiển thị hostnam
+     * `network` :
+       * `on` : enable card mạng
+       * `off` : disable card mạng
+       * `connectivity` : xem trạng thái kết nối :
+         * full : đã kết nối mạng và được truy cập internet
+         * limited : đã kết nối mạng nhưng không được phép truy cập internet
+         * none : chưa được kết nối mạng
+     * `radio` :
+        * `all` : hiển thị trạng thái tất cả các kết nối không dây
+        * `on` : enable card wifi
+     * `monitor` : quản lý status mạng theo runtime
+     * `connection` (`con`):
+        * `show --active` : hiển thị các kết nối đang active
+     * `device (dev)` : 
+        * `status`: hiển thị trạng thái các interface
+        * `show if_name` : hiển thị thông tin chi tiết của interface
+        * `wifi list` : liệt kê các sóng wifi bắt được
+          * `--auto`
+          * `--rescan`
+        * `wifi connect` : kết nối tới mạng wifi đã biết
+          * `SSID password "password"`
+
 
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
