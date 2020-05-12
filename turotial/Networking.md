@@ -193,7 +193,6 @@ USERCTL=no
         * `wifi connect` : kết nối tới mạng wifi đã biết
           * `SSID password "password"`
 
-
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
 `# ip addr show`
@@ -319,3 +318,17 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         192.168.213.2   0.0.0.0         UG    100    0        0 ens33
 192.168.213.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
 ```
+
+### Cách thay đổi card mạng về dạng `eth*`
+*Kiểm tra tên Network interface hiện tại*
+
+`ip a`
+```
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
+    link/ether 00:0c:29:4c:36:8c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.150/24 brd 192.168.213.255 scope global noprefixroute dynamic en                                                                                                   s33
+       valid_lft 1250sec preferred_lft 1250sec
+    inet6 fe80::6eb4:dc2c:d90:bca3/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+*Ta thấy tên hiện tại của Network interface là `ens33`. Chúng ta sẽ đưa tên Network interface về dạng `eth0, eth1, ...`
