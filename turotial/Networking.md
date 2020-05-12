@@ -95,3 +95,35 @@ default via 192.168.213.2 dev ens33 proto dhcp metric 100
 `yum install net-tools`
 
 *Lệnh `route` được sử dụng để xem hoặc thay đổi bảng định tuyến IP. Bạn có thể muốn thay đổi bảng định tuyến IP để thêm, xóa hoặc sửa đổi các tuyến tĩnh thành các máy chủ hoặc mạng cụ thể*
+
+### Hiển thị bảng định tuyến
+`# route -n`
+```
+[root@localhost ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.213.2   0.0.0.0         UG    100    0        0 ens33
+192.168.213.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
+```
+### Thêm một định tuyến
+`# route add -net 192.168.1.0 netmask 255.255.255.0 dev ens33`
+```
+[root@localhost ~]# route add -net 192.168.1.0 netmask 255.255.255.0 dev ens33
+[root@localhost ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.213.2   0.0.0.0         UG    100    0        0 ens33
+192.168.1.0     0.0.0.0         255.255.255.0   U     0      0        0 ens33
+192.168.213.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
+```
+
+### Xóa một định tuyến
+`# route del -net 192.168.1.0 netmask 255.255.255.0 dev ens33`
+```
+[root@localhost ~]# route del -net 192.168.1.0 netmask 255.255.255.0 dev ens33
+[root@localhost ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.213.2   0.0.0.0         UG    100    0        0 ens33
+192.168.213.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
+```
