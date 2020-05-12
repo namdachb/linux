@@ -264,13 +264,7 @@ default via 192.168.213.2 dev ens33 proto dhcp metric 100
 ```
 ### Thay đổi trạng thái giao diện mạng (up/down)
 `ip link set dev {DEVICE} {up|down}`
-### Hiển thị bảng định tuyến
-`ip route`
-```
-[root@localhost ~]# ip route
-default via 192.168.213.2 dev ens33 proto dhcp metric 100
-192.168.213.0/24 dev ens33 proto kernel scope link src 192.168.213.150 metric 100
-```
+
 ### Thêm một định tuyến mới
 `# ip route add 192.168.213.0/24 via 192.168.213.1`
 ### Xóa một định tuyến
