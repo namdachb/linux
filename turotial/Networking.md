@@ -22,7 +22,7 @@ search localdomain
 nameserver 192.168.213.2
 ```
 
- 2. `/etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]`
+3. `/etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]`
  * Chứa thông tin cấu hình của từng card mạng
      * `ens33` : ethernet (có sẵn)
      * `sl*` : serial line IP
@@ -81,6 +81,30 @@ ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 <=> # /etc/init.d/network restart
 <=> # systemctl restart network.service
 ```
+4. Xem thông tin gateway
+```
+# route
+# ip route
+```
+
+```
+[root@localhost ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 ens33
+192.168.213.0   0.0.0.0         255.255.255.0   U     100    0        0 ens33
+[root@localhost ~]# ip route
+default via 192.168.213.2 dev ens33 proto dhcp metric 100
+192.168.213.0/24 dev ens33 proto kernel scope link src 192.168.213.150 metric 100
+
+```
+5. Cấu hình IP
+*Cấu hình bằng lệnh (tạm thời)*
+ `$ ifconfig [tên_card_mạng] [IP] netmask [subnet_mask] ip`
+
+> ``` Chú ý : IP sẽ mất mỗi khi tắt mở card mạng hay restart `network.service`. Đây còn gọi là cách đặt IP tạm thời, thường dùng để test.
+
+
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
 `# ip addr show`
