@@ -22,7 +22,7 @@ search localdomain
 nameserver 192.168.213.2
 ```
 
- * `/etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]
+ * `/etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]`
     * Chứa thông tin cấu hình của từng card mạng
        * `ens33` : ethernet (có sẵn)
        * `sl*` : serial line IP
@@ -73,9 +73,14 @@ ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 2. Tắt / Bật card mạng
 ```
 # ifup [tên_card_mạng]   : bật card mạng
-# ifdown [tên_card_mạng] : tắt card mạng
+# ifdown [tên_card_mạng] : tắt card mạngx
 ```
-
+3. Khởi động lại `network.service`
+```
+    # service network restart
+<=> # /etc/init.d/network restart
+<=> # systemctl restart network.service
+```
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
 `# ip addr show`
