@@ -136,10 +136,30 @@ ONBOOT=yes
   * `IPADDR` : địa chỉ IP của card mạng (khi cấu hình IP tĩnh)
   * `NETMASK` : địa chỉ subnetmask (khi cấu hình IP tĩnh )
   * `GATEWAY` : đĩa chỉ gateway (khi cấu hình IP tĩnh)
-  * `DNS[1|2] : địa chỉ DNS Server (khi cấu hình IP tĩnh)
+  * `DNS[1|2]` : địa chỉ DNS Server (khi cấu hình IP tĩnh)
   * `USERCTL` : 
      * `yes` : cho phép user thường cấu hình sửa đổi
      * `no` : không cho phép user thường cấu hình sửa đổi
+ * VD : thiết bị IP tĩnh cho Server với IP `192.168.17.11/24`, gateway `192.168.17.1`, DNS là `8.8.8.8`, `8.8.4.4`
+```
+DEVICE=ens37
+ONBOOT=yes
+BOOTPROTO=static
+IPADDR=192.168.17.11
+NETMASK=255.255.255.0
+GATEWAY=192.168.17.1
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+USERCTL=no
+```
+
+ *VD : thiết lập IP động
+```
+DEVICE=ens33
+ONBOOT=yes
+BOOTPROTO=dhcp
+USERCTL=no
+```
 
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
