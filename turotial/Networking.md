@@ -331,4 +331,15 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
     inet6 fe80::6eb4:dc2c:d90:bca3/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 ```
-*Ta thấy tên hiện tại của Network interface là `ens33`. Chúng ta sẽ đưa tên Network interface về dạng `eth0, eth1, ...`
+*Ta thấy tên hiện tại của Network interface là `ens33`. Chúng ta sẽ đưa tên Network interface về dạng `eth0, eth1, ...`*
+### 1. Chỉnh sửa tham số Kernel boot
+Chỉnh sửa file `/etc/default/grub`
+Tìm đến dòng `GRub_CMDLINE_LINUX` và thêm đoạn sau `net.ifnames=0 biosdevname=0`. Ta sẽ được dòng sau:
+
+```
+GRUB_CMDLINE_LINUX="crashkernel=auto net.ifnames=0 biosdevname=0 rhgb quiet"
+```
+Sinh lại tệp GRUB và ghi đè lên tệp hiện có
+
+`grub2-mkconfig -o /boot/grub2/grub.cfg`
+
