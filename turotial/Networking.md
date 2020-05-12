@@ -102,8 +102,44 @@ default via 192.168.213.2 dev ens33 proto dhcp metric 100
 *Cấu hình bằng lệnh (tạm thời)*
  `$ ifconfig [tên_card_mạng] [IP] netmask [subnet_mask] ip`
 
-> ``` Chú ý : IP sẽ mất mỗi khi tắt mở card mạng hay restart `network.service`. Đây còn gọi là cách đặt IP tạm thời, thường dùng để test.
+> *** Chú ý*** : IP sẽ mất mỗi khi tắt mở card mạng hay restart `network.service`. Đây còn gọi là cách đặt IP tạm thời, thường dùng để test.
 
+*Cấu hình bằng file*
+ * Thay đổi nội dung trong file cấu hình của card mạng:
+ `# vi /etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]`
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=f5d23247-ecf1-4d4c-ae72-f7211e66e306
+DEVICE=ens33
+ONBOOT=yes
+
+```
+ * Ý nghĩa các thông số trong file :
+  * `DEVICE` : tên của card mạng
+  * `ONBOOT` :
+     * `yes` : khởi động khi restart `network.service`
+     * `no` : không khởi động khi restart `network.service`
+  * `BOOTPROTO` :
+     * `static` : dùng IP tĩnh
+     * `dhcp` : nhận IP từ DHCP Server
+  * `IPADDR` : địa chỉ IP của card mạng (khi cấu hình IP tĩnh)
+  * `NETMASK` : địa chỉ subnetmask (khi cấu hình IP tĩnh )
+  * `GATEWAY` : đĩa chỉ gateway (khi cấu hình IP tĩnh)
+  * `DNS[1|2] : địa chỉ DNS Server (khi cấu hình IP tĩnh)
+  * `USERCTL` : 
+     * `yes` : cho phép user thường cấu hình sửa đổi
+     * `no` : không cho phép user thường cấu hình sửa đổi
 
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
