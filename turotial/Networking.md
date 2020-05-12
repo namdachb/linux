@@ -102,7 +102,7 @@ default via 192.168.213.2 dev ens33 proto dhcp metric 100
 *Cấu hình bằng lệnh (tạm thời)*
  `$ ifconfig [tên_card_mạng] [IP] netmask [subnet_mask] ip`
 
-> *** Chú ý*** : IP sẽ mất mỗi khi tắt mở card mạng hay restart `network.service`. Đây còn gọi là cách đặt IP tạm thời, thường dùng để test.
+> ***Chú ý*** : IP sẽ mất mỗi khi tắt mở card mạng hay restart `network.service`. Đây còn gọi là cách đặt IP tạm thời, thường dùng để test.
 
 *Cấu hình bằng file*
  * Thay đổi nội dung trong file cấu hình của card mạng:
