@@ -84,6 +84,14 @@ default via 192.168.213.2 dev ens33 proto dhcp metric 100
 `# ip route add 192.168.213.0/24 via 192.168.213.1`
 ### Xóa một định tuyến
 `ip route del defaulf`
+
 *Hoặc chỉ định tuyến cần xóa*
 
 `ip route del <dia_chi_ip> via <gateway>`
+
+## Lệnh Route
+*Hiện tại bộ công cụ `iproute2` đã được thay thế mặc định cho bộ công cụ `net-tools` ở các bản phân phối linux mới như RHEL7, CentOS ..vv , dẫn tới bạn sẽ gặp lỗi `-bash: ifconfig: command not found` trên centos 7. Cài đặt `net-tools` trên centos 7 :*
+
+`yum install net-tools`
+
+*Lệnh `route` được sử dụng để xem hoặc thay đổi bảng định tuyến IP. Bạn có thể muốn thay đổi bảng định tuyến IP để thêm, xóa hoặc sửa đổi các tuyến tĩnh thành các máy chủ hoặc mạng cụ thể*
