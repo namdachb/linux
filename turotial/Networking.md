@@ -48,6 +48,33 @@ UUID=f5d23247-ecf1-4d4c-ae72-f7211e66e306
 DEVICE=ens33
 ONBOOT=yes
 ```
+## Các lệnh Network cơ bản
+1. Xem địa chỉ IP
+```
+# ifconfig     (Ethernet + Loopback)
+# iwconfig     (Wifi)
+# ifconfig -a  (đầy đủ thông tin)
+# ip a s       (đầy đủ thông tin)
+```
+
+```
+[root@localhost ~]# ifconfig
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.213.150  netmask 255.255.255.0  broadcast 192.168.213.255
+        inet6 fe80::b81b:2fda:5fbf:843f  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:4c:36:8c  txqueuelen 1000  (Ethernet)
+        RX packets 1199  bytes 104896 (102.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 832  bytes 88060 (85.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+```
+2. Tắt / Bật card mạng
+```
+# ifup [tên_card_mạng]   : bật card mạng
+# ifdown [tên_card_mạng] : tắt card mạng
+```
 
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
