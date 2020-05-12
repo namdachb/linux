@@ -22,6 +22,33 @@ search localdomain
 nameserver 192.168.213.2
 ```
 
+ * `/etc/sysconfig/network-scripts/ifcfg-[tên_card_mạng]
+    * Chứa thông tin cấu hình của từng card mạng
+       * `ens33` : ethernet (có sẵn)
+       * `sl*` : serial line IP
+       * `wl*` : wlan (wifi)
+       * `ww*` : wwan (wireless WAN -3G/4G)
+       * `virbr0` : bridge (có sẵn)
+       * `lo*` : loopback (có sẵn)
+```
+[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-ens33
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=f5d23247-ecf1-4d4c-ae72-f7211e66e306
+DEVICE=ens33
+ONBOOT=yes
+```
+
 ## Lệnh `ip`:
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
 `# ip addr show`
