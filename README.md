@@ -5,3 +5,6 @@
 4. [VolumeManagerBasics](turotial/VMB.md)
 5. [Advanced Volume Manager](turotial/AVM.md)
 6. [Networking](turotial/Networking.md)
+
+# fundamental
+17. [FileGlobbing](fileglobbing.md)
