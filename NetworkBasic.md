@@ -16,4 +16,4 @@ Có thể sửa thêm file /etc/hosts để khai báo thêm hostname mới ở d
 
 Mô hình 
 
-<img scr="https://imgur.com/22mZGr1.png">
+<img src="https://imgur.com/22mZGr1.png">
