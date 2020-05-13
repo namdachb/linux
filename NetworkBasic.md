@@ -77,11 +77,7 @@ Sau đó dùng lệnh để kiểm tra:
        valid_lft forever preferred_lft forever
     inet6 fe80::10a3:59d9:f6cd:17e8/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
-4: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
-    link/ether 00:0c:29:fe:8c:e5 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens38
-       valid_lft forever preferred_lft forever
-    inet6 fe80::39fc:8a37:8c73:9ad7/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
 ```
+
+Và chúng ta tiếp tục với card ens38 của máy ảo 1 và với 2 card của ens37, ens38 của máy ảo 2
 
