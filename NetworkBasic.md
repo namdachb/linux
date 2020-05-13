@@ -18,3 +18,7 @@ Mô hình
 
 <img src="https://imgur.com/22mZGr1.png" weight=100x50>
 
+IP Planning
+
+<img src="https://imgur.com/RhZhKSQ.png">
+
