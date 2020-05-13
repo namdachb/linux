@@ -15,5 +15,5 @@ Có thể sửa thêm file /etc/hosts để khai báo thêm hostname mới ở d
 ## Đề bài tạo 2 con máy ảo, mỗi máy có 3 card mạng, thiết lập ip tĩnh cho các máy
 
 Mô hình 
-<img src="https://drive.google.com/open?id=1FdPRJcAl9piSqdKm3LhXz0SesNBBst8j.png">
 
+<img scr="https://imgur.com/22mZGr1.png">
