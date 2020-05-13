@@ -125,3 +125,30 @@ Và chúng ta tiếp tục với card ens38 của máy ảo 1 và với 2 card e
     inet6 fe80::895:2280:56d3:fecc/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 ```
+
+Sau khi thiết lập IP tĩnh xong chúng ta sẽ đứng từ máy 1 để ping sang máy 2 và ngược lại để xem chúng có thể ping với nhau được không
+
+```
+[root@localhost ~]# ping 192.168.213.136
+PING 192.168.213.136 (192.168.213.136) 56(84) bytes of data.
+64 bytes from 192.168.213.136: icmp_seq=1 ttl=64 time=0.045 ms
+64 bytes from 192.168.213.136: icmp_seq=2 ttl=64 time=0.059 ms
+64 bytes from 192.168.213.136: icmp_seq=3 ttl=64 time=0.086 ms
+```
+
+```
+[root@localhost ~]# ping 192.168.11.10
+PING 192.168.11.10 (192.168.11.10) 56(84) bytes of data.
+64 bytes from 192.168.11.10: icmp_seq=1 ttl=64 time=0.057 ms
+64 bytes from 192.168.11.10: icmp_seq=2 ttl=64 time=0.064 ms
+64 bytes from 192.168.11.10: icmp_seq=3 ttl=64 time=0.088 ms
+64 bytes from 192.168.11.10: icmp_seq=4 ttl=64 time=0.086 ms
+```
+
+```
+[root@localhost ~]# ping 192.168.10.10
+PING 192.168.10.10 (192.168.10.10) 56(84) bytes of data.
+64 bytes from 192.168.10.10: icmp_seq=1 ttl=64 time=0.045 ms
+64 bytes from 192.168.10.10: icmp_seq=2 ttl=64 time=0.079 ms
+64 bytes from 192.168.10.10: icmp_seq=3 ttl=64 time=0.085 ms
+```
