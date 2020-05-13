@@ -23,4 +23,14 @@ IP Planning
 <img src="https://imgur.com/RhZhKSQ.png">
 
 ### Thiết lập địa chỉ IP tĩnh 
-Để đặt IP tĩnh cho máy CentOS
+Để đặt IP tĩnh cho máy CentOS ta có 2 phương án là: sửa file hoặc sử dụng lệnh. Trong bài này e sẽ sử dụng lệnh để thiết lập IP tĩnh
+
+Việc đặt địa chỉ IP bằng lệnh trong CentOS7 được sử dụng thông qua NetworkManager, chính là gói quản lý lệnh `nmcli` .
+
+```
+nmcli con modify ens37 ipv4.addresses 192.168.11.10/24
+nmcli con modify ens37 ipv4.gateway 192.168.11.1
+nmcli con modify ens37 ipv4.dns 8.8.8.8
+nmcli con modify ens37 ipv4.method manual
+nmcli con modify ens37 connection.autoconnect yes
+```
