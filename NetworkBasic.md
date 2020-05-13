@@ -40,6 +40,7 @@ Chúng ta thấy phần connection của ens37 và ens38 khá dài, nên ta đ�
 Để đặt IP tĩnh cho máy CentOS ta có 2 phương án là: sửa file hoặc sử dụng lệnh. Trong bài này e sẽ sử dụng lệnh để thiết lập IP tĩnh
 
 Việc đặt địa chỉ IP bằng lệnh trong CentOS7 được sử dụng thông qua NetworkManager, chính là gói quản lý lệnh `nmcli` .
+ * Chúng ta sẽ làm với card mạng **ens37** của máy ảo 1
 
 ```
 nmcli con modify ens37 ipv4.addresses 192.168.11.10/24
@@ -48,3 +49,39 @@ nmcli con modify ens37 ipv4.dns 8.8.8.8
 nmcli con modify ens37 ipv4.method manual
 nmcli con modify ens37 connection.autoconnect yes
 ```
+
+ * Khi đổi xong chúng restart lại mạng bằng lệnh 
+
+   `service network restart`
+
+Sau đó dùng lệnh để kiểm tra:
+  
+   `ip a` 
+```
+[root@localhost ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qle                                                                                                   n 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
+    link/ether 00:0c:29:fe:8c:d1 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.136/24 brd 192.168.213.255 scope global noprefixroute dynamic en                                                                                                   s33
+       valid_lft 1491sec preferred_lft 1491sec
+    inet6 fe80::7040:e666:7e44:8d75/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
+    link/ether 00:0c:29:fe:8c:db brd ff:ff:ff:ff:ff:ff
+    inet 192.168.11.10/24 brd 192.168.11.255 scope global noprefixroute ens37
+       valid_lft forever preferred_lft forever
+    inet6 fe80::10a3:59d9:f6cd:17e8/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+4: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
+    link/ether 00:0c:29:fe:8c:e5 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens38
+       valid_lft forever preferred_lft forever
+    inet6 fe80::39fc:8a37:8c73:9ad7/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+
