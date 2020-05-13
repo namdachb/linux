@@ -6,4 +6,4 @@ Sử dụng lệnh để đặt hostname cho CentOS mà không cần phải kh�
 
 Sau đó đăng nhập phiên mới hoặc gõ lệnh `bash` để sử dụng host name mới.
 
-<img src="https://imgur.com/seIwPGC">
+<img src="https://imgur.com/seIwPGC.png">
