@@ -22,6 +22,20 @@ IP Planning
 
 <img src="https://imgur.com/RhZhKSQ.png">
 
+Đầu tiên chúng ta vào 2 máy ảo, ở mỗi máy ảo chúng ta tạo 3 card mạng
+ * Xong chúng ta có thể check xem mạng có sẵn bằng lệnh `nmcli device`
+ 
+```
+[root@localhost ~]# nmcli device
+DEVICE  TYPE      STATE      CONNECTION
+ens33   ethernet  connected  ens33
+ens37   ethernet  connected  Wired connection 1
+ens38   ethernet  connected  Wired connection 2
+lo      loopback  unmanaged  --
+```
+
+Chúng ta thấy phần connection của ens37 và ens38 khá dài, nên ta đổi "ens37" cho đồng bộ với ens37
+
 ### Thiết lập địa chỉ IP tĩnh 
 Để đặt IP tĩnh cho máy CentOS ta có 2 phương án là: sửa file hoặc sử dụng lệnh. Trong bài này e sẽ sử dụng lệnh để thiết lập IP tĩnh
 
