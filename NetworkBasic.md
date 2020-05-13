@@ -152,3 +152,5 @@ PING 192.168.10.10 (192.168.10.10) 56(84) bytes of data.
 64 bytes from 192.168.10.10: icmp_seq=2 ttl=64 time=0.079 ms
 64 bytes from 192.168.10.10: icmp_seq=3 ttl=64 time=0.085 ms
 ```
+
+Và cứ như vậy chúng ta đứng từ máy 2 cũng có thể ping sang máy 1 
