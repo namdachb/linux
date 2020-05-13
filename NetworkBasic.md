@@ -16,9 +16,11 @@ Có thể sửa thêm file /etc/hosts để khai báo thêm hostname mới ở d
 
 Mô hình 
 
-<img src="https://imgur.com/22mZGr1.png" weight=100x50>
+[Imgur](https://i.imgur.com/lL5GgaP.png)
 
 IP Planning
 
 <img src="https://imgur.com/RhZhKSQ.png">
 
+### Thiết lập địa chỉ IP tĩnh 
+Để đặt IP tĩnh cho máy CentOS
