@@ -59,18 +59,6 @@ Sau đó dùng lệnh để kiểm tra:
    `ip a` 
 ```
 [root@localhost ~]# ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qle                                                                                                   n 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
-    link/ether 00:0c:29:fe:8c:d1 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.213.136/24 brd 192.168.213.255 scope global noprefixroute dynamic en                                                                                                   s33
-       valid_lft 1491sec preferred_lft 1491sec
-    inet6 fe80::7040:e666:7e44:8d75/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
 3: ens37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                    default qlen 1000
     link/ether 00:0c:29:fe:8c:db brd ff:ff:ff:ff:ff:ff
     inet 192.168.11.10/24 brd 192.168.11.255 scope global noprefixroute ens37
@@ -79,5 +67,61 @@ Sau đó dùng lệnh để kiểm tra:
        valid_lft forever preferred_lft forever
 ```
 
-Và chúng ta tiếp tục với card ens38 của máy ảo 1 và với 2 card của ens37, ens38 của máy ảo 2
+Và chúng ta tiếp tục với card ens38 của máy ảo 1 và với 2 card ens37, ens38 của máy ảo 2 ta sẽ thấy : 
 
+ * Máy 1
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qle                                                                                                    n 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                     default qlen 1000
+    link/ether 00:0c:29:fe:8c:d1 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.136/24 brd 192.168.213.255 scope global noprefixroute dynamic en                                                                                                    s33
+       valid_lft 1491sec preferred_lft 1491sec
+    inet6 fe80::7040:e666:7e44:8d75/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                     default qlen 1000
+    link/ether 00:0c:29:fe:8c:db brd ff:ff:ff:ff:ff:ff
+    inet 192.168.11.10/24 brd 192.168.11.255 scope global noprefixroute ens37
+       valid_lft forever preferred_lft forever
+    inet6 fe80::10a3:59d9:f6cd:17e8/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+4: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group                                                                                                     default qlen 1000
+    link/ether 00:0c:29:fe:8c:e5 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens38
+       valid_lft forever preferred_lft forever
+    inet6 fe80::39fc:8a37:8c73:9ad7/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
+
+ * Máy 2
+```
+[root@localhost ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:0e:99:fb brd ff:ff:ff:ff:ff:ff
+    inet 192.168.213.159/24 brd 192.168.213.255 scope global noprefixroute dynamic ens33
+       valid_lft 1582sec preferred_lft 1582sec
+    inet6 fe80::f507:ccdd:d86a:4c1d/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:0e:99:05 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.11.11/24 brd 192.168.11.255 scope global noprefixroute ens37
+       valid_lft forever preferred_lft forever
+    inet6 fe80::d0cf:b843:90c1:c23a/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+4: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:0e:99:0f brd ff:ff:ff:ff:ff:ff
+    inet 192.168.10.11/24 brd 192.168.10.255 scope global noprefixroute ens38
+       valid_lft forever preferred_lft forever
+    inet6 fe80::895:2280:56d3:fecc/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+```
