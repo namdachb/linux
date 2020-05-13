@@ -16,7 +16,7 @@ Có thể sửa thêm file /etc/hosts để khai báo thêm hostname mới ở d
 
 Mô hình 
 
-[Imgur](https://i.imgur.com/lL5GgaP.png)
+![Imgur](https://i.imgur.com/lL5GgaP.png)
 
 IP Planning
 
