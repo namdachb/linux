@@ -7,3 +7,13 @@ Sử dụng lệnh để đặt hostname cho CentOS mà không cần phải kh�
 Sau đó đăng nhập phiên mới hoặc gõ lệnh `bash` để sử dụng host name mới.
 
 <img src="https://imgur.com/seIwPGC.png">
+
+Có thể sửa thêm file /etc/hosts để khai báo thêm hostname mới ở dòng 127.0.0.1. Cụ thể sửa lại file đó có nội dung như sau:
+
+`echo "127.0.0.1 localhost namdac" > /etc/hosts`
+
+## Đề bài tạo 2 con máy ảo, mỗi máy có 3 card mạng, thiết lập ip tĩnh cho các máy
+
+Mô hình 
+<img src="https://drive.google.com/open?id=1FdPRJcAl9piSqdKm3LhXz0SesNBBst8j">
+
