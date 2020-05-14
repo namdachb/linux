@@ -95,9 +95,11 @@ google.com mail is handled by 10 aspmx.l.google.com.
 
 ### 5. `whois` 
  * `whois` không được cài đặt mặc định trên **CentOS**, phải cài thủ công:
+
   ` # yum install -y whois`
  * Đưa các bản ghi trên server **whois** (**whois record**) của website, vì vậy bạn có thể xem thông tin về người hay tổ chức đã đăng ký và sở hữu website đó
-  `# whois [Domain]
+ 
+  `# whois [Domain]`
 ```
 [root@localhost ~]# whois google.com
    Domain Name: GOOGLE.COM
