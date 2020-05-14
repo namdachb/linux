@@ -145,6 +145,10 @@ google.com mail is handled by 10 aspmx.l.google.com.
      * `-su` : thống kê theo bộ giao thức **UDP**
      * `-i` : hiển thị hoạt động của các network interface
      * `-g` : hiển thị tình trạng IPv4 và IPv6
+
+ * Hiển thị tên service cùng **PID**:
+  
+    `# netstat -tp`
 ```
 [root@localhost ~]# netstat -tp
 Active Internet connections (w/o servers)
@@ -152,6 +156,19 @@ Proto Recv-Q Send-Q Local Address           Foreign Address         State       
 tcp        0      0 localhost.localdoma:ssh 192.168.213.1:61113     ESTABLISHED                                                                                                          1450/sshd: root@not
 tcp        0      0 localhost.localdo:57314 h2162.tino.org:http     TIME_WAIT                                                                                                            -
 tcp        0      0 localhost.localdoma:ssh 192.168.213.1:61112     ESTABLISHED                                                                                                          1446/sshd: root@pts
+```
+
+ * Hiển thị hoạt động của các network interface:
+   
+   `# netstat -i`
+```
+[root@localhost ~]# netstat -i
+Kernel Interface table
+Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OV                                                                                                         R Flg
+ens33            1500    11257      0      0 0         10165      0      0                                                                                                               0 BMRU
+ens37            1500       30      0      0 0            35      0      0                                                                                                               0 BMRU
+ens38            1500       17      0      0 0            21      0      0                                                                                                               0 BMRU
+lo              65536        3      0      0 0             3      0      0                                                                                                               0 LRU
 ```
 
  
