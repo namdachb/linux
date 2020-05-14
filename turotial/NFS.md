@@ -65,7 +65,7 @@ traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
  * Gõ `q` để thoát khỏi tiến tình
 
    `# mtr [IP/Domain_destination]`
- * Tải **mtr** bằng lệnh : 
+ * Tải **mtr** bằng lệnh : (trên centos)
 
    `yum install mtr`
 ```
@@ -190,6 +190,7 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
   `# netstat -ap | grep http`
 
  * Hiển thị số lượng gói `SYN_REC` trên Server (nếu có quá nhiều server đang bị DDOS)
+ 
   `# netstat -np | grep SYN_REC | wc -l`
 
 ### 8. `tcpdump`
@@ -255,4 +256,8 @@ listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
 0 packets dropped by kernel
 ```
 
-
+ * TH4 : hiển thị gói tin dưới dạng HEX (`-xx`) và dưới dạng ASCII (-A)
+  ```
+  # tcpdump -n -XX -i ens33    (HEX)
+  # tcpdump -n -A -i ens33     (ASCII)
+  ```
