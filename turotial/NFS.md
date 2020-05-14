@@ -171,4 +171,42 @@ ens38            1500       17      0      0 0            21      0      0      
 lo              65536        3      0      0 0             3      0      0                                                                                                               0 LRU
 ```
 
+ * Hiển thị thông tin bảng định tuyến:
+  `# netstat -rn`
+```
+[root@localhost ~]# netstat -rn
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         192.168.213.2   0.0.0.0         UG        0 0          0 ens33
+192.168.11.0    0.0.0.0         255.255.255.0   U         0 0          0 ens37
+192.168.11.0    0.0.0.0         255.255.255.0   U         0 0          0 ens38
+192.168.213.0   0.0.0.0         255.255.255.0   U         0 0          0 ens33
+```
+
+ * Hiển thị các kết nối sử dụng dịch vụ `http`:
+
+  `# netstat -ap | grep http`
+
+ * Hiển thị số lượng gói `SYN_REC` trên Server (nếu có quá nhiều server đang bị DDOS)
+  `# netstat -np | grep SYN_REC | wc -l`
+
+### 8. `tcpdump`
+ * **Tcpdump** là phầm mềm bắt gói tin trong mạng làm việc trên hầu hết các phiên bản hệ điều hành Unix/Linux. **Tcpdump** cho phép bắt và lưu lại những gói tin bắt được, từ đó chúng ta có thể sử dụng để phân tích
+ * Có thể lưu ra file và đọc bằng công cụ đồ họa **Wireshard**
+ * Cài đặt `tcpdump` :
+
+   `# yum install -y tcpdump`
+ * Cấu trúc lệnh :
+
+   `# tcpdump [options] [network_interface]`
  
+   * Options:
+     * `-X` : hiển thị nội dung của gói theo dạng `ASCII` và `HEX`
+     * `-XX` : tương tự `-X`
+     * `-D` : liệt kê các network interface có sẵn 
+     * `-l` : đầu ra có thể đọc được dòng (để xem khi bạn lưu hoặc gửi đến các lệnh khác)
+     * `-t` : cung cấp đầu ra dấu thời gian có thể đọc được của con người
+     * `-q` : ít dài dòng hơn với đầu ra
+     * `-tttt` : cung cấp đầu ra dấu thời gian tối đa có thể đọc được của con người
+     * `-i` : bắt lưu lượng của một giao diện cụ thể
+     * `-vv` : đầu ra cụ thể và chi tiết hơn ( nhiều v hơn cho đầu ra nhiều hơn)
