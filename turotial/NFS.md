@@ -98,7 +98,7 @@ google.com mail is handled by 10 aspmx.l.google.com.
 
   ` # yum install -y whois`
  * Đưa các bản ghi trên server **whois** (**whois record**) của website, vì vậy bạn có thể xem thông tin về người hay tổ chức đã đăng ký và sở hữu website đó
- 
+
   `# whois [Domain]`
 ```
 [root@localhost ~]# whois google.com
@@ -212,3 +212,47 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
      * `-tttt` : cung cấp đầu ra dấu thời gian tối đa có thể đọc được của con người
      * `-i` : bắt lưu lượng của một giao diện cụ thể
      * `-vv` : đầu ra cụ thể và chi tiết hơn ( nhiều v hơn cho đầu ra nhiều hơn)
+     * `-s` : xác định snaplength (kích thước) của gói tin theo byte. Sử dụng `-s0` để có được mọi thứ. Nếu không set size packet dump thành unlimit, thì khi tcpdump ra nó bị phân mảnh 
+     * `-c` : chỉ nhận được x số gói và sau đó dừng lại 
+     * `-s` : in số thứ tự tuyệt đối
+     * `-e` : nhận tiêu đề ethernet
+     * `-q` : hiển thị ít thông tin giao thức
+     * `-E` : giải mã lưu lượng IPSEC bằng cách cung cấp khóa mã hóa 
+
+ * TH1 : Bắt 1 gói tin có địa chỉ IP từ 1 interface cụ thể (`n`):
+   
+   `# tcpdump -n -i ens33`
+   * Sử dụng tùy chọn `-n` để lọc gói tín có chứa địa chỉ IP. Nếu không sử dụng tùy chọn này, `tcpdump` sẽ bắt cả các gói tin DNS
+ * TH2 : hiển thị các network interface có sẵn (`-D`):
+
+  `# tcpdump -D`
+```
+[root@localhost ~]# tcpdump -D
+1.bluetooth0 (Bluetooth adapter number 0)
+2.nflog (Linux netfilter log (NFLOG) interface)
+3.nfqueue (Linux netfilter queue (NFQUEUE) interface)
+4.usbmon1 (USB bus number 1)
+5.usbmon2 (USB bus number 2)
+6.ens33
+7.ens37
+8.ens38
+9.any (Pseudo-device that captures on all interfaces)
+10.lo [Loopback]
+```
+
+ * TH3 : chỉ định số lượng gói tin cần bắt (`-c`):
+ 
+  `# tcpdump -n -c 3 -i ens33`
+```
+[root@localhost ~]# tcpdump -n -c 3 -i ens33
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
+02:48:19.709196 IP 192.168.213.161.ssh > 192.168.213.1.61112: Flags [P.], seq 630492156:630492204, ack 1303650142, win 489, length 48
+02:48:19.709595 IP 192.168.213.1.61112 > 192.168.213.161.ssh: Flags [.], ack 48, win 4104, length 0
+02:48:19.710031 IP 192.168.213.161.ssh > 192.168.213.1.61112: Flags [P.], seq 48:144, ack 1, win 489, length 96
+3 packets captured
+3 packets received by filter
+0 packets dropped by kernel
+```
+
+
