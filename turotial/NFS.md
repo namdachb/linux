@@ -1,6 +1,10 @@
 # Network Filesystem
 Sử dụng **NFS** (hệ thống tệp mạng) là một trong những phương pháp được sử dụng để chia sẻ dữ liệu trên các hệ thống vật lý. Nhiều quản trị viên hệ thống gắn các thư mục của người dùng từ xa trên một máy chủ để cấp cho họ quyền truy cập vào cùng một tệp và tệp cấu hình trên nhiều hệ thống máy khách. Điều này cho phép người dùng đăng nhập vào các máy khác nhau nhưng vẫn có quyền truy cập vào cùng các tệp và tài nguyên
 
+Trên một bản phân phối Linux chung, trình nền máy chủ NFS thường được bắt đầu bằng lệnh `service nfs start`. Tệp `/etc/exports` này chứa các thư mục và quyền mà máy chủ lưu trữ sẵn sàng chia sẻ với các hệ thống khác qua NFS. Một mục trong tập tin này có thể trông như thế nào `/shared *(rw)` . Mục này cho phép thư `/shared` mục được gắn kết bằng NFS với quyền ghi và đọc (rw) và được chia sẻ với các máy chủ khác trong cùng miền. Sau khi sửa đổi `/etc/exports` tệp, bạn có thể sử dụng `exportfs -av` lệnh để thông báo cho Linux về các thư mục bạn cho phép được gắn từ xa bằng NFS
+
+Trên máy khách, nếu muốn hệ thống tệp từ xa được gắn tự động khi khởi động hệ thống,`/etc/fstab` tệp sẽ được sửa đổi để thực hiện việc này. Ví dụ, một mục trong `/etc/fsta` tệp b của khách hàng có thể trông như thế nào `<servername>:/shared /mnt/nfs/shared nfs defaults 0 0`. Bạn cũng có thể gắn hệ thống tập tin từ xa mà không cần khởi động lại hoặc dưới dạng gắn kết một lần bằng cách sử dụng trực tiếp mountlệnh. Nếu `/etc/fstab` không được sửa đổi, giá treo từ xa này sẽ không xuất hiện vào lần tiếp theo hệ thống được khởi động lại
+
 ### Lợi ích của NFS
  * **NFS** cho phép truy cập cục bộ vào các tệp từ xa
  * Nó sử dụng kiến trúc client/server tiêu chuẩn để chia sẻ tệp giữa các máy
@@ -190,7 +194,7 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
   `# netstat -ap | grep http`
 
  * Hiển thị số lượng gói `SYN_REC` trên Server (nếu có quá nhiều server đang bị DDOS)
- 
+
   `# netstat -np | grep SYN_REC | wc -l`
 
 ### 8. `tcpdump`
