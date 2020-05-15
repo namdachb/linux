@@ -12,7 +12,9 @@ Kiểm tra thiết bị đang có trong mạng:
 Card mạng ens38 đã tồn tại tuy nhiên nó chưa được cấp địa chỉ IP. Tiếp theo sẽ cấu hình cho nó bằng cách vào thư mục `/etc/netplan/` và chỉnh sửa file 50-cloud-init.yaml.(Lưu ý khi viết vào tệp yaml bạn phải tuân thủ theo đúng cú pháp căn dòng của nó). Ở đây chúng ta muốn cấp IP động nên sẽ ghi vào nội dung file như sau:
   
  * Đặt IP động :
+
 ![Imgur](https://i.imgur.com/79dzlQH.png)
+
 Lưu và restart cấu hình bằng câu lệnh **netplan apply**
 
  * Đặt IP tĩnh:
