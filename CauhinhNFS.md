@@ -12,7 +12,7 @@ Cài đặt và cấu hình NFS để chia sẻ giữa Client với Server
 ### IP của 2 máy
 Cấu hình IP 2 máy client và server:
 
-![Imgur](https://i.imgur.com/7IucKF4.png)
+![Imgur](https://i.imgur.com/QOHSvPK.png)
 
 ### Thiết lập NFS_Server
 Ta tạo 1 thư mục tài nguyên chia sẻ:
