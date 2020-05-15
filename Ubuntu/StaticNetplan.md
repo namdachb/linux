@@ -18,4 +18,19 @@ Card mạng ens38 đã tồn tại tuy nhiên nó chưa được cấp địa ch
 Lưu và restart cấu hình bằng câu lệnh **netplan apply**
 
  * Đặt IP tĩnh:
+
 Ta thấy ens38 đang nhận IP động , ta sẽ tiến hành đặt IP tĩnh theo số liệu sau
+   * ip address: 192.168.17.11
+   * gateway: 192.168.17.1
+   * subnet mask: 255.255.255.0
+   * DNS-nameserver: 8.8.8.8
+
+![Imgur](https://i.imgur.com/oX7awxn.png)
+
+Tiếp theo lưu thay đổi file và dùng lệnh `netplan apply` để thiết lập lại cấu hình 
+
+Dùng lệnh kiểm tra kết quả
+
+![Imgur](https://i.imgur.com/NAY5Yo2.png)
+
+Như vậy là chúng ta đã cấp xong IP tĩnh cho ubuntu qua cấu hình **netplan**
