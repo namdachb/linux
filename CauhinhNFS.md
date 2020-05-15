@@ -56,3 +56,35 @@ success
 success
 ```
 
+### Thiết lập NFS_Client
+Ta tạo 1 thư mục `demo` và **mount** thư mục `shared` từ phía Server
+
+```
+[root@client ~]# mkdir /demo
+[root@client ~]# mount 192.168.213.139:/shared /demo
+```
+
+Tạo 1 tập tin `test.txt` trong thư mục `demo` :
+
+`[root@client demo]# touch test.txt`
+
+Với nội dung:
+```
+test
+data
+namdac
+```
+
+Kiểm tra phía Server:
+```
+[root@server ~]# cd /shared
+[root@server shared]# ll
+total 4
+-rw-r--r--. 1 root root 17 May 14 22:47 test.txt
+[root@server shared]# cat test.txt
+test
+data
+namdac
+```
+
+
