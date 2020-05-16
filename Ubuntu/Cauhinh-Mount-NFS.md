@@ -110,4 +110,19 @@ Bây giờ **host** lưu trữ được định cấu hình và phục vụ cổ
 
 Để cung cấp các chia sẻ tự xa trên **client**, chúng ta cần gắn các thư mục trên **host** mà chung ta muốn chia sẻ vào các thư mục trống trên **client**
 
-> Chú thích : Nếu có các tệp và thư mục trong điểm gắn kết của bạn, chúng sẽ bị ẩn ngay khi bạn gắn kết chia sẻ NFS. Để tránh mất các tập tin quan trọng, hãy chắc chắn rằng nếu bạn gắn kết trong một thư mục đã tồn tại mà thư mục trống
+> Lưu ý : Nếu có các tệp và thư mục trong điểm gắn kết của bạn, chúng sẽ bị ẩn ngay khi bạn gắn kết chia sẻ NFS. Để tránh mất các tập tin quan trọng, hãy chắc chắn rằng nếu bạn gắn kết trong một thư mục đã tồn tại mà thư mục trống
+
+Chúng ta sẽ tạo hai thư mục để gắn kết của chúng tôi
+```
+mkdir -p /nfs/general
+mkdir -p /nfs/home
+```
+
+Sau khi tạo 2 thư mục chúng ta có 1 vị trí để đặt dữ liệu từ xa, chúng ta cso thể gắn kết các dữ liệu bằng cách giải quyết **host** server
+```
+mount 192.168.213.167:/var/nfs/general /nfs/general
+mount 192.168.213.167:/home /nfs/home
+```
+
+Các lệnh này sẽ gắn kết các chia sẻ từ máy chủ vào **client**. Bạn có thể kiểm tra kỹ xem chúng có được kết nối thành công theo nhiều cách với `mount` hoặc là `findmnt`, nhưng `df-h` cung cấp đầu ra dễ đọc hơn để minh họa cách sử dụng đĩa được hiển thị khác nhau cho các chia sẻ NFS:
+
