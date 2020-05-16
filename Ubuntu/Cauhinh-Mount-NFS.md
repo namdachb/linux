@@ -34,11 +34,46 @@ sudo apt install nfs-common
 Bây giờ cả hai máy chủ đề có các gói cần thiết, chúng ta có thể bắt đầu cấu hình chúng
 
 ### Bước 2: Tạo thư mục chia sẻ trên máy Host
-Chúng tôi sẻ chia sẻ hai thư mục riêng biệt, với cái cài đặt cấu hình khác nhau, để minh họa 2 cách chính mà các gắn kết NFS có thể được cấu hình liên quan đến truy cập siêu người dùng
+Chúng ta sẻ chia sẻ hai thư mục riêng biệt, với cái cài đặt cấu hình khác nhau, để minh họa 2 cách chính mà các gắn kết NFS có thể được cấu hình liên quan đến truy cập siêu người dùng
 
 Superusers có thể làm bất cứ điều gì ở bất cứ đâu trên hệ thống của họ. Tuy nhiên, các thư mục gắn trên NFS không phải là một phần của hệ thống mà chúng được gắn kết, do đó, theo mặc định, máy chủ NFS từ chối thực hiện các hoạt động yêu cầu đặc quyền siêu người dùng. Hạn chế mặc định này có ý nghĩa là các superusers trên máy **client** không thể ghi các tệp dưới dạng **root** , gán lại quyền sở hữu hoặc thực hiện bất kỳ tác vụ superuser nào khác trên NFS
 
 Đôi khi có những người dùng đáng tin cậy trên máy **client** hệ thống cần thực hiện các hành động này trên hệ thống tệp được gắn kết nhưng không cần truy cập superuser trên máy **Host**. Bạn có thể cấu hình máy chủ NFS để cho phép điều này, mặc dù nó giới thiệu 1 phần tử rủi ro, như một người dùng như vậy có thể truy cập root toàn bộ **host** hệ thống
 
+### VD1: Xuất khẩu một mục đích chung Mount
+Chúng ta sẽ tạo một NFS gắn kết có mục đích chung sử dụng hành vi NFS mặc định để gây khó khăn cho người dùng với các đặc quyền root trên máy **client** để tương tác với **Host** sử dụng những **client** đặc quyền superuser. Chúng ta có thể sử dụng một cái gì đó như thế này để lưu trữ các tệp được tải lên bằng cách sử dụng hệ thống quản lý nội dung hoặc để tạo không gian cho người dùng dễ dàng chia sẻ
 
+Đầu tiên, hãy tạo một thư mục chia sẻ có tên `nfs` :
+
+`sudo mkdir /var/nfs/general -p`
+
+Vì chúng ta đang tạo nó với `sudo`, thư mục được sở hữu bởi **root** người dùng trên **host**
+
+![Imgur](https://i.imgur.com/I2Zl2sH.png)
+
+NFS sẽ dịch bất kỳ **root** hoạt động trên **client** đến `nobody:nogroup` thông tin xác thực làm biện pháp bảo mật. Do đó chung ta cần thay đổi quyền sở hữu thư mục để khớp với các thông tin đăng nhập đó
+
+`sudo chown nobody:nogroup /var/nfs/general`
+
+### Bước 3: Cấu hình xuất khẩu NFS trên máy chủ lưu trữ
+Tiếp theo chúng ta sẽ đi sâu vào tệp cấu hình NFS để thiết lập chia sẻ các tài nguyên này
+
+Mở /etc/exports trong trình soạn thảo văn bản của bạn **root** đặc quyền:
+`sudo vi /etc/exports`
+
+Tệp có các nhận xét hiện thỉ cấu trúc chung của mỗi dòng cấu hình. Cú pháp về cơ bản là:
+
+`/etc/exports`
+
+`directory_to_share  client(share_option1,...,share_option)
+
+Chúng ta sẽ cần phải tạo một dòng cho mỗi thư mục và chúng ta dự định chia 
+![Imgur](https://i.imgur.com/rw6j3ch.png)
+
+Ở đây, chúng ta đang sử dụng cùng các tùy chọn cấu hình cho cả hai thư mục ngoại trừ `no_root_squash`. Hãy xem ý nghĩa của từng tùy chọn sau:
+
+ * `rw` : tùy chọn này cung cấp cho **client** máy tính cả đọc và ghi truy cập vào ổ đĩa
+ * `sync` : tùy chọn này buộc NFS ghi các thay đổi vào đĩa trước khi trả lời. Điều này dẫn đến một môi trường ổn định và nhất quán hơn vì câu trả lời phản ánh trạng thái thực tế của ổ đĩa từ xa. Tuy nhiên, nó cũng làm giảm tốc độ hoạt động của tập tin
+ * `no_subtree_check` : tùy chọn này ngăn chặn kiểm tra subtree, đó là một quá trình mà **host** phải kiểm tra xem tệp có thực sự vẫn có sẵn trong cây được xuất cho mọi yêu cầu hay không. Điều này có thể gây ra nhiều sự cố khi tệp được đổi tên trong khi **client** nó đã mở ra chưa. Trong hầu hết các trường hợp, tốt hơn là tắt kiểm tra subtree
+ * `no_root_squash` : theo mặc định, NFS dịch các yêu cầu từ 1 **root** người dùng từ xa vào một người dùng không có đặc quyền trên máy chủ. Điều này được dự định là tính năng bảo mật để ngăn chặn **root** tài khoản trên **client** từu việc sử dụng hệ thống tệp của **host** như **root**. `no_root_squash` vô hiệu hóa hành vi này đối với một số cổ phiếu nhất định
 
