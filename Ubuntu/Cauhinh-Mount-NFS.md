@@ -40,7 +40,7 @@ Superusers có thể làm bất cứ điều gì ở bất cứ đâu trên hệ
 
 Đôi khi có những người dùng đáng tin cậy trên máy **client** hệ thống cần thực hiện các hành động này trên hệ thống tệp được gắn kết nhưng không cần truy cập superuser trên máy **Host**. Bạn có thể cấu hình máy chủ NFS để cho phép điều này, mặc dù nó giới thiệu 1 phần tử rủi ro, như một người dùng như vậy có thể truy cập root toàn bộ **host** hệ thống
 
-### VD1: Xuất khẩu một mục đích chung Mount
+#### VD1: Xuất khẩu một mục đích chung Mount
 Chúng ta sẽ tạo một NFS gắn kết có mục đích chung sử dụng hành vi NFS mặc định để gây khó khăn cho người dùng với các đặc quyền root trên máy **client** để tương tác với **Host** sử dụng những **client** đặc quyền superuser. Chúng ta có thể sử dụng một cái gì đó như thế này để lưu trữ các tệp được tải lên bằng cách sử dụng hệ thống quản lý nội dung hoặc để tạo không gian cho người dùng dễ dàng chia sẻ
 
 Đầu tiên, hãy tạo một thư mục chia sẻ có tên `nfs` :
@@ -77,3 +77,37 @@ Chúng ta sẽ cần phải tạo một dòng cho mỗi thư mục và chúng ta
  * `no_subtree_check` : tùy chọn này ngăn chặn kiểm tra subtree, đó là một quá trình mà **host** phải kiểm tra xem tệp có thực sự vẫn có sẵn trong cây được xuất cho mọi yêu cầu hay không. Điều này có thể gây ra nhiều sự cố khi tệp được đổi tên trong khi **client** nó đã mở ra chưa. Trong hầu hết các trường hợp, tốt hơn là tắt kiểm tra subtree
  * `no_root_squash` : theo mặc định, NFS dịch các yêu cầu từ 1 **root** người dùng từ xa vào một người dùng không có đặc quyền trên máy chủ. Điều này được dự định là tính năng bảo mật để ngăn chặn **root** tài khoản trên **client** từu việc sử dụng hệ thống tệp của **host** như **root**. `no_root_squash` vô hiệu hóa hành vi này đối với một số cổ phiếu nhất định
 
+Khi hoàn thành việc thay đổi, hãy lưu và đóng tệp. Sau đó, để cung cấp các chia sẻ cho các máy khách mà bạn đã cấu hình, hãy khởi động lại máy chủ NFS bằng lệnh sau:
+
+`sudo systemctl restart nfs-kernel-server`
+
+Tuy nhiên, trước khi bạn thực sự có thể sử dụng các chia sẻ mới, bạn sẽ cần chắc chắn rằng lưu lượng truy cập vào các chia sẻ được cho phép theo quy tắc tường lửa
+
+### Bước 4: Điều chỉnh Firewall trên Host
+Trước tiên hãy kiểm tra trạng thái tường lửa để xem trạng thái tường lửa có được bật hay không và nếu có, để xem những gì hiện được phép
+
+```
+sudo ufw enable
+sudo ufw status
+```
+
+Sử dụng lệnh sau để mở cổng `2049` trên **host**, chắc chắn sẽ thay thế của **client** địa chỉ IP:
+
+`sudo ufw allow from 192.168.213.169 to any port nfs`
+
+Có thể xác minh thay đổi bằng cách nhập :
+
+`sudo ufw status`
+
+Bạn có thể thấy lưu lượng được phép từ cổng `2049` trong đầu ra:
+
+![Imgur](https://i.imgur.com/G9ytbwr.png)
+
+Điều này xác nhận rằng UFW sẽ chỉ cho phép lưu lượng NFS trên cổng `2049` từ **client** của chúng tôi
+
+### Bước 5: Tạo điểm gắn kết và thư mục gắn trên client
+Bây giờ **host** lưu trữ được định cấu hình và phục vụ cổ phần của nó
+
+Để cung cấp các chia sẻ tự xa trên **client**, chúng ta cần gắn các thư mục trên **host** mà chung ta muốn chia sẻ vào các thư mục trống trên **client**
+
+> Chú thích : Nếu có các tệp và thư mục trong điểm gắn kết của bạn, chúng sẽ bị ẩn ngay khi bạn gắn kết chia sẻ NFS. Để tránh mất các tập tin quan trọng, hãy chắc chắn rằng nếu bạn gắn kết trong một thư mục đã tồn tại mà thư mục trống
