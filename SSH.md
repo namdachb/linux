@@ -167,3 +167,18 @@ root@192.168.213.139's password:
  ```
  [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub | ssh root@192.168.213.139 "mkdir -p  ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/a uthorized_keys"
 ```
+
+![Imgur](https://i.imgur.com/UWelx8h.png)
+
+ * Sau khi nhập password, nội dung file `id_rsa.pub` sẽ được copy sang file `~/.ssh/authoized_keys` 
+
+#### Cách 3 : Copy thủ công
+ * Nếu không có cách nào để truy cập Server qua SSH, có thể thực hiện copy thủ công qua USB hay bất cứ cách nào khác
+ * Xem nội dung file `id_rsa.pub` và copy:
+   
+   `[root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub`
+   
+   ```
+   [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9YU8AnF3SAGmAPVp8ZQzgvryJaiyGZnjL0X9PubOYyfoLnoRP0wZ8JkK89p5uYlbS9Nt7KZBPi6Vn9SoiVri39n6wWphSns9UzmCXLa5tu2DIvLaIKOm9eLEdoOpWu8BeXTM10tpC5ZFDdbQEzO4I/p19BB0ZTdcdAAwAdcPV+rMOxwo80ORapeuKLcQWQY3UMTLcByN0fq6XNHFTGfX9/XboSN+IXZnE9CjlC1l8zW4Ugl4W2LtF0vsbuJQugECgzqFPVQFLBUALvosBPLmbuEBsKk01d1ko8u1WfanUOtYzhKABDNeP37woENx69rRd/hz/NVZGLG9SC/m7 root@centos7-01
+ ```
