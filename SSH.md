@@ -47,5 +47,5 @@
 
  * **Asymmetric encryption** không được sử dụng để mã hóa toàn bộ phiên **SSH**. Thay vào đó, nó chỉ được sử dụng trong thuật toán trao đổi key của **symmetric encryption**. Trước khi khởi tạo 1 kết nối bảo mật, cả 2 bên tạo ra 1 cặp **public-private keys** tạm thời, sau đó chia sẻ **private keys** của chúng để tạo ra **shared secret key**
 
- * Trong khi quá trình **symmetric** được thiết lập, server sẽ sử dụng **public key** của client để tạo ra và thử thách và truyền nó tới client để xác thực. Nếu client có thể giải mã thành công gói tin, có nghĩa là nó giữ **private key** được yêu cầu cho kết nối => Phiên làm việc **SSH** được bắt đầu
+ * Trong khi quá trình **symmetric** được thiết lập, server sẽ sử dụng **public key** của client để tạo ra và thử thách và truyền nó tới client để xác thực. Nếu client có thể giải mã thành công gói tin, có nghĩa là nó giữ **private key** được yêu cầu cho kết nối   => Phiên làm việc **SSH** được bắt đầu
 
