@@ -30,4 +30,22 @@
 #### 3.1) Symmetric Encryption (mã hóa đối xứng)
  * **Synmmetric Encryption** là 1 dạng mã hóa sử dụng **secret key** cho cả việc mã hóa và giải mã gói tin bởi **host** và **client**. Do vậy, bất cứ ai có được **secret key** đều có thể giải mã gói tin
 
- * **Symmetric Encryption** thường được gọi là **shared-key** hoặc **shared-secret** encryption. Thường chỉ có 1 **key** được sử dụng hoặc đôi khi là 1 cặp **key** trong khi từ **key** này có thể tính toán được ra **key** kia 
+ * **Symmetric Encryption** thường được gọi là **shared-key** hoặc **shared-secret** encryption. Thường chỉ có 1 **key** được sử dụng hoặc đôi khi là 1 cặp **key** trong khi từ **key** này có thể tính toán được ra **key** kia
+
+ * **Symmetric keys** được sử dụng để mã hóa toàn bộ giao tiếp giữa 2 máy trong suốt phiên **SSH**. Cả server và client truy gốc **secret key** bằng việc sử dụng 1 thuật toán đồng nhất, và **key** sau khi được tổng hợp sẽ không được tiết lộ với bất kỳ bên thứ 3 nào. Quá trình tạo ra **syummeric key** được tiến hành bởi thuật toán trao đổi key mã hóa (**key exchange algorithm**). Điều làm cho thuật toán này đặc biệt an toàn là **key** không bao giờ trao đổi giữa **client** và **host**. Thay vào đó, 2 máy tính trao đổi 1 phần thông tin chung và sau đó thực hiện tính toán độc lập ra **secret key**. Kể cả khi có 1 máy khác bặt được phần thông tin này, nó cũng không thể tính toán được **secret key** bởi không biết thuật toán trao đổi key
+
+ * Có rất nhiều thuật toán mã hóa (**cypher**) tồn tại, bao gồm AES (Advanced Encryption Standard), CAST128, Blowfish,.... Trước khi thiết lập một kết nối bảo mật, **client** và **host** sẽ quyết định xem dùng thuật toán mã hóa nào bằng cách xuất ra 1 danh sách các thuật toán mã hóa được hỗ trợ theo thứ tự ưu tiên. Thuật toán được ưu tiên nhất từ phía **client** và có xuất hiện trong danh sách thuật toán hỗ trợ của **host** sẽ được sử dụng làm thuật toán mã hóa chung
+
+#### 3.2) Asymmetric Encryption (mã hóa bất đối xứng)0
+ * Không giống **symmectric encryption** , **asymmetric encryption** sử dụng 2 **key** tiêng biệt dể mã hóa và giải mã. Hai loại **key** được biết đến với tên gọi là **public key** và **private key**. Cùng với nhau , chúng tạo thành 1 cặp **key-pair**
+
+ * **Public key** được phân phối và chia sẻ với các bên khác. Trong khi nó được liên kết với **private key** theo 1 cách nào đó, **private key** không thể bị tính toán ra từ **public key**. Mối quan hệ giữa 2 loại **key** này khá phức tạp: gói tin được mã hóa bởi **public key** của máy nào thì chỉ được giải mã bằng chính **private key** của nó. Mỗi quan hệ 1 chiều này có nghĩa **public key** không thể giải mã gói tin của chính nó, và cũng không thể giải mã bất cứ thứ gì được mã hóa bởi **private key**
+
+ * Private key sẽ ở lại với máy chủ của nó để kết nối được bảo mật, sẽ không có bên thứ 3 nào biết nó
+
+ * Điều làm cho kết nối được an toàn giữa 2 máy là việc **private key** sẽ không bao giờ bị lộ, đó là khả năng duy nhất để giải mã gói tin sử dụng **public key** của nó. Do đó, bất kỳ bên nào có khả năng giải mã gói tin public phải sở hữu **private key** tương ứng
+
+ * **Asymmetric encryption** không được sử dụng để mã hóa toàn bộ phiên **SSH**. Thay vào đó, nó chỉ được sử dụng trong thuật toán trao đổi key của **symmetric encryption**. Trước khi khởi tạo 1 kết nối bảo mật, cả 2 bên tạo ra 1 cặp **public-private keys** tạm thời, sau đó chia sẻ **private keys** của chúng để tạo ra **shared secret key**
+
+ * Trong khi quá trình **symmetric** được thiết lập, server sẽ sử dụng **public key** của client để tạo ra và thử thách và truyền nó tới client để xác thực. Nếu client có thể giải mã thành công gói tin, có nghĩa là nó giữ **private key** được yêu cầu cho kết nối => Phiên làm việc **SSH** được bắt đầu
+
