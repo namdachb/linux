@@ -126,3 +126,57 @@ mount 192.168.213.167:/home /nfs/home
 
 Các lệnh này sẽ gắn kết các chia sẻ từ máy chủ vào **client**. Bạn có thể kiểm tra kỹ xem chúng có được kết nối thành công theo nhiều cách với `mount` hoặc là `findmnt`, nhưng `df-h` cung cấp đầu ra dễ đọc hơn để minh họa cách sử dụng đĩa được hiển thị khác nhau cho các chia sẻ NFS:
 
+`df -h`
+
+![Imgur](https://i.imgur.com/jEDZzf8.png)
+
+Cả 2 thư mục gắn kết đều xuất hiện ở phía dưới. Bởi vì chúng được gắn từ cùng một hệ thống tệp, chúng hiển thị cùng cách sử dụng đĩa. Để xem có bao nhiêu không gian thực sự được sử dụng dưới mỗi điểm gắn kết, hãy sử dụng lệnh sử dụng đĩa `du` và đường dẫn của giá treo. Các `-s` cờ cung cấp một bản tóm tắt của việc sử dụng chứ không phải là hiển thị việc sử dụng cho tất cả các tập tin. Các `-h` bản in đầu ra con người có thể đọc được.
+
+Ví dụ:
+
+![Imgur](https://i.imgur.com/DmbCOIZ.png)
+
+Điều này cho chúng ta thấy rằng nội dung của toàn bộ thư mục chính chỉ sử dụng 24K dung lượng trống
+
+### Bước 6 : kiểm tra truy cập NFS
+Tiếp theo, hãy kiểm tra quyền truy cập vào các chia sẻ bằng cách viết một cái gì đó cho mỗi người trong số họ
+
+#### Ví dụ 1 : Chia sẻ mục đích chung
+Đầu tiên , viết một tệp thử nghiệm để `/var/nfs/general` chia sẻ:
+
+`touch /nfs/general/general.test`
+
+Sau đó, kiểm tra quyền sở hữu của nó:
+
+`ls -l /nfs/general/general.test`
+
+![Imgur](https://i.imgur.com/I8294Ef.png)
+
+Vì chúng ta đã gắn khối lượng mà không thay đổi hành vi mặc định của NFS và tạo tệp với tư cách là người dùng **root** của máy **client** thông qua lệnh, quyền sở hữu tệp mặc định là. Superuser **client** sẽ khong thể thực hiện các hành động quản trị thông thường, như thay đổi chủ sở hữu tệp hoặc tạo thư mục mới cho 1 nhóm người dùng, trên chia sẻ gắn trên NFS này `sudo nobody:nogroup`
+
+#### Ví dụ 2: Chia sẻ thư mục chính
+Để so sánh các quyền của chia sẻ Mục đích chung với chia sẻ Thư mục chính, hãy tạo một tệp theo `/nfs/home` cùng một cách
+
+`touch /nfs/home/home.test`
+
+Sau đó nhìn vào quyền sở hữu của tập tin:
+
+`ls -l /nfs/home/home.test`
+
+![Imgur](https://i.imgur.com/LlCLu7e.png)
+
+Chúng ta đã tạo `home.test` như **root**, chính xác giống như cách chúng ta đã tạo `general.test` tệp. Tuy nhiên, trong trường hợp này, nó thuộc sở hữu của **root** vì chúng ta đã vượt qua hành vi mặc định khi chúng ta chi định `no_root_squash` tùy chọn trên mount này. Điều này cho phép người dùng **root** của chúng ta trên **client** hoạt động như **root** và giúp việc quản trị tài khoản người dùng thuận tiện hơi nhiều. Đồng thời, điều đó có nghĩa là chúng ta k phải cấp cho những người dùng này quyền truy cập root trên **host**
+
+### Bước 7 : Gắn các thư mục NFS từ xa khi khởi động
+Chúng ta có thể tự động gắn các chia sẻ NFS từ xa khi khởi động cách thêm chúng vào `/etc/fstab` tệp trên máy **client**
+
+Mở tệp này với quyền root trong trình soạn thảo văn bản:
+
+`vi /etc/fatab`
+
+Ở dưới cùng của tệp, thêm một dòng cho mỗi chia sẻ của chúng ta
+
+```
+host_ip:/var/nfs/general /nfs/general nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+host_ip:/home /nfs/home nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+```
