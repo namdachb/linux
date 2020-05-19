@@ -180,3 +180,18 @@ Mở tệp này với quyền root trong trình soạn thảo văn bản:
 host_ip:/var/nfs/general /nfs/general nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
 host_ip:/home /nfs/home nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
 ```
+
+Máy **client** sẽ tự động gắn các phân vùng từ xa khi khởi động, mặc dù có thể mất vài phút để thiết lập kết nối và chia sẻ có sẵn
+
+### Bước 8 : ngắt kết nối chia sẻ từ xa NFS
+Nếu bạn không còn muốn thư mục từ xa được gắn trên hệ thống của mình, bạn có thể ngắt kết nối nó bằng cách di chuyển ra khỏi cấu trúc thư mục của chia sẻ và ngắt kết nối, như thế này:
+```
+umount /nfs/home
+umount /nfs/general
+```
+
+Điều này sẽ xóa các chia sẻ từ xa, chỉ để lại bộ nhớ cục bộ của bạn có thể truy cập:
+
+`df -h`
+
+Nếu bạn cũng muốn ngăn không cho chúng được nhắc lại trong lần khởi động lại tiếp theo, hãy chỉnh sửa /etc/fstabvà xóa dòng hoặc nhận xét nó bằng cách đặt một #ký tự ở đầu dòng. Bạn cũng có thể ngăn việc tự động gắn kết bằng cách xóa autotùy chọn, điều này sẽ cho phép bạn vẫn gắn kết thủ công
