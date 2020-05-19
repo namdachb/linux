@@ -133,4 +133,19 @@ The key's randomart image is:
 | +=OO=.          |
 +----[SHA256]-----+
  ```
- 
+
+### Bước 2 : Copy Public Key vào SSH Server :
+ * Cách nahnh nhất để copy **Public Key** trên Centos là sử dụng tiện ích `ssh-copy-id` vì nó khá đơn giản. Nếu không có sẵn `ssh-copy-id`, cần phải copy 1 cách thủ công 
+
+#### Cách 1 : Copy Public Key sử dụng `ssh-copy-id`
+ * Công cụ `ssh-copy-id` thường có sẵn trên nhiều hệ điều hành. Nếu dùng cách này, cần có kết nối SSH bằng mật khẩu từ client đến server:
+
+ `ssh-copy-id username@remote_host`
+
+ ```
+ [root@centos7-01 ~]# ssh-copy-id root@192.168.213.139
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@192.168.213.139's password:
+```
