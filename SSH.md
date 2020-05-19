@@ -49,3 +49,18 @@
 
  * Trong khi quá trình **symmetric** được thiết lập, server sẽ sử dụng **public key** của client để tạo ra và thử thách và truyền nó tới client để xác thực. Nếu client có thể giải mã thành công gói tin, có nghĩa là nó giữ **private key** được yêu cầu cho kết nối   => Phiên làm việc **SSH** được bắt đầu
 
+#### 3.3) Hashing
+ * **Hashing** một chiều là 1 dạng mã hóa khác được sử dụng bởi **SSH**
+
+ * Chức năng của chúng khác với 2 dạng mã hóa trên theo hướng rằng chúng sẽ không bao giờ bị giải mã
+
+ * Chúng tạo ra 1 giá trị độc nhất cho phần đuôi được thêm vào của mỗi đoạn dữ liệu khiến chúng không thể bị khai thác. Điều này khiến **hash** hoàn toàn không thể bị đảo ngược
+
+ * Có thể dẽ dàng **hash** một đầu vào cho sẵn, nhưng không thể giải mã được đầu vào bị **hash** đó. Điều này có nghĩa nếu 1 client giữ đoạn dữ liệu chính xác, nó có thể giải mã **hash** và so sánh các giá trị của chúng để xác thực rằng liệu chúng có sở hữu dữ liệu chuẩn hay không
+
+ * **SSH** sử dụng **bash** để đảm bảo tính xác thực của các gói tin. Nó được thực hiện bằng cách sử dụng **HMACs** (**Hash-based Message Authentication Codes**). Điều này đảm bảo các lệnh mà máy đầu xa nhận được sẽ không bị giả mạo theo bất cứ cách nào
+
+ * Trong quá trình lựa chọn thuật toán mã hóa **symmetric**, một thuật toán xác thực gói tin cũng sẽ được lựa chọn theo đúng cách lựa chọn **symmetric** 
+
+ * Mỗi gói tin được truyền đi phải chứa đựng 1 **MAC** được tính toán dữa trên **symmetric key, packet sequence numbet** và nội dung gói tin
+ 
