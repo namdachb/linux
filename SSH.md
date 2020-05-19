@@ -165,5 +165,5 @@ root@192.168.213.139's password:
 
  * Sử dụng lệnh pipe sau:
  ```
- [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub | ssh root@192.168.213.139 "mkdir -p                                                                                                         ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/a                                                                                                        uthorized_keys"
+ [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub | ssh root@192.168.213.139 "mkdir -p  ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/a uthorized_keys"
 ```
