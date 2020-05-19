@@ -76,6 +76,8 @@
 
 # LAB : SSH Keypairs
 
+![Imgur](https://i.imgur.com/GxUc1oO.png)
+
 ### Bước 1 : Tạo cặp key RSA trên SSH Client:
  * Bước đầu tiên là tạo ra cặp **SSH Key Pair** trên **SSH Client** hay chính máy tính thực hiện **SSH** :
 
@@ -176,9 +178,34 @@ root@192.168.213.139's password:
  * Nếu không có cách nào để truy cập Server qua SSH, có thể thực hiện copy thủ công qua USB hay bất cứ cách nào khác
  * Xem nội dung file `id_rsa.pub` và copy:
    
-   `[root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub`
+```
+[root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9YU8AnF3SAGmAPVp8ZQzgvryJaiyGZnjL0X9PubOYyfoLnoRP0wZ8JkK89p5uYlbS9Nt7KZBPi6Vn9SoiVri39n6wWphSns9UzmCXLa5tu2DIvLaIKOm9eLEdoOpWu8BeXTM10tpC5ZFDdbQEzO4I/p19BB0ZTdcdAAwAdcPV+rMOxwo80ORapeuKLcQWQY3UMTLcByN0fq6XNHFTGfX9/XboSN+IXZnE9CjlC1l8zW4Ugl4W2LtF0vsbuJQugECgzqFPVQFLBUALvosBPLmbuEBsKk01d1ko8u1WfanUOtYzhKABDNeP37woENx69rRd/hz/NVZGLG9SC/m7 root@centos7-01
+```
+
+### Bước 3: Xác thực centos server sử dụng SSH Key
+ * Sau khi hoàn thành các bước trên, nhập lệnh sau để **SSH** vào server:
    
    ```
-   [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9YU8AnF3SAGmAPVp8ZQzgvryJaiyGZnjL0X9PubOYyfoLnoRP0wZ8JkK89p5uYlbS9Nt7KZBPi6Vn9SoiVri39n6wWphSns9UzmCXLa5tu2DIvLaIKOm9eLEdoOpWu8BeXTM10tpC5ZFDdbQEzO4I/p19BB0ZTdcdAAwAdcPV+rMOxwo80ORapeuKLcQWQY3UMTLcByN0fq6XNHFTGfX9/XboSN+IXZnE9CjlC1l8zW4Ugl4W2LtF0vsbuJQugECgzqFPVQFLBUALvosBPLmbuEBsKk01d1ko8u1WfanUOtYzhKABDNeP37woENx69rRd/hz/NVZGLG9SC/m7 root@centos7-01
- ```
+   [root@centos7-01 ~]# ssh root@192.168.213.139
+   ```
+
+ * Nếu đã tạo **passphrase** thì ở bước này phải nhập thêm **passphrase**, nếu không thì có thể truy cập được luôn
+
+### Bước 4 : Tắt xác thực mật khẩu trên Server
+ * Mặc định, tồn tại song song cả 2 chế độ xác thực qua **SSH Key** và xác thực qua mật khẩu. Vì vậy, vẫn có khả năng Server bị tấn công bằng **Brute Force**
+
+ * Trên Server, mở file cấu hình `sshd`:
+
+   ```
+   [root@centos7-02 ~]# vi /etc/ssh/sshd_config
+   ```
+
+ * Kéo xuống dòng `65`, sửa `yes` thành `no`
+
+     `PasswordAuthentication no`
+
+ * Restart dịch vụ **SSH** 
+    ```
+    [root@centos7-02 ~]# systemctl restart sshd.service
+``` 
