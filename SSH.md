@@ -149,3 +149,21 @@ The key's randomart image is:
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
 root@192.168.213.139's password:
 ```
+
+ * Nhập mật khẩu và gõ `enter`. Công cụ sẽ kết nối tới Server bằng tài khoản được cung cấp. Sau đó nó sẽ copy nội dung file `~/.ssh/id_rsa.pub` vào 1 file tên là `authorized_keys` trong thư mục `~/.shh` của Server
+
+ * Tại bước này, key `id_rsa.pub` đã được upload lên Server
+
+ ```
+ [root@centos7-02 ~]# ls -a /root/.ssh
+.  ..  authorized_keys
+[root@centos7-02 ~]#
+```
+
+#### Cách 2 : Copy Public Key sử dụng SSH
+ * Nếu không có sẵn tiện ích `ssh-copy-id` , có thể sử dụng phương pháp truyền thống để copy **public key** sang Server.
+
+ * Sử dụng lệnh pipe sau:
+ ```
+ [root@centos7-01 ~]# cat ~/.ssh/id_rsa.pub | ssh root@192.168.213.139 "mkdir -p                                                                                                         ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/a                                                                                                        uthorized_keys"
+```
