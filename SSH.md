@@ -63,4 +63,74 @@
  * Trong quá trình lựa chọn thuật toán mã hóa **symmetric**, một thuật toán xác thực gói tin cũng sẽ được lựa chọn theo đúng cách lựa chọn **symmetric** 
 
  * Mỗi gói tin được truyền đi phải chứa đựng 1 **MAC** được tính toán dữa trên **symmetric key, packet sequence numbet** và nội dung gói tin
+
+#### 3.4) Cách kết hợp cả 3 công nghệ trên của SSH
+ * **SSH** sử dụng mô hình **client-server** để cho phép xác thực giữa 2 máy đầu xa và mã hóa dữ liệu truyền qua chúng
+
+ * **SSH** hoạt động mặc định trên port `22` của giao thức **TCP** (có thể thay đổi được)
+
+ * **Host** (server) lắng nghe trên port `22` chờ kết nối đến
+
+ * **Host** sẽ thiết lập kết nối bảo mật bằng việc xác thực **client** và mở 1 môi trường **shell** tương ứng khi việc xác thực thành công
+
+
+# LAB : SSH Keypairs
+
+### Bước 1 : Tạo cặp key RSA trên SSH Client:
+ * Bước đầu tiên là tạo ra cặp **SSH Key Pair** trên **SSH Client** hay chính máy tính thực hiện **SSH** :
+
+```
+[root@centos7-01 ~]# ssh-keygen
+```
+
+ * Mặc định, lệnh `ssh-keygen` sẽ tạo ra 1 cặp **RSA key pair `2048-bit`**, gần như đáp ứng đủ mọi trường hợp. Nếu muốn cặp key phức tạp hơn, có thể tạo key với độ dài `**4096-bit**` bằng option `-b 4096`
+
+ * Sau khi thực hiện lệnh, bạn sẽ nhìn thấy output sau:
+
+ ```
+ Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+ ```
+
+ * Gõ `enter` để lưu cặp key vào thư mục con `.ssh/` nằm trong thư mục `home` của user hiện hành, hoặc tự chọn 1 đường dẫn khác
+
+ * Nếu trên máy đã có 1 cặp key từ trước đó, bạn sẽ nhìn thấy output sau:
+
+ ```
+ [root@centos7-01 ~]# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)?
+ ```
+
+ * Nếu chọn "`overwrite the key on disk`", bạn sẽ không thể xác thực các key đang sử dụng trước đây nữa
+
+ * Sau khi lựa chọn, sẽ thấy output tiếp theo:
+
+ ```
+ Enter passphrase (empty for no passphrase):
+ ```
+
+ * Đây là tùy chọn thêm 1 chuỗi mật khẩu, được khuyến nghị để tăng tính bảo mật. Nếu nhập chuổi **passphrase** này bạn sẽ phải gõ thêm chúng bất kỳ lúc nào sử dụng key (chỉ trừ khi sử dụng phần mềm để SSH đã lưu trữ passphrase). Nếu không muốn sử dụng **passphrase**, có thể `enter` để bỏ qua. Nếu nhập **passphrase**, sẽ thấy output sau:
+
+ ```
+ Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:CoeZ9xrKe8IQ4voTni02aQzGBKxgrmxbL69g7c5SPsY root@centos7-01
+The key's randomart image is:
++---[RSA 2048]----+
+|.                |
+|oo               |
+|*                |
+|oo.  +           |
+|*. .= o S        |
+|o*+o + o         |
+|+**O. o .        |
+|oo#E+o.o         |
+| +=OO=.          |
++----[SHA256]-----+
+ ```
  
