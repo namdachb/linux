@@ -132,4 +132,27 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9YU8AnF3SAGmAPVp8ZQzgvryJaiyGZnjL0X9PubOY
  * Restart dịch vụ **SSH** 
     ```
     [root@centos7-02 ~]# systemctl restart sshd.service
-``` 
+    ``` 
+
+
+## Window phía client
+Nếu sử dụng window để SSH đến , tiến hành copy file private key ra máy và load bằng PuTTY hoặc Mobaxterm. Ở đây chúng ta dùng MobaXterm để load private key
+ 
+ * Trên MobaXterm, ta vào **Tools** -> **MobaKeyGen** ![Imgur](https://i.imgur.com/kViGu1O.png)
+
+ * Chọn file private key : chọn load
+ ![Imgur](https://i.imgur.com/l6hVhdB.png)
+
+ * Nhập `passphrase`
+ ![Imgur](https://i.imgur.com/V1SgL2r.png)
+
+ * Sau đó, lưu lại dưới dạng `ppk` và `Save private key`
+ ![Imgur](https://i.imgur.com/Zst9W8w.png)
+
+ * SSH và server :
+ ![Imgur](https://i.imgur.com/VULs56K.png)
+
+ * Nếu có `passphrase` thì bạn sẽ phải nhập `passphrase`
+ ![Imgur](https://i.imgur.com/H7xunH7.png)
+
+ 
