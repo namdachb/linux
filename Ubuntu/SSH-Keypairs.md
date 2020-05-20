@@ -132,3 +132,11 @@ Sau đó khởi động lại dịch vụ ssh
 
  `sudo systemctl restart sshd`
 
+Và thuwrlaij ssh bằng password ta sẽ nhận được output như sau:
+
+```
+login as: namdac
+
+No supported authentication methods available (server sent: publickey)
+
+```
