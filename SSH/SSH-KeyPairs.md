@@ -135,7 +135,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9YU8AnF3SAGmAPVp8ZQzgvryJaiyGZnjL0X9PubOY
     ``` 
 
 
-## Window phía client
+## SSH window(= privatekey) -> Server
 Nếu sử dụng window để SSH đến , tiến hành copy file private key ra máy và load bằng PuTTY hoặc Mobaxterm. Ở đây chúng ta dùng MobaXterm để load private key
  
  * Trên MobaXterm, ta vào **Tools** -> **MobaKeyGen** ![Imgur](https://i.imgur.com/kViGu1O.png)
