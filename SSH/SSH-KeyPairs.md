@@ -169,4 +169,4 @@ Nếu sử dụng window để SSH đến , tiến hành copy file private key r
 
  * Đăng nhập, mở session mới, nhập địa chỉ ssh server, chọn **Advanced SSH settings -> Use private key** rồi chọn tới `private key` đã save
 
- 
+ ![Imgur](https://i.imgur.com/OUMEH1U.png)
