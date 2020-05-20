@@ -155,4 +155,18 @@ Nếu sử dụng window để SSH đến , tiến hành copy file private key r
  * Nếu có `passphrase` thì bạn sẽ phải nhập `passphrase`
  ![Imgur](https://i.imgur.com/H7xunH7.png)
 
+
+## Genkey bằng mobaXterm
+ * Nếu dùng Windows, có thể dùng PuTTY hoặc MobaXterm để gen ssh keys. Ở đây ta dùng MobaXterm. Chọn loại key RSA và click generate
+
+ ![Imgur](https://i.imgur.com/hWdEvYT.png)
+
+ * Copy toàn bộ nội dung trong ô "Public key for pass into OpenSSH authorized_keys file" và lưu lại dưới tên `authorized_keys` rồi gửi lên Server. Đây là Public Key dành riêng cho OpenSSH. Nút "**Save public key**" sẽ cho một Public Key dạng khác, ta không cần quan tâm đến nút này
+
+ * Nhập passphrase và chọn **Save Private key**. Việc tạo bộ khóa hoàn tất
+
+ ![Imgur](https://i.imgur.com/2ihxqDP.png)
+
+ * Đăng nhập, mở session mới, nhập địa chỉ ssh server, chọn **Advanced SSH settings -> Use private key** rồi chọn tới `private key` đã save
+
  
