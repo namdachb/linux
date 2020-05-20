@@ -30,4 +30,34 @@ Bước này là để xác định thư mục lưu trữ. Nếu bạn nhấn `E
   * Dòng thứ 3 là xác nhận lại mật khẩu. Sau khi xác nhận xong là hoàn thành bước tạo key trên client và sẽ có output như sau
 
 ![Imgur](https://i.imgur.com/UGAlehy.png)
-   
+
+### Copy key lên ubuntu 20.04 serer
+
+Sau khi đã tạo được cặp keyparis trên **client** thì việc tiếp theo cần làm đó chính là copy key public lên trên **server** để có thể sử dụng nó
+
+Chúng ta sẽ sử dụng lệnh `ssh-copy-id` để copy public key lên server
+
+Cú pháp của câu lệnh này là
+
+ `ssh-copy-id username@remote_host`
+
+Bạn sẽ nhận được output như sau:
+
+```
+root@nam:~# ssh-copy-id root@192.168.213.170
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+The authenticity of host '192.168.213.170 (192.168.213.170)' can't be established.
+ECDSA key fingerprint is SHA256:hPmHnnBWRw5N2IfG7i1KLiIWfE4Y19hF3l4enHnn+wk.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
+
+Hỏi xem bạn có thật sự muốn kết nối tới server không. Chắc chắn rồi vì chùng ta đang làm việc đó nên sẽ chọn yees
+
+```
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@192.168.213.170's password:
+```
+
+Tiếp theo bạn cần nhập password để có thể copy được nó vào server này
+
