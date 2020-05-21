@@ -29,13 +29,51 @@ Các tín hiệu thời gian được sử dụng bởi hầu hết các máy ch
  * Trong trường hợp nếu có sự xâm nhập mạng trái phép, việc tìm hiểu xem mạng của bạn bị xâm nhập như thế nào và dữ liệu nào được truy cập có thể được kiểm tra rõ ràng nếu bạn có log thời gian chính xác việc login trên router hoặc máy chủ. Hacker thường sẽ xóa log nếu có, nhưng nếu hộ không xóa thì bạn cần thời gian chính xác để chuẩn đoán đó
 
 # Múi giờ và giờ quốc tế GMT, UTC
+## UTC
 UTC (Coordinated Universal Time). Nghĩa là thời gian phối hợp quốc tế được cơ quan đo lường quốc tế (BIPM) đề xuất làm cơ sở pháp lý để định vị thời gian
 
 UTC được dựa trên tiêu chuẩn múi giờ cũ là giờ trung bình Greenwich hay GMT vào thế kỷ 19, sau đó được đổi tên thành Universal Time có nghĩa là giờ quốc tế
 
+### Cách xác định giờ UTC:
+Thực tế, có 2 thành phần chính trong tiêu chuẩn thời gian phối hợp quốc tế (UTC). Đó là giờ quốc tế và giờ nguyên tử quốc tế
+ * TAI (International Atomic Time) được xác định bằng cách kết hợp thời gian của hơn 200 đồng hồ nguyên tử trên toàn thế giới. Nói cách khác, nó vô cùng chính xác
+ * UT1 hoặc giờ toàn cầu được xác định theo vòng quya của trái đất. Tuy nhiên tốc độ này không cố định, độ dài ngày theo UT không phải lúc nào cũng bằng nhau
+
+## GMT
 GMT (Greenwich Mean Time) dựa trên quan sát thiên văn, GMT được xem là tiêu chuẩn thời gian theo quốc gia
 
 ### Những điểm khác nhau của UTC và GMT
  * Chênh lệnh bằng các phân số của giây
  * **UTC** là thời gian Internet dữa trên tiêu chuẩn thời gian, còn **GMT** là thời gian theo tiêu chuẩn quốc gia 
  * **GMT** được thông qua trong luật pháp
+
+# Một số câu lệnh thời gian trong linux
+Date : đùng để truy cập và thiết lập đồng hồ hệ thống
+
+ * Tùy chọn: + :thiết lập định dạng thời gian
+ * -d :hiển thị các ngày khác và ngày hiện thời
+ * -r : hiển thị ngày của một file cụ thể
+
+Timedatectl : 
+ * Xem lại ngày, thời gian
+ * Đổi ngày , giờ
+ * Thiếp lập timezone của máy
+ * Kích hoạt tự động đồng bộ dựa trên 1 máy chủ khác từ xa
+
+Thay đổi ngày tháng hiện tại, chạy lệnh sau với quyền root:
+
+  `timedatectl set-time YYYY-MM-Đ`
+YYYY : năm
+MM : tháng
+DD : ngày 
+
+Thay đổi thời gian hiện tại, chạy lệnh sau với quyền root:
+
+  `timedatectl set-time HH:MM::SS`
+
+HH : giờ
+MM : phút
+SS : giây
+
+
+hwclock :  là tiện ích giúp bạn truy cập vào đồng hồ cứng. Nó không phụ thuộc vào hệ điều hành mà bạn sử dụng và vẫn hoạt động ngay cả khi bạn tắt hệ thống.hwclock chỉ lưu thông tin cơ bản năm, tháng, ngày, giờ, phút, giây; nó không thể lưu trữ thời gian chuẩn, thời gian cục bộ hay UTC. Đồng thời cũng không có chế độ Daylight Saving Time
