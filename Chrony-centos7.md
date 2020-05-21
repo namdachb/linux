@@ -1,6 +1,7 @@
 # Cài đặt chrony trên CentOS 7
 ### 1. Mô hình
-![Imgur](https://i.imgur.com/YJL3rSv.png)
+![Imgur](https://i.imgur.com/lHsK5Gb.png)
+
 Sử dụng 2 server cho mô hình
  - CentOS 7
  - Có kết nối internet
@@ -14,18 +15,19 @@ Cấu hình time zone
 Kiểm tra timezone sau khi cài đặt
 
  `timedatectl`
-
-    ```
-    [root@serverntp ~]# timedatectl
-      Local time: Thu 2020-05-21 00:11:42 +07
-  Universal time: Wed 2020-05-20 17:11:42 UTC
-        RTC time: Wed 2020-05-20 21:23:38
+ ```
+    [root@localhost ~]# timedatectl set-timezone Asia/Ho_Chi_Minh
+[root@localhost ~]# timedatectl
+      Local time: Thu 2020-05-21 13:37:10 +07
+  Universal time: Thu 2020-05-21 06:37:10 UTC
+        RTC time: Thu 2020-05-21 06:37:10
        Time zone: Asia/Ho_Chi_Minh (+07, +0700)
      NTP enabled: yes
-NTP synchronized: no
+NTP synchronized: yes
  RTC in local TZ: no
       DST active: n/a
-    ```
+
+ ```
 
 Cấu hình allow Firewalld
 
@@ -119,7 +121,7 @@ Restart lại dịch vụ để cập nhật cáu hình
 Sử dụng `chronyc` để kiểm tra đồng bộ
 
 ```
-[root@serverntp ~]# chronyc sources -v
+[root@localhost ~]# chronyc sources -v
 210 Number of sources = 4
 
   .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
@@ -130,12 +132,12 @@ Sử dụng `chronyc` để kiểm tra đồng bộ
 ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
 ||                                \     |          |  zzzz = estimated error.
 ||                                 |    |           \
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
-===============================================================================
-^- cache-a.dns.rx-name.net       2   6    17     6    +30ms[  +30ms] +/-  161ms
-^+ time.cloudflare.com           3   6    17     7    -21ms[  -31ms] +/-  106ms
-^+ no-ptr.123host.vn             3   6    17     7   -541us[  -11ms] +/-  183ms
-^* mail.khangthong.vn            2   6    17     7  +6188us[-3985us] +/-   79ms
+MS Name/IP address         Stratum Poll Reach LastRx Last sample                                                                                                                   
+=============================================================================                                                                                                      ==
+^* time.cloudflare.com           3   6    17     8    -25ms[  -16ms] +/-  139                                                                                                      ms
+^- 101-210-1-103.vtx.zinnia>     3   6    17     8    -32ms[  -32ms] +/-  150                                                                                                      ms
+^- ntp18.doctor.com              2   6    17     7   +138ms[ +138ms] +/-  381                                                                                                      ms
+^? static.vnpt.vn                0   6     0     -     +0ns[   +0ns] +/-    0                                                                                                      ns
 ```
 
 Kiểm tra đồng bộ sử dụng `timedatectl`
