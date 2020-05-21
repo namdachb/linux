@@ -201,7 +201,7 @@ Sử dụng `chronyc` kiểm tra đồng bộ
 
 ```
 [root@localhost ~]# chronyc sources -v
-210 Number of sources = 4
+210 Number of sources = 1
 
   .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
  / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
@@ -211,12 +211,9 @@ Sử dụng `chronyc` kiểm tra đồng bộ
 ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
 ||                                \     |          |  zzzz = estimated error.
 ||                                 |    |           \
-MS Name/IP address         Stratum Poll Reach LastRx Last sample                                                                                                                   
-=============================================================================                                                                                                      ==
-^+ 101-210-1-103.vtx.zinnia>     3   8   377   112    +37ms[  +37ms] +/-  153                                                                                                      ms
-^+ dns2.campus-rv.net            2   8   377    39    +21ms[  +21ms] +/-  254                                                                                                      ms
-^* mta.khangthong.net            2   7   377   175  -8800us[  -12ms] +/-   82                                                                                                      ms
-^+ 50-205-244-107-static.hf>     2   8   377   171    +20ms[  +20ms] +/-  185                                                                                                      ms
+MS Name/IP address         Stratum Poll Reach LastRx Last sample             
+===============================================================================
+^* 192.168.213.175               4   6    17    31    +15us[  +12us] +/-   61ms
 ```
 
 Kiểm tra đồng bộ sử dụng `timedatectl`
