@@ -26,4 +26,16 @@ Các tín hiệu thời gian được sử dụng bởi hầu hết các máy ch
  * Khi có vấn đề gì đó, việc kiểm tra log hệ thống là một phần chính của debug lỗi. Nhưng nếu thời gian trong những file log này không đồng bộ/ không chính xác thì có thể bạn sẽ mất khoảng thời gian dài hơn để tìm ra nguyên nhân và khắc phục lỗi hệ thống
 
 #### Phân tích xâm nhập
- * Trong trường hợp nếu có sự xâm nhập mạng trái phép, việc tìm hiểu xem mạng của bạn bị xâm nhập như thế nào và dữ liệu nào được truy cập có thể được kiểm tra rõ ràng nếu bạn có log thời gian chính xác việc login trên router hoặc máy chủ. Hacker thường sẽ xóa log nếu có, nhưng nếu hộ không xóa thì bạn cần thời gian chính xác để chuẩn đoán đó 
+ * Trong trường hợp nếu có sự xâm nhập mạng trái phép, việc tìm hiểu xem mạng của bạn bị xâm nhập như thế nào và dữ liệu nào được truy cập có thể được kiểm tra rõ ràng nếu bạn có log thời gian chính xác việc login trên router hoặc máy chủ. Hacker thường sẽ xóa log nếu có, nhưng nếu hộ không xóa thì bạn cần thời gian chính xác để chuẩn đoán đó
+
+# Múi giờ và giờ quốc tế GMT, UTC
+UTC (Coordinated Universal Time). Nghĩa là thời gian phối hợp quốc tế được cơ quan đo lường quốc tế (BIPM) đề xuất làm cơ sở pháp lý để định vị thời gian
+
+UTC được dựa trên tiêu chuẩn múi giờ cũ là giờ trung bình Greenwich hay GMT vào thế kỷ 19, sau đó được đổi tên thành Universal Time có nghĩa là giờ quốc tế
+
+GMT (Greenwich Mean Time) dựa trên quan sát thiên văn, GMT được xem là tiêu chuẩn thời gian theo quốc gia
+
+### Những điểm khác nhau của UTC và GMT
+ * Chênh lệnh bằng các phân số của giây
+ * **UTC** là thời gian Internet dữa trên tiêu chuẩn thời gian, còn **GMT** là thời gian theo tiêu chuẩn quốc gia 
+ * **GMT** được thông qua trong luật pháp
