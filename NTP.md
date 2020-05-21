@@ -16,9 +16,14 @@ Các tín hiệu thời gian được sử dụng bởi hầu hết các máy ch
  * NTP client nhận được gói tin đó, rồi tính toán độ trễ, dựa vào thể thời gian mà nó nhận được cùng với độ trễ của đường truyền, NTP client sẽ tự động set lại thời gian của nó
 
 ### Lợi ích của NTP server
- * Backup dữ liệu theo lập lịch
- 
- Backup dữ liệu rất quan trọng với bất kỳ tổ chức nào, nếu hệ thống quá sai về thời gian sẽ khiến việc sao lưu không chính xác
+#### Backup dữ liệu theo lập lịch
+ * Backup dữ liệu rất quan trọng với bất kỳ tổ chức nào, nếu hệ thống quá sai về thời gian sẽ khiến việc sao lưu không chính xác
 
- * Tăng tốc độ mạng
+#### Tăng tốc độ mạng truy cập
+ * Nhiều thiết bị có sử dụng **cache** và hệ thống tập tin diện rộng có thể dựa vào tem thời gian (timestamp) để xác định phiên bản nào của đoạn dữ liệu ứng với thời điểm hiện tại. Đồng bộ thời gian không chính xác  có thể khiến hệ thống như **cache server** hoạt động không chính xác, sử dụng sai phiên bản dữ liệu
 
+#### Hệ thống quản lý mạng
+ * Khi có vấn đề gì đó, việc kiểm tra log hệ thống là một phần chính của debug lỗi. Nhưng nếu thời gian trong những file log này không đồng bộ/ không chính xác thì có thể bạn sẽ mất khoảng thời gian dài hơn để tìm ra nguyên nhân và khắc phục lỗi hệ thống
+
+#### Phân tích xâm nhập
+ * Trong trường hợp nếu có sự xâm nhập mạng trái phép, việc tìm hiểu xem mạng của bạn bị xâm nhập như thế nào và dữ liệu nào được truy cập có thể được kiểm tra rõ ràng nếu bạn có log thời gian chính xác việc login trên router hoặc máy chủ. Hacker thường sẽ xóa log nếu có, nhưng nếu hộ không xóa thì bạn cần thời gian chính xác để chuẩn đoán đó 
