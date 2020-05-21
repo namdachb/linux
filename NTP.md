@@ -17,7 +17,8 @@ Các tín hiệu thời gian được sử dụng bởi hầu hết các máy ch
 
 ### Lợi ích của NTP server
  * Backup dữ liệu theo lập lịch
+ 
  Backup dữ liệu rất quan trọng với bất kỳ tổ chức nào, nếu hệ thống quá sai về thời gian sẽ khiến việc sao lưu không chính xác
 
  * Tăng tốc độ mạng
- 
+
