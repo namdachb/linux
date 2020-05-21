@@ -76,4 +76,20 @@ MM : phút
 SS : giây
 
 
-hwclock :  là tiện ích giúp bạn truy cập vào đồng hồ cứng. Nó không phụ thuộc vào hệ điều hành mà bạn sử dụng và vẫn hoạt động ngay cả khi bạn tắt hệ thống.hwclock chỉ lưu thông tin cơ bản năm, tháng, ngày, giờ, phút, giây; nó không thể lưu trữ thời gian chuẩn, thời gian cục bộ hay UTC. Đồng thời cũng không có chế độ Daylight Saving Time
+**hwclock** :  là tiện ích giúp bạn truy cập vào đồng hồ cứng. Nó không phụ thuộc vào hệ điều hành mà bạn sử dụng và vẫn hoạt động ngay cả khi bạn tắt hệ thống.hwclock chỉ lưu thông tin cơ bản năm, tháng, ngày, giờ, phút, giây; nó không thể lưu trữ thời gian chuẩn, thời gian cục bộ hay UTC. Đồng thời cũng không có chế độ Daylight Saving Time
+
+ * Khi bạn cần thay đổi ngày giờ đồng hồ phần cứng, bạn có thể làm như vậy bằng cách nối thêm --setvà --datecác tùy chọn cùng với thông số kỹ thuật của bạn:
+
+ `hwclock --set --date "dd mmm yyyy HH:MM`
+
+ * Đồng bộ hóa phần cứng theo thời gian hệ thống 
+
+ `hwclock --systohc`
+
+ * Hoặc, bạn có thể đặt thời gian hệ thống từ đồng hồ phần cứng bằng cách sử dụng lệnh sau:
+
+ `hwclock --hctosys`
+
+ * Để đặt đồng hồ phần cứng theo thời gian hệ thống hiện tại và giữ đồng hồ phần cứng theo giờ địa phương, hãy chạy lệnh sau như root:
+
+ `hwclocl --systohc --localtime`
