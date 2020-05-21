@@ -143,10 +143,10 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 Kiểm tra đồng bộ sử dụng `timedatectl`
 
 ```
-[root@serverntp ~]# timedatectl
-      Local time: Thu 2020-05-21 09:22:28 +07
-  Universal time: Thu 2020-05-21 02:22:28 UTC
-        RTC time: Thu 2020-05-21 02:22:28
+[root@localhost ~]# timedatectl
+      Local time: Thu 2020-05-21 13:51:25 +07
+  Universal time: Thu 2020-05-21 06:51:25 UTC
+        RTC time: Thu 2020-05-21 06:51:25
        Time zone: Asia/Ho_Chi_Minh (+07, +0700)
      NTP enabled: yes
 NTP synchronized: yes
@@ -157,3 +157,67 @@ NTP synchronized: yes
 Set đồng bộ thời gian cho đồng hồ của BIOS (Đồng hồ phần cứng) `hwclock`
 
 `hwclock --systohc`
+
+Kiểm tra đồng bộ của `date` và `hwclock` đảm bảo đồng bộ
+
+```
+[root@localhost ~]# date
+Thu May 21 13:54:37 +07 2020
+[root@localhost ~]# hwclock
+Thu 21 May 2020 01:54:42 PM +07  -0.773054 seconds
+[root@localhost ~]#
+```
+
+### 5. Cấu hình Chrony Client
+Thực chất sau khi cài đặt và khởi động Chrony thì Server này đã tự động đồng bộ thời gian về từ một trong những NTP Server thuocj pool `centos.pool.ntp.org`
+
+Bây giờ thay vì đồng bộ thời gian từ Internet chúng ta sẽ đồng bộ từ NTP Server chúng ta cấu hình phía trên
+
+Tại Server 192.168.213.175 chỉnh sửa cấu hình chrony
+
+```
+[root@localhost ~]# sed -i 's|server 0.centos.pool.ntp.org iburst|server 192.168.213.175 iburst|g' /etc/chrony.conf
+[root@localhost ~]# sed -i 's|server 1.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+[root@localhost ~]# sed -i 's|server 2.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+[root@localhost ~]# sed -i 's|server 3.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+```
+
+Kiểm tra cấu hình
+
+```
+[root@localhost ~]# cat /etc/chrony.conf | egrep -v '^$|^#'
+server 192.168.213.175 iburst
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+rtcsync
+logdir /var/log/chrony
+```
+
+Khởi động lại chrony để cập nhật cấu hình
+
+ `systemctl restart chronyd`
+
+Sử dụng `chronyc` kiểm tra đồng bộ
+
+```
+[root@localhost ~]# chronyc sources -v
+210 Number of sources = 4
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample                                                                                                                   
+=============================================================================                                                                                                      ==
+^+ 101-210-1-103.vtx.zinnia>     3   8   377   112    +37ms[  +37ms] +/-  153                                                                                                      ms
+^+ dns2.campus-rv.net            2   8   377    39    +21ms[  +21ms] +/-  254                                                                                                      ms
+^* mta.khangthong.net            2   7   377   175  -8800us[  -12ms] +/-   82                                                                                                      ms
+^+ 50-205-244-107-static.hf>     2   8   377   171    +20ms[  +20ms] +/-  185                                                                                                      ms
+```
+
+Kiểm tra đồng bộ sử dụng `timedatectl`
+
