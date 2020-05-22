@@ -1,6 +1,6 @@
 # Cài đặt chrony trên CentOS 7
 ### 1. Mô hình
-![Imgur](https://i.imgur.com/lHsK5Gb.png)
+![Imgur](https://i.imgur.com/hYwyVRt.png)
 
 Sử dụng 2 server cho mô hình
  - CentOS 7
@@ -16,11 +16,10 @@ Kiểm tra timezone sau khi cài đặt
 
  `timedatectl`
  ```
-    [root@localhost ~]# timedatectl set-timezone Asia/Ho_Chi_Minh
 [root@localhost ~]# timedatectl
-      Local time: Thu 2020-05-21 13:37:10 +07
-  Universal time: Thu 2020-05-21 06:37:10 UTC
-        RTC time: Thu 2020-05-21 06:37:10
+      Local time: Fri 2020-05-22 16:20:09 +07
+  Universal time: Fri 2020-05-22 09:20:09 UTC
+        RTC time: Fri 2020-05-22 09:20:09
        Time zone: Asia/Ho_Chi_Minh (+07, +0700)
      NTP enabled: yes
 NTP synchronized: yes
@@ -144,9 +143,9 @@ Kiểm tra đồng bộ sử dụng `timedatectl`
 
 ```
 [root@localhost ~]# timedatectl
-      Local time: Thu 2020-05-21 13:51:25 +07
-  Universal time: Thu 2020-05-21 06:51:25 UTC
-        RTC time: Thu 2020-05-21 06:51:25
+      Local time: Fri 2020-05-22 16:21:24 +07
+  Universal time: Fri 2020-05-22 09:21:24 UTC
+        RTC time: Fri 2020-05-22 09:21:25
        Time zone: Asia/Ho_Chi_Minh (+07, +0700)
      NTP enabled: yes
 NTP synchronized: yes
@@ -162,10 +161,9 @@ Kiểm tra đồng bộ của `date` và `hwclock` đảm bảo đồng bộ
 
 ```
 [root@localhost ~]# date
-Thu May 21 13:54:37 +07 2020
+Fri May 22 16:22:07 +07 2020
 [root@localhost ~]# hwclock
-Thu 21 May 2020 01:54:42 PM +07  -0.773054 seconds
-[root@localhost ~]#
+Fri 22 May 2020 04:22:11 PM +07  -0.273607 seconds
 ```
 
 ### 5. Cấu hình Chrony Client
@@ -182,11 +180,17 @@ Tại Server 192.168.213.175 chỉnh sửa cấu hình chrony
 [root@localhost ~]# sed -i 's|server 3.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
 ```
 
+> Lưu ý : đưa timezone về cùng với timezone của máy Server
+
 Kiểm tra cấu hình
 
 ```
 [root@localhost ~]# cat /etc/chrony.conf | egrep -v '^$|^#'
-server 192.168.213.175 iburst
+server 0.centos.pool.ntp.org iburst
+server 1.centos.pool.ntp.org iburst
+server 2.centos.pool.ntp.org iburst
+server 3.centos.pool.ntp.org iburst
+server 192.168.213.181 iburst
 driftfile /var/lib/chrony/drift
 makestep 1.0 3
 rtcsync
@@ -201,7 +205,7 @@ Sử dụng `chronyc` kiểm tra đồng bộ
 
 ```
 [root@localhost ~]# chronyc sources -v
-210 Number of sources = 1
+210 Number of sources = 5
 
   .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
  / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
@@ -211,10 +215,69 @@ Sử dụng `chronyc` kiểm tra đồng bộ
 ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
 ||                                \     |          |  zzzz = estimated error.
 ||                                 |    |           \
-MS Name/IP address         Stratum Poll Reach LastRx Last sample             
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
-^* 192.168.213.175               4   6    17    31    +15us[  +12us] +/-   61ms
+^+ 192.168.213.181               4   8   377   129  -1073us[-1073us] +/-   63ms
+^+ mail.khangthong.vn            2  10   377   717  +1114us[+1179us] +/-   84ms
+^* time.cloudflare.com           3   9   377   451   -140us[  -86us] +/-   58ms
+^- time.shf.uk.as44574.net       3   8   377  1023    +51ms[  +51ms] +/-  188ms
+^- gw01-dd.uitserv.de            2  10   377   889    +55ms[  +55ms] +/-  196ms
 ```
 
 Kiểm tra đồng bộ sử dụng `timedatectl`
 
+```
+[root@localhost ~]# timedatectl
+      Local time: Fri 2020-05-22 16:24:31 +07
+  Universal time: Fri 2020-05-22 09:24:31 UTC
+        RTC time: Fri 2020-05-22 09:24:32
+       Time zone: Asia/Ho_Chi_Minh (+07, +0700)
+     NTP enabled: yes
+NTP synchronized: yes
+ RTC in local TZ: no
+      DST active: n/a
+```
+
+Set đồng bộ thời gian cho đồng hô của BIOS (Đồng hồ phần cứng) `hwclock`
+
+ `hwclock --systohc`
+
+Kiểm tra đồng bộ của `date` và `hwclock` đảm bảo đồng bộ
+
+```
+[root@localhost ~]# hwclock
+Fri 22 May 2020 04:26:02 PM +07  -0.273131 seconds
+[root@localhost ~]# date
+Fri May 22 16:26:02 +07 2020
+[root@localhost ~]#
+```
+
+### 6. Các câu lệnh kiểm tra bổ sung
+Kiểm tra verify kết nối
+
+ `chronyc tracking`
+
+ ```
+ [root@localhost ~]# chronyc tracking
+Reference ID    : A29FC801 (time.cloudflare.com)
+Stratum         : 4
+Ref time (UTC)  : Fri May 22 09:16:14 2020
+System time     : 0.000116301 seconds slow of NTP time
+Last offset     : +0.000053975 seconds
+RMS offset      : 0.000192304 seconds
+Frequency       : 6.200 ppm slow
+Residual freq   : -0.001 ppm
+Skew            : 0.044 ppm
+Root delay      : 0.112937875 seconds
+Root dispersion : 0.002389185 seconds
+Update interval : 1037.7 seconds
+Leap status     : Normal
+ ```
+
+Stop Chrony và kiểm tra
+
+ `systemctl stop chronyd`
+
+Kiểm tra 
+
+ `chronyc tracking`
