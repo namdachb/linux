@@ -274,6 +274,10 @@ Update interval : 1037.7 seconds
 Leap status     : Normal
  ```
 
+ `chronyc sources -v`
+
+ `chronyc sourcestats`
+
 Stop Chrony và kiểm tra
 
  `systemctl stop chronyd`
