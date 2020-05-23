@@ -285,3 +285,62 @@ Stop Chrony và kiểm tra
 Kiểm tra 
 
  `chronyc tracking`
+
+
+# Mô hình đồng bộ hóa một máy server với quốc tế
+![Imgur](https://i.imgur.com/Di6GmJ1.png)
+
+IP Planning
+![Imgur](https://i.imgur.com/Xf5sWzZ.png)
+
+ * Sử dụng 1 server cho mô hình:
+ * Hệ điều hành CentOS-7
+ * Có kết nối Internet
+ * Được truy cập dưới quyền `root`
+
+### 1. Chuẩn bị trước khi cài đặt
+ * Cấu hình `Timezone` :
+ ```
+ timedatectl set-timezone Asia/Ho_Chi_Minh
+ timedatectl
+ ```
+
+ * Cấu hình allow firewalld
+ ```
+ firewall-cmd --add-service=npt --permanent
+ firewall-cmd -reload
+ ```
+
+ * Cấu hình disable SElinux
+ ```
+ sudo setenforce 0
+ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+ ```
+
+### 2. Cài đặt dịch vụ
+ * Cài đặt Chrony: 
+  `yum install chrony`
+
+ * Sau khi cài đặt chúng ta tiến hành start Chrony và cho phép khởi động cùng hệ thống :
+  `systemctl enable --now chronyd`
+
+ * Kiểm tra dịch vụ hoạt động
+  `systemctl status chronyd`
+
+ * Chỉnh sửa file cấu hình `/etc/chrony.conf` : tìm các dòng sau
+
+ ```
+ server 0.centos.pool.ntp.org iburst
+ server 1.centos.pool.ntp.org iburst
+ server 2.centos.pool.ntp.org iburst
+ server 3.centos.pool.ntp.org iburst
+ ```
+ 
+Và thay đổi thành :
+```
+ server 1.vn.pool.ntp.org
+ server 2.asia.pool.ntp.org
+ server 0.asia.pool.ntp.org
+```
+
+Câu lệnh trên có ý nghĩa tự động đồng bộ thời gian về tự 1 trong những NTP Server thuộc pool : `server 1.vn.pool.ntp.org`, 
