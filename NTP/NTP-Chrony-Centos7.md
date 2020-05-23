@@ -14,7 +14,9 @@ Có 2 mô hình:
 
 ## 4. Cài đặt mô hình 
 ### Mô hình 1:
- * Chuẩn bị 1 server
+Bước 1:
+ * Chuẩn bị 1 server (centos 7)
+ * Có kết nói
  * Cấu hình timezone
  * Kiểm tra timezone sau khi cài đặt
  * Cấu hình firewall
