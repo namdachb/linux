@@ -1,9 +1,6 @@
-1. [ádasfasf](#1)
-2. [ádasfasf](#2)
-3. [ádasfasf](#3)
+
 ## Network Time Procotol (NTP)
 Là một thuật toán phần mềm giữ cho các máy tính và các thiết bị công nghệ khác nhau có thể đồng bộ hóa thời gian với nhau
-
 
  
  * **NTP** hoạt động bằng cách sử dụng một nguồn thời gian chính duy nhất (NTP Server), nó sử dụng để đồng bộ tất cả các thiết bị trên mạng
@@ -38,7 +35,7 @@ Các tín hiệu thời gian được sử dụng bởi hầu hết các máy ch
 UTC (Coordinated Universal Time). Nghĩa là thời gian phối hợp quốc tế được cơ quan đo lường quốc tế (BIPM) đề xuất làm cơ sở pháp lý để định vị thời gian
 
 UTC được dựa trên tiêu chuẩn múi giờ cũ là giờ trung bình Greenwich hay GMT vào thế kỷ 19, sau đó được đổi tên thành Universal Time có nghĩa là giờ quốc tế
-<a name="1"></a>
+
 ### Cách xác định giờ UTC:
 Thực tế, có 2 thành phần chính trong tiêu chuẩn thời gian phối hợp quốc tế (UTC). Đó là giờ quốc tế và giờ nguyên tử quốc tế
  * TAI (International Atomic Time) được xác định bằng cách kết hợp thời gian của hơn 200 đồng hồ nguyên tử trên toàn thế giới. Nói cách khác, nó vô cùng chính xác
