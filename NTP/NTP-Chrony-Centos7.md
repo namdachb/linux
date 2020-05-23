@@ -14,13 +14,19 @@ Có 2 mô hình:
 
 ## 4. Cài đặt mô hình 
 ### Mô hình 1:
+![Imgur](https://i.imgur.com/VA8IESW.png)
+
  * Chuẩn bị 1 server (centos 7)
  * Có kết nối internet
  * Cấu hình timezone
  * Kiểm tra timezone sau khi cài đặt
  * Cấu hình firewall
  
-### Mô hình 2:
+### Mô hình 2: 
+![Imgur](https://i.imgur.com/82mCTSD.png)
+
+![Imgur](https://i.imgur.com/gQ4w5qr.png)
+
 Bước 1:
  * Chuẩn bị mô hình
  * Quy hoạch IP Planning
