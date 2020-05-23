@@ -335,7 +335,7 @@ IP Planning
  server 2.centos.pool.ntp.org iburst
  server 3.centos.pool.ntp.org iburst
  ```
- 
+
 Và thay đổi thành :
 ```
  server 1.vn.pool.ntp.org
@@ -343,4 +343,11 @@ Và thay đổi thành :
  server 0.asia.pool.ntp.org
 ```
 
-Câu lệnh trên có ý nghĩa tự động đồng bộ thời gian về tự 1 trong những NTP Server thuộc pool : `server 1.vn.pool.ntp.org`, 
+Câu lệnh trên có ý nghĩa tự động đồng bộ thời gian về tự 1 trong những NTP Server thuộc pool : `server 1.vn.pool.ntp.org`, `server 2.asia.pool.ntp.org`, `server 0.asia.pool.ntp.org`
+
+ * Khởi động dịch vụ kiểm tra:
+`systemctl restart chronyd`
+
+`chronyc sources -v`
+
+`chronyc tracking`
