@@ -23,7 +23,7 @@ Có 2 mô hình:
  * Cấu hình firewall
  
 ### Mô hình 2: 
-![Imgur](https://i.imgur.com/82mCTSD.png)
+![Imgur](https://i.imgur.com/e1quje2.png)
 
 ![Imgur](https://i.imgur.com/gQ4w5qr.png)
 
