@@ -18,18 +18,23 @@ Có 2 mô hình:
 
  * Chuẩn bị 1 server (centos 7)
  * Có kết nối internet
+ * Đăng nhâp với user `root`
  * Cấu hình timezone
  * Kiểm tra timezone sau khi cài đặt
  * Cấu hình firewall
- 
+ * Cấu hình Disable Selinux
+ * Cài đặt Chrony
+ * Khởi động dịch vụ
+ * Sửa file cấu hình `/etc/chrony.conf
+ * Restart lại dịch vụ
 ### Mô hình 2: 
+* Quy hoạch mô hình
 ![Imgur](https://i.imgur.com/e1quje2.png)
 
+* Mô hình ip planning
 ![Imgur](https://i.imgur.com/gQ4w5qr.png)
 
 Bước 1:
- * Chuẩn bị mô hình
- * Quy hoạch IP Planning
  * Sử dụng 2 server cho mô hình (server,client)
  * Cent0S 7
  * Có kết nối Internet
