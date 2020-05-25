@@ -65,3 +65,7 @@ root@192.168.213.182's password:
 test.txt                                                        100%    0     0.0KB/s   00:00
  ```
 
+## Tìm hiểu WinSCP
+WinSCP (Windows Secure Copy) là một tiện ích mã nguồn mở hoàn toàn miễn phí dành cho Windows
+
+Chức năng chính của WinSCP là truyền tải dữ liệu giữa 2 máy tính một cách an toàn và bảo mật thông qua giao thức SFTP , FTP , WebDAV, ...
