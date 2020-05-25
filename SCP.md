@@ -26,15 +26,18 @@ Cú pháp lệnh cơ bản
 Đẩy file `nam.txt` lên server /root/data
  
  ```
- [root@localhost ~]# ls
-nam.txt  test
-[root@localhost ~]# scp nam.txt root@192.168.213.182:/root/bak
+ [root@localhost ~]# scp nam.txt root@192.168.213.182:/root/data
+root@192.168.213.182's password:
+nam.txt                                                         100%    0     0.0KB/s   00:00
  ```
 
 Muốn truyền nhiều file cùng lúc dùng lệnh
 
  ```
- scp nam.txt file.txt root@192.168.213.182:/root/data
+ [root@localhost ~]# scp nam.txt file.txt root@192.168.213.182:/root/data
+root@192.168.213.182's password:
+nam.txt                                                         100%    0     0.0KB/s   00:00
+file.txt                                                        100%    0     0.0KB/s   00:00
  ```
 
 Muốn copy cả thử mục từ client sang server ta thêm tham số `-r`
@@ -53,4 +56,6 @@ Kết quả khi sang máy server:
 [root@localhost data]# ls
 test
 ```
+
+Muốn copy dữ liệu ngược lại từ server về client thì gõ lệnh sau:
 
