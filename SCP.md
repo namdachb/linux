@@ -12,13 +12,45 @@
     Centos/Redhat : yum install scp -y
     ```
 
-Cú pháp của SCP:
+### 3. Sử dụng SCP
+Mô hình :
 
- `scp [other options] [source username@ip]:/[directory and file name] [destination username@ip]:/[destination directory]`
+![Imgur](https://i.imgur.com/ddqOEwd.png)
 
- * **[other options]** là tham số bạn có thể thêm vào SCP command
- * **[source username@ip]** là username và ip của máy có file bạn muốn
- * **:/** báo cáo cho SCP command biết sau đó sẽ là thư mục nguồn
- * **[directory and file name]** đường dẫn chứa file, và tên của nó
- * **[destination username@IP]** là username và ip của máy đích
- * **[destination directory]** là thư mục đích nơi file được lưu
+ * Client: IP 192.168.213.183 máy gửi dữ liệu, chúng ta ngồi trực tiếp trên máy này gõ lệnh gửi file
+ * Server: IP 192.168.213.182 User root, pass namdachb , máy nhận dữ liệu
+
+Cú pháp lệnh cơ bản 
+ `scp source_file username@destination_host:/destination_folder`
+
+Đẩy file `nam.txt` lên server /root/data
+ 
+ ```
+ [root@localhost ~]# ls
+nam.txt  test
+[root@localhost ~]# scp nam.txt root@192.168.213.182:/root/bak
+ ```
+
+Muốn truyền nhiều file cùng lúc dùng lệnh
+
+ ```
+ scp nam.txt file.txt root@192.168.213.182:/root/data
+ ```
+
+Muốn copy cả thử mục từ client sang server ta thêm tham số `-r`
+
+Ví dụ: ta muốn copy cả thư mục test ta dùng lệnh
+```
+[root@localhost test]# ls
+demo.txt  file.txt  nam
+```
+
+`scp -r /root/test root@192.168.213.182:/root/data`
+
+Kết quả khi sang máy server:
+```
+[root@localhost ~]# cd data
+[root@localhost data]# ls
+test
+```
+
