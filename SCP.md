@@ -59,3 +59,9 @@ test
 
 Muốn copy dữ liệu ngược lại từ server về client thì gõ lệnh sau:
 
+ ```
+ [root@localhost ~]# scp root@192.168.213.182:/root/data/test.txt /root/
+root@192.168.213.182's password:
+test.txt                                                        100%    0     0.0KB/s   00:00
+ ```
+
