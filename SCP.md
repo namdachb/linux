@@ -16,4 +16,9 @@ Cú pháp của SCP:
 
  `scp [other options] [source username@ip]:/[directory and file name] [destination username@ip]:/[destination directory]`
 
- 
+ * **[other options]** là tham số bạn có thể thêm vào SCP command
+ * **[source username@ip]** là username và ip của máy có file bạn muốn
+ * **:/** báo cáo cho SCP command biết sau đó sẽ là thư mục nguồn
+ * **[directory and file name]** đường dẫn chứa file, và tên của nó
+ * **[destination username@IP]** là username và ip của máy đích
+ * **[destination directory]** là thư mục đích nơi file được lưu
