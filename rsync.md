@@ -59,4 +59,4 @@ Trong ví dụ dưới đây , chúng ta sẽ chuyển thư mục từ 1 máy c�
 
 Nếu  muốn chuyển dữ liệu từ xa sang máy cục bộ thì ta cần sử dụng vị trí từ xa làm nguồn
 
-`rsync -a user@IP:source destination`
+`rsync -a user@IP:/root/demo /root/test`
