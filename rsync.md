@@ -45,7 +45,7 @@ ví dụ máy chúng ta có thư mục **test1** trong nó chứa nhiều file, 
 
 Hoặc chúng ta sao chép sang 1 thư mục đích không tồn tại và `rsync` sẽ tạo ra nó
 
-`rsync -a test1/ /var/ww`
+`rsync -a test1/ /var/www`
 
 Điều đáng nói là `rsync` cung cấp cách xử lý khác nhau cho các thư mục nguồn bằng dấu gạch chép `/`. Nếu bạn thêm 1 dấu gạch chéo vào thư mục nguồn, nó sẽ chỉ sao chép nội dung của thư mục vào thư mục đích. Khi dấu gạch chéo bị bỏ qua `rsync` sẽ sao chép thư mục nguồn bên trong thư mục đích
 
