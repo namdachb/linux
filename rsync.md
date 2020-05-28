@@ -33,6 +33,7 @@ Một số tùy chọn thường được sử dụng trong lệnh rsync đượ
  * `-P` : dùng khi đường truyền không ổn định, nó sẽ gửi tiếp các file chưa được gửi đi khi có kết nối trở lại
  * `--delete` : xóa dữ liệu ở destination nếu source không tồn tại dữ liệu đó
  * `--exclude` : loại trừ ra dữ liệu không muốn truyền đi, nếu cần loại ra nhiều file hoặc folder ở nhiều đường dẫn khác nhau thì mỗi cái bạn phải thêm `--exclude` tương ứng
+ * `--include` : bao gồm những dữ liệu muốn truyền đi
 
 ### Làm việc với rsync
 ### 1. rsync cơ bản
@@ -49,14 +50,35 @@ Hoặc chúng ta sao chép sang 1 thư mục đích không tồn tại và `rsyn
 
 Điều đáng nói là `rsync` cung cấp cách xử lý khác nhau cho các thư mục nguồn bằng dấu gạch chép `/`. Nếu bạn thêm 1 dấu gạch chéo vào thư mục nguồn, nó sẽ chỉ sao chép nội dung của thư mục vào thư mục đích. Khi dấu gạch chéo bị bỏ qua `rsync` sẽ sao chép thư mục nguồn bên trong thư mục đích
 
-### 2. Cách sử dụng rsync để đồng bộ hóa dữ liệu từ / đến 1 máy từ xa
+### 2. Cách sử dụng rsync để đồng bộ hóa dữ liệu từ client đến server
 
 Khi sử dụng `rsync` để truyền từ xa, nó phải được cài đặt trên cả nguồn và máy đích. Các phiên bản mới `rsync` được cấu hình để sử dụng SSH làm vỏ từ xa mặc định
 
-Trong ví dụ dưới đây , chúng ta sẽ chuyển thư mục từ 1 máy cục bộ sang 1 máy từ xa:
+Trong ví dụ dưới đây , chúng ta sẽ chuyển thư mục từ 1 máy client sang 1 máy server (từ xa):
 
-`rsync -a /root/test user@IP:/root/demo`
+`rsync -zavh /root/test user@IP:/root/demo`
+```
+[root@localhost ~]# rsync -zavh /root/test root@192.168.213.176:/root/demo
+Enter passphrase for key '/root/.ssh/id_rsa':
+sending incremental file list
+test/
+test/file.txt
+
+sent 155 bytes  received 39 bytes  55.43 bytes/sec
+total size is 39  speedup is 0.20
+```
 
 Nếu  muốn chuyển dữ liệu từ xa sang máy cục bộ thì ta cần sử dụng vị trí từ xa làm nguồn
 
-`rsync -a user@IP:/root/demo /root/test`
+`rsync -zavh user@IP:/root/demo /root/test`
+```
+[root@localhost ~]# rsync -zavh root@192.168.213.176:/root/demo /root/data
+Enter passphrase for key '/root/.ssh/id_rsa':
+receiving incremental file list
+demo/
+demo/test/
+demo/test/file.txt
+
+sent 55 bytes  received 187 bytes  69.14 bytes/sec
+total size is 39  speedup is 0.16
+```
