@@ -39,6 +39,14 @@ Một số tùy chọn thường được sử dụng trong lệnh rsync đượ
 
 `rsync -a [thư_mục_nguồn] [thư_mục_đích]`
 
-ví dụ máy chúng ta có thư mục **test1** trong nó chứa nhiều file, thư mục con. Giớ muốn đồng bộ toàn bộ thư mục **test1** vào 1 thư mục khác là **test2** (2 thư mục cùng nằm trên 1 máy)
+ví dụ máy chúng ta có thư mục **test1** trong nó chứa nhiều file, thư mục con. Giờ muốn đồng bộ toàn bộ thư mục **test1** vào 1 thư mục khác là **test2** (2 thư mục cùng nằm trên 1 máy)
 
 `rsync -anv test1/ test2`
+
+Hoặc chúng ta sao chép sang 1 thư mục đích không tồn tại và `rsync` sẽ tạo ra nó
+
+`rsync -a test1/ /var/ww`
+
+Điều đáng nói là `rsync` cung cấp cách xử lý khác nhau cho các thư mục nguồn bằng dấu gạch chép `/`. Nếu bạn thêm 1 dấu gạch chéo vào thư mục nguồn, nó sẽ chỉ sao chép nội dung của thư mục vào thư mục đích. Khi dấu gạch chéo bị bỏ qua `rsync` sẽ sao chép thư mục nguồn bên trong thư mục đích
+
+### 2. Cách sử dụng rsync để đồng bộ hóa dữ liệu từ / đến 1 máy từ xa
