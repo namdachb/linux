@@ -50,3 +50,13 @@ Hoặc chúng ta sao chép sang 1 thư mục đích không tồn tại và `rsyn
 Điều đáng nói là `rsync` cung cấp cách xử lý khác nhau cho các thư mục nguồn bằng dấu gạch chép `/`. Nếu bạn thêm 1 dấu gạch chéo vào thư mục nguồn, nó sẽ chỉ sao chép nội dung của thư mục vào thư mục đích. Khi dấu gạch chéo bị bỏ qua `rsync` sẽ sao chép thư mục nguồn bên trong thư mục đích
 
 ### 2. Cách sử dụng rsync để đồng bộ hóa dữ liệu từ / đến 1 máy từ xa
+
+Khi sử dụng `rsync` để truyền từ xa, nó phải được cài đặt trên cả nguồn và máy đích. Các phiên bản mới `rsync` được cấu hình để sử dụng SSH làm vỏ từ xa mặc định
+
+Trong ví dụ dưới đây , chúng ta sẽ chuyển thư mục từ 1 máy cục bộ sang 1 máy từ xa:
+
+`rsync -a /root/test user@IP:/root/demo`
+
+Nếu  muốn chuyển dữ liệu từ xa sang máy cục bộ thì ta cần sử dụng vị trí từ xa làm nguồn
+
+`rsync -a user@IP:source destination`
