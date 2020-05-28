@@ -68,7 +68,7 @@ sent 155 bytes  received 39 bytes  55.43 bytes/sec
 total size is 39  speedup is 0.20
 ```
 
-Nếu  muốn chuyển dữ liệu từ xa sang máy cục bộ thì ta cần sử dụng vị trí từ xa làm nguồn
+Nếu  muốn chuyển dữ liệu từ máy server(từ xa) đến máy client:
 
 `rsync -zavh user@IP:/root/demo /root/test`
 ```
