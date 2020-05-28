@@ -68,7 +68,7 @@ sent 155 bytes  received 39 bytes  55.43 bytes/sec
 total size is 39  speedup is 0.20
 ```
 
-Nếu  muốn chuyển dữ liệu từ máy server(từ xa) đến máy client:
+### 3.Nếu  muốn chuyển dữ liệu từ máy server(từ xa) đến máy client:
 
 `rsync -zavh user@IP:/root/demo /root/test`
 ```
@@ -83,7 +83,7 @@ sent 55 bytes  received 187 bytes  69.14 bytes/sec
 total size is 39  speedup is 0.16
 ```
 
-### 3. Bao gồm và loại trừ các tệp tin khi đồng bộ hóa dữ liệu 
+### 4. Bao gồm và loại trừ các tệp tin khi đồng bộ hóa dữ liệu 
 Ví dụ trong 1 thư mục có nhiều file có định dạng khác nhau : **txt**, **conf**, **md**, ... mà chúng ta muốn cóp một loại hoặc lấy hết nhưng không muốn lấy một loại định dạng nào :
 
   `rsync --include '*.txt* --exclude '*.md' -zavh source user@IP:/destination`
