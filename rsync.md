@@ -13,3 +13,12 @@ Mặc định hầu hết các bản phân phối Linux có sẵn công cụ nà
    apt-get install rsync
    ```
 
+### Rsync cơ bản
+
+`rsync -a thư_mục_nguồn thư_mục_đích`
+
+ví dụ trên máy chúng ta có thư mục **data** trong nó chứa nhiều file, thư mục con. Giờ muồn đồng bộ nội dung thư mục **data** vào một thư mục ở vị trí khác là **data2** (2 thư mục này cùng nằm trên 1 máy), thì sẽ thực hiện như sau
+
+`rsync -a data data2`
+ * Tham số -a (Archive) cho biết sẽ đồng bộ tất cả các file, thư mục trong **data**
+ * Nếu muốn `rsync` kiểm tra thông tin **data, data2** trước khi thi hành thì thêm thiết lập `-n`, nếu muốn quá trình đồng bộ hiện thị thông tin thêm `-v`
