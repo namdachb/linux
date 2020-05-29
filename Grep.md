@@ -121,5 +121,3 @@ namdachb
 
  * Khi bạn tìm kiếm bình thường với `grep`, kết quả sẽ hiển thị tất cả những dòng có chứa từ **ntnam** kể cả **ntnam98**
  * Với tùy chọn `-w`, kết quả sẽ tìm chính xác chỉ những dòng chứa từ **ntnam**
-### 10. Tìm tất cả các file trên cả thư mục con và thư mục cha với tùy chọn `-R`
-### 11. Tìm kiếm dựa trên output của lệnh trước làm input của lệnh sau sử dụng "|"
