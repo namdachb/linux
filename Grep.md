@@ -55,3 +55,71 @@ Song tim ra tan be
  * `-n` : hiển thị số thứ tự của dòng và dòng chứa từ cần tìm
  * `c` : đếm số dòng khớp với kí tự cần tìm
  * `-m[chỉ số cần giới hạn]` : giới hạn số lượng dòng khớp
+
+### 6. Tìm kiếm nhiều chuỗi
+Có 3 cú pháp tìm tương đương nhau:
+ * Cách 1 : `grep -e "word1" -e "word2" <file>`
+ * Cách 2 : `grep "word1\|word2" <file>` `\` để phân biệt word1 với word2
+ * Cách 3 : `egrep "word1|word2" <file>`
+
+![Imgur](https://i.imgur.com/wTKPqAN.png)
+
+### 7. Tìm kiếm tên tệp
+ * `-l` : để có được tập tin phù hợp với tìm kiếm
+ * `-L` : để có được các tập tin không phù hợp với tìm kiếm
+ * `-h` : hiển thị không với tên file (khi chỉ định nhiều file)
+ * `-H` : hiển thị cùng với tên file
+
+So sánh giữa 2 tùy chọn `-l` và `-L`
+```
+[root@localhost ~]# grep -l 'em' *
+song.txt
+votinh.txt
+[root@localhost ~]# grep -L 'em' *
+```
+ * Tùy chọn `-l` sẽ ra kết quả là những tên file có chứa từ **em**
+ * Tùy chọn `-L` sẽ ra kết quả là những tên file không chứa từ **em**
+
+So sánh 2 tùy chọn `-h` và `-H`
+
+![Imgur](https://i.imgur.com/3PC74q8.png)
+ * Tùy chọn `-h` sẽ cho kết quả những dòng chứa từ **vo** mà không kèm với tên file
+ * Còn với tùy chọn `-H` kết quả sẽ bao gồm tên file và dòng chứa từ **vo**
+### 8 Hiển thị thêm dòng trước, sau ,xung quanh dòng chứa kết quả cần tìm
+
+`grep -<A,B hoặc C> <n> "chuoi" <file>`
+
+Trong đó :
+ * `A` : hiển thị dòng sau dòng khớp với kí tự cần tìm
+ * `B` : hiển thị dòng trước dòng khớp với kí tự cần tìm
+ * `C` : hiển thị dòng xung quanh dòng khớp với kí tự cần tìm
+ * `n` : là số tự nhiên chỉ định xem hiển thị trước, sau hay xung quanh bao nhiêu dòng
+
+VD : 
+```
+[root@localhost ~]# cat song.txt
+Du doi va em diu
+On ao va lang le
+Song khong hieu noi minh
+Song tim ra tan be
+```
+
+![Imgur](https://i.imgur.com/djLHEe5.png)
+Ở đây với `n=1`, nếu muốn các bạn có thể tìm rộng hơn với `n` là số lớn hơn
+
+### 9. Tìm chính xác với `-w`
+```
+[root@localhost ~]# cat ntnam.txt
+ntnam.txt
+ntnam98@gmai.com
+ntnam = Nguyen The Nam
+123456789
+namdachb
+```
+
+![Imgur](https://i.imgur.com/1avolgn.png)
+
+ * Khi bạn tìm kiếm bình thường với `grep`, kết quả sẽ hiển thị tất cả những dòng có chứa từ **ntnam** kể cả **ntnam98**
+ * Với tùy chọn `-w`, kết quả sẽ tìm chính xác chỉ những dòng chứa từ **ntnam**
+### 10. Tìm tất cả các file trên cả thư mục con và thư mục cha với tùy chọn `-R`
+### 11. Tìm kiếm dựa trên output của lệnh trước làm input của lệnh sau sử dụng "|"
