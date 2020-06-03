@@ -40,7 +40,7 @@ Sử dụng lệnh sau để kiểm tra xem người dùng đã được add và
 
  `cat /etc/group | grep namdac123`
 
-Nếu thông tin hiện ra như dưới đây là user namdac123 đã nằm trong nhóm wheel và được cấp quyền sudo
+Nếu thông tin hiện ra như dưới đây là user **namdac123** đã nằm trong nhóm wheel và được cấp quyền sudo
 ```
 [root@localhost ~]# cat /etc/group | grep namdac123
 wheel:x:10:namdac123
