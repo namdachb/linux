@@ -77,3 +77,6 @@ Sau khi nhập user root để đăng nhập thì ta sẽ nhận được thông
 
 Bây giờ thì không còn ai có thể đăng nhập từ xa bằng user root nữa mà chỉ có thể truy cập từ xa bằng các user thông thường hoặc user sudo để thao tác với server
 
+Vì vậy, chúng ta chỉ đăng nhập như người dùng bình thường và sau đó sử dụng lệnh `su` để chuyển sang người dùng root
+
+![Imgur](https://i.imgur.com/4VOJ1i6.png)
