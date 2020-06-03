@@ -1,4 +1,4 @@
-## Tạo user sudo và cấu hình disable ssh đối với user root (centos7)
+# Tạo user sudo và cấu hình disable ssh đối với user root (centos7)
 Ngày nay, mọi người đều biết rằng các hệ thống **Linux** đi kèm với quyền truy cập của người dùng **root** và theo mặc định, quyền truy cập **root** được kích hoạt cho thế giới bên ngoài. Vì lý do bảo mật, không nên bật quyền truy cập root ssh cho người dùng trái phép. Bởi vì bất kỳ hacker nào cũng có thể có gắng ép buộc mật khẩu của bạn và giành quyền truy cập vào hệ thống của bạn 
 
 Vì vậy, tốt hơn là nên có một tài khoản khác mà bạn thường xuyên sử dụng và sau đó chuyển sang người dùng **root** bằng cách sử dụng lệnh **su -** khi cần thiết. Hãy đảm bảo bạn có tài khoản người dùng thông thường và cùng với đó bạn **su** hoặc **sudo** để có quyền truy cập root
