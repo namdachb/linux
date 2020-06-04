@@ -14,3 +14,4 @@
 # Conmmand
 1. [Grep](Conmmand/Grep.md)
 2. [SCP](Conmmand/SCP.md)
+3. [Rsync](Conmmand/rsync.md)
