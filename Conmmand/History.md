@@ -24,3 +24,22 @@ Theo mặc định ngày và thời gian sẽ không được nhìn thấy trong
 ```
  
 ### Kiểm tra câu lệnh bằng cách xem lịch sử bằng file
+```
+[namdachb@client ~]$ cat .bash_history
+history
+timedatectl
+ls -alh
+su -
+```
+
+### Vị trí tệp lịch sử ~/.bash_history
+Theo mặc định, lịch sử bash được ghi vào `~/.bash_history`, điều này được đặt trong biến `$HISTFILE`, để kiểm tra:
+
+ * Vị trí tệp lịch sử của User root 
+  
+  ```
+  [root@client ~]# echo $HISTFILE
+/root/.bash_history
+  ```
+
+ *  Vị trí tệp lịch sử của User thường
