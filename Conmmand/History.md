@@ -137,3 +137,12 @@ Với câu lệnh trên lệnh history sẽ không lưu lại lịch sự với 
  Với nhiều câu lệnh `cd` lặp lại nhiều lần nhưng với biến `$HISTIGNORE` thì lệnh sẽ bỏ qua không lưu
 
 ### Tăng giảm kích thước lưu trữ history
+Mặc định thì lưu trữ được 1000 câu lệnh để tăng khả năng lưu trữ ta làm như sau :
+```
+[root@client ~]# echo $HISTSIZE
+1000
+[root@client ~]# HISTSIZE=2000
+[root@client ~]# echo $HISTSIZE
+2000
+```
+Để tăng khả năng lưu trữ tới 2000 câu lệnh
