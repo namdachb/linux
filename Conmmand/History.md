@@ -114,13 +114,13 @@ Xóa toàn bộ tệp lịch sử có thể là quá mức cần thiết, thay v
 
  `history -d [n_cmd]`
 
-```
-4  sed -i 's|server 0.centos.pool.ntp.org iburst|server 192.168.213.175 iburst|g' /etc/chrony.conf
-    5  sed -i 's|server 1.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
-    6  sed -i 's|server 2.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
-    7  sed -i 's|server 3.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
-    8  cat /etc/chrony.conf | egrep -v '^$|^#'
-```
+### Thay đổi format của output history
 
+`HISTTIMEFORMAT="%d/%m/%y %T "`
 
-
+Option:
+ * `%d` : ngày
+ * `%m` : tháng
+ * `%y` : năm
+ * `%T` : thời gian
+ * `/` : có thể thay đổi bằng ký tự khác, hoặc dấu cách tùy thuộc vào hiển thị của người sử dụng
