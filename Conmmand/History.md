@@ -1,11 +1,11 @@
-## Tìm hiểu và cách sử dụng lệnh hisroty
-### 1. Giới thiệu lệnh history
+# Tìm hiểu và cách sử dụng lệnh history
+## 1. Giới thiệu lệnh history
 Lệnh `history` có sẵn trong Bash có thể được dùng để kiểm tra lịch sử lệnh hoặc để có được thông tin về lệnh được thực thi bởi người dùng. Lệnh `history` cho phép chúng ta nhanh chóng xem những gì đã được thực hiện trước đây trên một hệ thống, cho phép người dùng chịu trách nhiệm cho hành động của họ. Nó rất hữu ích khi bạn chạy một lệnh nào đó trước đó và quên lệnh
 
 Theo mặc định ngày và thời gian sẽ không được nhìn thấy trong khi thực hiện lệnh `history`. Tuy nhiên, bash shell cung cấp cho chúng ta tiện ích **CLI** để chỉnh sửa lệnh `history` của người dùng 
 
-### 2. Ứng dụng lệnh history
-Chạy lệnh `history` và nó sẽ in ra lịch sử bash của người dùng hiện tại ra màn hình
+## 2. Ứng dụng lệnh history
+### Chạy lệnh `history` và nó sẽ in ra lịch sử bash của người dùng hiện tại ra màn hình
  * Cột 1 dùng để hiển thị thứ tự của lệnh
  * Cột 2 hiện thị câu lệnh đã được thực thi
 
@@ -23,4 +23,4 @@ Chạy lệnh `history` và nó sẽ in ra lịch sử bash của người dùng
    10  systemctl status chronyd
 ```
  
-Kiểm tra câu lệnh bằng cách xem lịch sử bằng file
+### Kiểm tra câu lệnh bằng cách xem lịch sử bằng file
