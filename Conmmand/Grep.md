@@ -25,18 +25,21 @@ nen chung minh yeu nhau
 Ví dụ : Tìm từ **em diu** trên file `song.txt`
 
 ![Imgur](https://i.imgur.com/CfCrA6D.png)
+
 Kết quả sẽ hiện thị dòng chứa từ "em diu"
 
 ### 2. Tìm kiếm chuỗi trên nhiều file
 VD: tìm từ "em" trên 2 file `song.txt` và `votinh.txt`
 
 ![Imgur](https://i.imgur.com/GiPZWig.png)
+
 Kết quả sẽ hiển thị những dòng chứa từ "gio" trên cả hai file
 
 ### 3. Tìm kiếm không phân biệt hoa thường, sử dụng tùy chọn `-i`
 VD : trên 2 file text có cả chữ viết hoa và viết thường. Đề tìm kiếm mà không phân biệt hoa thường ta có thể sử dụng tùy chọn `-i`
 
 ![Imgur](https://i.imgur.com/vrBSclk.png)
+
 So sánh giữa sử dụng grep bình thường và tùy chọn `-i`
 
 Ở đây, mình tìm từ "du" là chữ thường thì sẽ không ra kết quả, nhưng nếu sử dụng tùy chọn `-i` , thì kết quả sẽ xuất hiện với từ "Du"
