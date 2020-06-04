@@ -43,3 +43,30 @@ Theo mặc định, lịch sử bash được ghi vào `~/.bash_history`, điề
   ```
 
  *  Vị trí tệp lịch sử của User thường
+
+  ```
+  [namdachb@client ~]$ echo $HISTFILE
+/home/namdachb/.bash_history
+  ```
+
+Mặc định file sẽ nằm tại `/user/.bash_history` và chúng ta cũng có thể tùy chỉnh như sau
+
+`export HISTFILE=~/.custom_file`
+
+ * `~/.custom_file` là địa chỉ và tên file mới muốn tùy chỉnh cho file bash_history mới
+
+### Tìm kiếm câu lệnh đã sử dụng trong quá khứ
+
+`history | grep [conmmand]`
+
+Ví dụ : Muốn tìm kiếm câu lệnh `grep` trong quá khứ đã sử dụng :
+
+```
+[root@client ~]# history | grep grep
+   11  cat /etc/chrony.conf | egrep -v '^$|^#'
+   14  cat /etc/chrony.conf | egrep -v '^$|^#'
+  206  man grep
+  207  grep phoenixNAP sample
+```
+
+### Lặp lại câu lệnh gần nhất
