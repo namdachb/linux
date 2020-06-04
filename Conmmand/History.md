@@ -70,3 +70,57 @@ Ví dụ : Muốn tìm kiếm câu lệnh `grep` trong quá khứ đã sử dụ
 ```
 
 ### Lặp lại câu lệnh gần nhất
+Lệnh gần nhất có thể thực thi đơn gian bằng cách nhập `!!`
+
+```
+[root@client ~]# ls
+ntnam.txt  song.txt  votinh.txt
+[root@client ~]# !!
+ls
+ntnam.txt  song.txt  votinh.txt
+```
+
+Ngoài ra , chúng ta cũng có thể nhấn mũi tên đi lên để hiển thị lệnh cuối cùng sau đó nhấn Enter để thực hiện nó
+
+### Lặp lại lệnh cụ thể 
+Conmmand: `![n]`
+  * `n` là số dòng của câu lệnh mà chúng ta muốn lặp lệnh
+
+```
+   74  ls
+   75  pwd
+   76  cd
+```
+
+```
+[root@client ~]# !75
+pwd
+/root
+```
+  Như ở ví dụ này, mình lặp lệnh ở số 75
+
+### Ghi vào tệp tin lịch sử
+Thông thường tệp lịch sử được ghi vào khi đăng xuất, do đó, nếu bạn có phiên SSH đã hết thời gian, bạn sẽ không có lịch sử của mình từ phiên đó khi bạn đăng nhập lại. Bạn có thể buộc lịch sử hiện tại ghi vào tệp tin lịch sử người dùng `~/. bash_history` với tùy chọn `-w`
+
+`history -w`
+
+### Xóa tệp tin lịch sử
+
+`history -c`
+
+Dòng lệnh sẽ xóa toàn bộ lịch sử bộ nhớ, những thay đổi sẽ được ghi khi người dùng đăng xuất tuy nhiên bạn có thể lưu các thay đổi vào tệp .bash_history khi chạy lệnh history -w
+
+Xóa toàn bộ tệp lịch sử có thể là quá mức cần thiết, thay vào đó bạn có thể xóa một số dòng cụ thể :
+
+ `history -d [n_cmd]`
+
+```
+4  sed -i 's|server 0.centos.pool.ntp.org iburst|server 192.168.213.175 iburst|g' /etc/chrony.conf
+    5  sed -i 's|server 1.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+    6  sed -i 's|server 2.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+    7  sed -i 's|server 3.centos.pool.ntp.org iburst|#|g' /etc/chrony.conf
+    8  cat /etc/chrony.conf | egrep -v '^$|^#'
+```
+
+
+
