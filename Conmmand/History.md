@@ -124,3 +124,16 @@ Option:
  * `%y` : năm
  * `%T` : thời gian
  * `/` : có thể thay đổi bằng ký tự khác, hoặc dấu cách tùy thuộc vào hiển thị của người sử dụng
+
+### Bỏ qua các lệnh cụ thể
+
+Bạn có thể chỉ định một hoặc nhiều lệnh không bao giờ được ghi vào tệp lịch sử với biến $HISTIGNORE
+
+`export HISTIGNORE="cd"`
+
+Với câu lệnh trên lệnh history sẽ không lưu lại lịch sự với câu lệnh `cd`
+
+![Imgur](https://i.imgur.com/NYVExUX.png)
+ Với nhiều câu lệnh `cd` lặp lại nhiều lần nhưng với biến `$HISTIGNORE` thì lệnh sẽ bỏ qua không lưu
+
+### Tăng giảm kích thước lưu trữ history
