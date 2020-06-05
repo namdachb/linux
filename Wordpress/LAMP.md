@@ -26,6 +26,13 @@ Cài xong, tiến hành khởi động lại service :
  systemctl enable httpd
  ```
 
+Kiểm tra phiên bản Apache vừa cài đặt 
+```
+[root@localhost ~]# httpd -v
+Server version: Apache/2.4.6 (CentOS)
+Server built:   Apr  2 2020 13:13:23
+```
+
 Bạn có thể check lại trạng thái hoạt động của service bằng cách gõ :
  
  `systemctl status httpd`
@@ -37,6 +44,15 @@ Chúng ta có thể kiểm tra trạng thái trên trình duyệt bằng cách g
  `<địa chỉ ip server>`
 
  ![Imgur](https://i.imgur.com/bRQopS1.png)
+Nội dung file web mặc định khi bạn truy cập bằng địa chỉ IP **web server apache** nằm ở thư mục: **/var/www/html/**
+
+**File cấu hình Apache**
+
+Ở bài viết này chúng ta không đi chi tiết việc tìm hiểu cấu hình nâng cao dịch vụ Apache. Mà chỉ tìm hiểu cài đặt cơ bản vì vậy bạn cần biết một số thông tin sau :
+ * **File cấu hình Apache**: /etc/httpd/conf/httpd.conf
+ * **Thư mục chứa cấu hình phụ Apache**: /etc/httpd/conf.d/
+ * **Thư mục log Apache**: /var/log/httpd/
+ * **Thư mục web mặc định**: /var/www/html/
 
 Nếu sử dụng hệ điều hành trên máy ảo, chúng ta có thể tắt **firewall** để có thể truy cập trên browser của máy thực :
 
