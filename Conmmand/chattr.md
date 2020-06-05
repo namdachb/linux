@@ -113,3 +113,24 @@ Ta có thể gỡ bỏ thuộc tính này với lệnh
 
 ### 4. Cách dùng `chattr` để bảo vệ thư mục 
 Để bảo vệ cả thư mục và các file bên trong thư mục đó, ta dùng flag `-R` (recursively) và `+i` với đường dẫn của thư mục đó
+
+ ```
+ [root@localhost ~]# chattr -R +i test/
+ ```
+
+Thử xóa thư mục này đi
+ 
+ ```
+ [root@localhost ~]# rm -rf test/
+rm: cannot remove ‘test/file.txt’: Permission denied
+ ```
+Có thể thấy ta không thể xóa thư mục `test` và các file bên trong nó
+
+Để unset quyền trên, ta sử dụng flag `-R` và `-i` với đường dẫn của thư mục đó
+
+ ```
+ [root@localhost ~]# chattr -R -i test/
+ ```
+
+Sau khi chạy lệnh này, ta có thể sửa, xóa thư mục và file bên trong như bình thường
+
