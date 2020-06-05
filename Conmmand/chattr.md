@@ -78,3 +78,38 @@ Sau khi bỏ thuộc tính `i` khỏi file, ta có thể thay đổi file một 
 total 4
 -rw-r--r--. 1 root root 8 Jun  4 21:46 file.txt
 ```
+
+### 3. Chỉ cho phép nối thêm nội dung vào file
+Chúng ta thêm thuộc tính `a` (append) cho file
+
+```
+[root@localhost test]# chattr +a file.txt
+[root@localhost test]# lsattr
+-----a---------- ./file.txt
+```
+
+Thử sửa nội dung file :
+
+```
+[root@localhost test]# echo "gicungduoc" > file.txt
+-bash: file.txt: Operation not permitted
+```
+Có thể thấy là không sửa được nội dung
+
+Nhưng chúng ta có thể nối nội dung file:
+
+```
+[root@localhost test]# echo "gicungduoc" >> file.txt
+[root@localhost test]# cat file.txt
+demo.vn
+gicungduoc
+[root@localhost test]#
+```
+
+Ta có thể gỡ bỏ thuộc tính này với lệnh
+```
+[root@localhost test]# chattr -a file.txt
+```
+
+### 4. Cách dùng `chattr` để bảo vệ thư mục 
+Để bảo vệ cả thư mục và các file bên trong thư mục đó, ta dùng flag `-R` (recursively) và `+i` với đường dẫn của thư mục đó
