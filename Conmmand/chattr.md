@@ -134,3 +134,21 @@ Có thể thấy ta không thể xóa thư mục `test` và các file bên trong
 
 Sau khi chạy lệnh này, ta có thể sửa, xóa thư mục và file bên trong như bình thường
 
+### 5. Áp dụng lệnh `chattr` để bảo vệ file `/etc/passwd` và `/etc/shadow`
+Thêm thuộc tính `i` cho các file này để bị tránh xóa nhầm. Lưu ý rằng ta không thể tạo thêm user khi sử dụng cách này
+
+ ```
+ [root@localhost ~]# chattr +i /etc/passwd
+[root@localhost ~]# chattr +i /etc/shadow
+ ```
+
+Thử tạo thêm user:
+ 
+ ```
+ [root@localhost ~]# useradd thenam
+useradd: cannot open /etc/passwd
+ ```
+
+Có thể thấy ta không thể thêm user mới vào hệ thống 
+
+Với cách này, ta có thể đặt quyền không thể sửa đổi cho các file hệ thống quan trọng hoặc các file cấu hình quan trọng để tránh bị xóa
