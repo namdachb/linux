@@ -26,6 +26,7 @@ Có nhiều flag, ở đây chúng ta sẽ giới thiệu các flag thường d�
 **Lưu ý**: Tất cả cách lệnh dưới đây đều chạy dưới quyền user root
 
 Trong bài này, mình đã tạo trước file `demo.txt` trong thư mục `test`. Nội dung file như sau :
+
 ```
 [root@localhost test]# cat demo.txt
 demo.vn
@@ -39,12 +40,14 @@ Chúng ta thêm thuộc tính `i` (immutable) cho file
 ```
 
 Xem lệnh trên đã có hiệu lực chưa bằng cách dùng lệnh `lsattr` :
+
 ```
 [root@localhost test]# lsattr
 ----i----------- ./demo.txt
 ```
 
 Bây giờ ta thử xóa file trên :
+
 ```
 [root@localhost test]# rm -rf demo.txt
 rm: cannot remove ‘demo.txt’: Operation not permitted
@@ -59,4 +62,19 @@ Có thể thấy rằng chúng ta không thể xóa hoặc thay đổi file trê
 ### 2. Cách để unset thuộc tính đã thêm cho file
 Ta sử dụng operator `-`
 
+Ví dụ chúng ta sẽ unset thuộc tính `i` trên file `demo.txt`
 
+```
+[root@localhost test]# chattr -i demo.txt
+```
+
+Sau khi bỏ thuộc tính `i` khỏi file, ta có thể thay đổi file một cách bình thường:
+
+```
+[root@localhost test]# mv demo.txt file.txt
+[root@localhost test]# lsattr
+---------------- ./file.txt
+[root@localhost test]# ll
+total 4
+-rw-r--r--. 1 root root 8 Jun  4 21:46 file.txt
+```
