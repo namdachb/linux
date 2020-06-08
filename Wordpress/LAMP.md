@@ -103,7 +103,7 @@ Sau khi thiết lập xong, kích hoạt mariadb để khởi động cùng hệ
 ### 2.4 Cài đặt php
 Phiên bản có sẵn trong repo của CentOS đang là 5.4. Phiên bản này khá cũ và sẽ khiến bạn gặp 1 số vấn đề xảy ra khi tiến hành cài đặt wordpress. Vì vậy chúng ta cần phải cài đặt phiên bản 7x để khắc phục. Chúng ta cần tiến hành thêm kho vào Remi CentOS:
 
- `sudo yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm`
+ `sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm`
 
 Cài yum -utils vì chúng ta cần tiện ích yum-config-manager để cài đặt:
 
