@@ -52,4 +52,57 @@ Tiến hành giải nén file `latest.tar.gz`:
 
  `tar xvfz latest.tar.gz`
 
- 
+ > Lưu ý: giải nén sẽ ra thư mục wordpress có đường dẫn /root/wordpress 
+
+Copy các file trong thư mục WordPress tới đường dẫn `/var/www/html` như sau:
+
+ `cp -Rvf /root/wordpress/* /var/www/html
+
+### Bước 4: Cấu hình WordPress
+Ta di chuyển đường dẫn tới thư mục chứa các file cài đặt WordPress như sau :
+
+ `cd /var/www/html`
+
+File cấu hình wordpress là `wp-config.php`. Tuy nhiên tại đây chỉ có file `wp-config-sample.php`. Tiến hành copy tại file cấu hình như sau:
+
+ `cp wp-config-sample.php wp-config.php`
+
+Mở file config với vi để sửa   
+
+ `vi wp-config.php`
+
+Trong file này, ta tìm tới dòng như hình dưới đây
+
+![Imgur](https://i.imgur.com/hmUC3CY.png)
+
+Tiến hành thay đổi thông tin cơ sở dữ liệu, tài khoản, mật khẩu như đã thiết lập ở bước 2. Ví dụ như sau :
+
+![Imgur](https://i.imgur.com/dQI8s24.png)
+
+Gõ ESC -> :wq để lưu thoát khỏi chế độ chỉnh sửa
+
+### Bước 5: Hoàn tất phần cài đặt giao diện
+Trên trình duyệt, gõ địa chỉ ip server trên thanh url, trình duyệt sẽ xuất hiện như sau :
+
+![Imgur](https://i.imgur.com/if8s2MA.png)
+
+Tiến hành nhập một số thông tin cần thiết rồi chọn `Install WordPress`
+
+![Imgur](https://i.imgur.com/Pwebyrv.png)
+
+Như vậy là chúng ta đã thiết lập thành công. Tiến hành đăng nhập vào WordPress:
+
+![Imgur](https://i.imgur.com/y7Y4DTh.png)
+
+Như vậy là chúng ta đã có thể sử dụng WordPress rồi
+
+### Bước 6: Phân quyền cho thư mục wordpress
+Khi chúng ta thực hiện thao tác upload ảnh hay đăng các bài viết, sẽ xuất hiện lỗi
+
+Ta cần tiến hành phân quyền thư mục wordpress cho user apache để cho user này được phép tạo các thư mục và lưu các tệp tải lên. Trên cửa sổ terminal, ta gõ lệnh như sau:
+```
+chown -R apacha:apache /var/www/html/*
+chmod -R 755 /var/www/html/*
+```
+
+Như vậy là bạn đã có thể tiến hành upload ảnh và đăng bài viết lên trang wordpress của bạn
