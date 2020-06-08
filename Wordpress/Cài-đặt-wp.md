@@ -47,3 +47,9 @@ Tiến hành tải xuống WordPress với phiên bản mới nhất
  `wget http://wordpress.org/latest.tar.gz`
 
  > Lưu ý: chúng ta cần để ý tới thư mục đang lưu trữ file wordpress đang được tải xuống. Ở đây mình lưu tại thư mục /root
+
+Tiến hành giải nén file `latest.tar.gz`:
+
+ `tar xvfz latest.tar.gz`
+
+ 
