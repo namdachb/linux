@@ -21,4 +21,9 @@ Chứa thông tin về các yêu cầu đến máy chủ web. Thông tin này c�
  * `%u`-`-`-Nếu yêu cầu được xác thực, tên gnuoiwf dùng từ xa sẽ được hiển thị
  * `%t`-`[05/Jun/2020:22:21:16 +0700]`- Thời gian máy chủ cục bộ
  * `"GET / HTTP/1.1"-Dòng yêu cầu đầu tiên.Loại yêu cầu, đường dẫn và giao thức
- * `%>s`-`403`-Mã phản hồi của máy chủ cuối cùng. Nếu `>` biểu tưởng không được sử dụng và yêu cầu đã được chuyển hướng nội bộ, nó sẽ hiển thị trạng thái của yêu cầu ban đầu                                                                                                                                          
+ * `%>s`-`403`-Mã phản hồi của máy chủ cuối cùng. Nếu `>` biểu tưởng không được sử dụng và yêu cầu đã được chuyển hướng nội bộ, nó sẽ hiển thị trạng thái của yêu cầu ban đầu                   
+ * `"-"`-URL của người giới thiệu
+ * `Mozilla/5.0 ...`-Tác nhân người dùng của máy khác (trình duyệt web)
+
+### Error Log
+Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu, chẳng hạn như khi các tệp bị thiếu. Nó trông giống như thế này
