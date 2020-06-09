@@ -20,10 +20,49 @@ Chứa thông tin về các yêu cầu đến máy chủ web. Thông tin này c�
  * `%l`-`-`-Tên đăng nhập từ xa. Khi tên người dùng không được đặt, trường này sẽ hiển thị `-`
  * `%u`-`-`-Nếu yêu cầu được xác thực, tên gnuoiwf dùng từ xa sẽ được hiển thị
  * `%t`-`[05/Jun/2020:22:21:16 +0700]`- Thời gian máy chủ cục bộ
- * `"GET / HTTP/1.1"-Dòng yêu cầu đầu tiên.Loại yêu cầu, đường dẫn và giao thức
+ * `"GET / HTTP/1.1"`-Dòng yêu cầu đầu tiên.Loại yêu cầu, đường dẫn và giao thức
  * `%>s`-`403`-Mã phản hồi của máy chủ cuối cùng. Nếu `>` biểu tưởng không được sử dụng và yêu cầu đã được chuyển hướng nội bộ, nó sẽ hiển thị trạng thái của yêu cầu ban đầu                   
  * `"-"`-URL của người giới thiệu
  * `Mozilla/5.0 ...`-Tác nhân người dùng của máy khác (trình duyệt web)
 
 ### Error Log
-Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu, chẳng hạn như khi các tệp bị thiếu. Nó trông giống như thế này
+Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu
+
+```
+[Thu May 21 22:18:52.762993 2020] [lbmethod_heartbeat:notice] [pid 2205] AH02282: No slotmem from mod_heartmonitor
+```
+ * [lbmethod_heartbeat:notice]-Module tạo ra thông điệp
+ * [pid 2205]-process id
+
+
+### Hiển thị tất cả địa chỉ IP có trong file access log
+
+```
+grep -o "[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+" /var/log/httpd/access_log | sort | uniq
+```
+
+![Imgur](https://i.imgur.com/Eowygvb.png)
+
+### Hiển thị các địa chỉ có trong file access log và số lần xuất hiện của chúng
+**Cách 1**: Đối với cách này sẽ hiển thị tất các các địa chỉ có trong file access log bao gồm cả các địa chỉ có trong User-Agent
+
+Sắp xếp các địa chỉ theo thứ tự tăng dần
+```
+grep -o "[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+" /var/log/httpd/access_log | sort | uniq -c | sort -n
+```
+
+![Imgur](https://i.imgur.com/lXVSZSO.png)
+
+Sắp xếp các địa chỉ theo thứ tự giảm dần
+```
+grep -o "[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+" /var/log/httpd/access_log | sort | uniq -c | sort -nr
+```
+
+![Imgur](https://i.imgur.com/DH1jvDJ.png)
+
+**Cách 2**:Còn đối với cách này sẽ chỉ hiển thị những địa chỉ IP có ở phần đầu của access log (X-FORWARDED_FOR)
+```
+awk '{print $1}' /var/log/httpd/access_log | sort | uniq -c | sort -nr
+```
+
+![Imgur](https://i.imgur.com/wZjkhxS.png)
