@@ -19,7 +19,7 @@ Chúng ta cần nhập password mà chúng ta đã thiết lập lúc cài đặ
 
 Tiếp theo chúng ta cần tạo cơ sở dữ liệu cho wordpress. Chúng ta có thể sử dụng một cái tên bất kỳ . Trong bài này, mình sẽ đặt là **namdac**
 
- `CREATE DATABASE wordpress;`
+ `CREATE DATABASE namdac;`
 
 Chúng ta cần tạo một tài khoản riêng để quản lí cơ sở dữ liệu cho WordPress. Trong bài mình sẽ đặt tên  cho tài khoản là **admin** và mật khẩu là **pass**, như sau:
  
