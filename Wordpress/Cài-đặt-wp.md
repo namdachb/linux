@@ -56,7 +56,7 @@ Tiến hành giải nén file `latest.tar.gz`:
 
 Copy các file trong thư mục WordPress tới đường dẫn `/var/www/html` như sau:
 
- `cp -Rvf /root/wordpress/* /var/www/html
+ `cp -Rvf /root/wordpress/* /var/www/html`
 
 ### Bước 4: Cấu hình WordPress
 Ta di chuyển đường dẫn tới thư mục chứa các file cài đặt WordPress như sau :
