@@ -25,6 +25,21 @@ Chứa thông tin về các yêu cầu đến máy chủ web. Thông tin này c�
  * `"-"`-URL của người giới thiệu
  * `Mozilla/5.0 ...`-Tác nhân người dùng của máy khác (trình duyệt web)
 
+File log được lưu trữ tại /var/log/httpd/access_log
+
+Định dạng log (LogFormat) cơ bản như sau là : %h %l %u %t %r %>s %b Refer User_agent
+
+Trong đó:
+ * `%h` : địa chỉ của máy client
+ * `%l` : nhận dạng người dùng được xác định bởi identd
+ * `%u` : tên người dùng được xác định bằng xác thực http
+ * `%t` : thời gian yêu cầu xác thực
+ * `%r` : là yêu cầu từ người sử dụng (client)
+ * `%>s` : mã trạng thái được gửi từ máy chủ đến máy khách
+ * `%b` : kích cỡ phản hồi đổi với client
+ * `Refer` : tiêu đề refeer của yêu cầu HTTP (chứa URL của trang mà yêu cầu này được khởi tạo)
+ * `User_agent` : chuỗi xác định trình duyệt
+
 ### Error Log
 Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu
 
