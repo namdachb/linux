@@ -16,12 +16,12 @@ Chứa thông tin về các yêu cầu đến máy chủ web. Thông tin này c�
 ```
 
 Ý nghĩa của từng lĩnh vực trong hồ sơ :
- * `%h`-`192.168.213.1`-Tên máy chủ hoặc địa chỉ IP của khách hàng thực hiện yêu cầu 
- * `%l`-`-`-Tên đăng nhập từ xa. Khi tên người dùng không được đặt, trường này sẽ hiển thị `-`
- * `%u`-`-`-Nếu yêu cầu được xác thực, tên gnuoiwf dùng từ xa sẽ được hiển thị
- * `%t`-`[05/Jun/2020:22:21:16 +0700]`- Thời gian máy chủ cục bộ
+ * `192.168.213.1`-Tên máy chủ hoặc địa chỉ IP của khách hàng thực hiện yêu cầu 
+ * `-`-Tên đăng nhập từ xa. Khi tên người dùng không được đặt, trường này sẽ hiển thị `-`
+ * `-`-Nếu yêu cầu được xác thực, tên gnuoiwf dùng từ xa sẽ được hiển thị
+ * `[05/Jun/2020:22:21:16 +0700]`- Thời gian máy chủ cục bộ
  * `"GET / HTTP/1.1"`-Dòng yêu cầu đầu tiên.Loại yêu cầu, đường dẫn và giao thức
- * `%>s`-`403`-Mã phản hồi của máy chủ cuối cùng. Nếu `>` biểu tưởng không được sử dụng và yêu cầu đã được chuyển hướng nội bộ, nó sẽ hiển thị trạng thái của yêu cầu ban đầu                   
+ * `403`-Mã phản hồi của máy chủ cuối cùng. Nếu `>` biểu tưởng không được sử dụng và yêu cầu đã được chuyển hướng nội bộ, nó sẽ hiển thị trạng thái của yêu cầu ban đầu                   
  * `"-"`-URL của người giới thiệu
  * `Mozilla/5.0 ...`-Tác nhân người dùng của máy khác (trình duyệt web)
 
