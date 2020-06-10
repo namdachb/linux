@@ -41,7 +41,11 @@ Trong đó:
  * `User_agent` : chuỗi xác định trình duyệt
 
 ### Error Log
-Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu
+Chứa thông tin về các lỗi mà máy chủ gặp phải khi xử lý các yêu cầu, chẳng hạn như tệp bị thiếu
+
+Là nơi đầu tiên để xem xét khi xảy ra sử cố khi khởi động máy chủ hoặc với hoạt động của máy chủ vì nó thường chứa thông tin chi tiết về những gì xảy ra và cách khắc phục
+
+Nơi lưu trữ file log là /var/log/httpd/error_log (với centos) và /var/log/apache2/error.log (với ubuntu)
 
 ```
 [Thu May 21 22:18:52.762993 2020] [lbmethod_heartbeat:notice] [pid 2205] AH02282: No slotmem from mod_heartmonitor
