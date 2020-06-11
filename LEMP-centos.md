@@ -158,4 +158,88 @@ Cài đặt bao gồm cả gói php-mysql và php-fpm:
 
 `php -v`
 
-Tiếp theo
+Tiếp theo chúng ta cần thực hiện một vài điều chỉnh cho cấu hình mặc định
+
+Mở `/etc/php-fpm.d/www/conf` tệp cấu hình bằng `vi`
+
+ `vi /etc/php-fpm.d/www.còn`
+
+Chúng ta tìm kiến `user` và `group`
+
+![Imgur](https://i.imgur.com/2p8ixn7.png)
+
+Chúng ta thấy cả hai `user` và `group` là `apache`. Chúng ta cần thay đổi thành `nginx`:
+
+![Imgur](https://i.imgur.com/7jglXzD.png)
+
+Tiếp theo xác định vị trí của `listen` . Theo mặc định `php-fpm` sẽ lắng nghe trên một máy chủ và cổng cụ thể qua TCP. Chúng ta muốn thay dổi cài đặt này để nó lắng ghe trên tệp ổ cắm cục bộ, vì điều này giúp cải thiện hiệu suất tổng thể của máy chủ
+```
+listen = /var/run/php-fpm/php-fpm.sock;
+```
+
+Cuối cùng, ta sẽ cần thay đổi cài đặt của chủ sở hữu và nhóm cho tệp ở cắm mà chúng ta vừa xác định trong `listen` 
+
+![Imgur](https://i.imgur.com/GLgEHAU.png)
+
+Để kích hoạt và khởi động `php-fpm` dịch vụ, sử dụng lệnh
+
+ `systemctl start php-fpm`
+
+### Bước 4: Định cấu hình Nginx để xử lý các trang PHP
+Đầu tiên, mở một tệp mới trong `/etc/nginx/conf.d` thư mục:
+
+`vi /etc/nginx/conf.d/default.conf`
+
+Sao chép khối định nghĩa máy chủ PHP sau vào tệp cấu hình của bạn và đừng quên thay thế lệnh server_nameđể nó trỏ đến tên miền hoặc địa chỉ IP của máy chủ của chúng ta:
+
+```
+server {
+    listen       80;
+    server_name  server_domain_or_IP;
+
+    root   /usr/share/nginx/html;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+```
+Luư và đóng tệp khi hoàn tất
+
+Tiếp theo, khởi động lại Nginx để áp dụng các thay đổi
+
+ `systemctl restart nginx`
+
+### Bước 5: kiểm tra xử lý PHP trên máy chủ web
+Tạo một tệp PHP mới `info.php` tại thư mục  `/usr/share/nginx/html`
+
+ `vi /usr/share/nginx/html/info.php`
+
+Mã PHP sau đây sẽ hiển thị thông tin về môi trường PHP hiện tại đang chạy trên máy chủ:
+
+```
+<?php
+phpinfo();
+```
+
+Bây giờ chúng ta có thể kiểm tra 
+ 
+ `htttp://server_host_or_IP/info.php`
+
+
+
