@@ -115,4 +115,47 @@ Cuối cùng là hữu hiệu hóa MariaDB để bắt đầu nạp vào bộ nh
 ### Bước 3: Cài đặt PHP
 PHP là thành phần thiết lập để xử lý mã để hiển thị nội dung động. Nó có thể chạy các tập lệnh, kết nối với cơ sở dữ liệu MySQL để lấy thông tin và trao nội dung được xử lý cho máy chủ web để hiển thị
 
-Phiên bản PHP có sẵn theo mặc định trong các máy chủ CentOS 7 đã lỗi thời và vì lý do đó, chúng tôi sẽ cần cài đặt kho lưu trữ gói của bên thứ ba để có được PHP 7+ và cài đặt nó trên máy chủ CentOS 7 của bạn. Remi là kho lưu trữ gói phổ biến cung cấp các bản phát hành PHP cập nhật nhất cho các máy chủ CentOS
+Phiên bản PHP có sẵn theo mặc định trong các máy chủ CentOS 7 đã lỗi thời và vì lý do đó, chúng ta sẽ cần cài đặt kho lưu trữ gói của bên thứ ba để có được PHP 7+ và cài đặt nó trên máy chủ CentOS 7 của bạn. Remi là kho lưu trữ gói phổ biến cung cấp các bản phát hành PHP cập nhật nhất cho các máy chủ CentOS
+
+Để cài đặt khi Remi cho CentOS 7, dùng lệnh:
+
+```
+yum install yum-utils
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+```
+
+Sau khi cài đặt xong, chúng ta sẽ cần chạy một lệnh để kích hoạt kho lưu trữ chứa phiên bản PHP ưa thích của chúng ta. Để kiểm tra bản phát hành PHP 7+ nào có sẵn trong kho Remi, hãy chạy:
+
+`yum --disablerepo="*" --enablerepo="dremi-safe" list php[7-9][0-9].x86_64`
+
+Chúng ta sẽ thấy đầu ta như sau :
+
+```
+[root@localhost ~]# yum --disablerepo="*" --enablerepo="remi-safe" list php[7-9][0-9                                                                                  ].x86_64
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * remi-safe: mirror.telkomuniversity.ac.id
+remi-safe                                                    | 3.0 kB  00:00:00
+remi-safe/primary_db                                         | 1.7 MB  00:00:00
+Available Packages
+php70.x86_64                        2.0-1.el7.remi                         remi-safe
+php71.x86_64                        2.0-1.el7.remi                         remi-safe
+php72.x86_64                        2.0-1.el7.remi                         remi-safe
+php73.x86_64                        2.0-1.el7.remi                         remi-safe
+php74.x86_64                        1.0-3.el7.remi                         remi-safe
+php80.x86_64                        1.0-3.el7.remi                         remi-safe
+```
+
+Mình sẽ cài dặt PHP7.4, để kích hoạt gói Remi hĩnh xác để cài đặt PHP7.4:
+
+`yum-config-manager --enable remi-php74`
+
+Cài đặt bao gồm cả gói php-mysql và php-fpm:
+
+`yum install php php-mysql php-fpm`
+
+Để xem phiên bản PHP :
+
+`php -v`
+
+Tiếp theo
