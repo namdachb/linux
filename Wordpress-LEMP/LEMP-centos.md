@@ -1,12 +1,6 @@
 ## LEMP là gì?
 LEMP là một nhóm các phầm mềm có thể dùng để phục vụ các wed động được viết bằng PHP. LEMP bao gồm một hệ điều hành Linux, web server Nginx, hệ quản trị cơ sở dữ liệu MySql hoặc MariaDB và ngôn ngữ lập trình PHP. Nó tương tự như LAMP server ngoại trừ việc web server nền tảng được giám sát bằng Nginx thay vì Apache
 
-### Nginx
-**Nginx** đọc là (engine-x) là một phần mềm web server mã nguồn mở nổi tiếng. Ban đầu nó dùng để phục vụ wen HTTP. Tuy nhiên, ngày nay nó cũng được dùng làm reverse proxy, HTTP load balancer và email proxy như IMAP, POP3 và SMTP
-
-### NGINX hoạt động như thế nào?
-**nginx** được phát triển cho các mục đích tối ưu sử dụng (ram) bộ nhớ thấp nhưng phục vụ được nhiều kết nối đồng thời cao hơn. **nginx** sử dụng kiến trúc hướng sự kiện (event-driven) không đồng bộ (asynchronous) và có khả năng mở rộng. Ngay cả khi bạn không cần phải xử lý hàng ngàn truy vấn đồng thời, thì bạn vẫn nên sử dụng nginx do hiệu xuất cao và yêu cầu bộ nhớ thấp của nginx so với apache
-
 ## Cách cài đặt LEMP trên CentOS 7
 Chuẩn bị một máy cài hệ điều hành CentOS 7. Sử dụng user root để cài đặt
 
