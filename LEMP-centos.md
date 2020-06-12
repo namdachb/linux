@@ -126,7 +126,7 @@ yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
 Sau khi cài đặt xong, chúng ta sẽ cần chạy một lệnh để kích hoạt kho lưu trữ chứa phiên bản PHP ưa thích của chúng ta. Để kiểm tra bản phát hành PHP 7+ nào có sẵn trong kho Remi, hãy chạy:
 
-`yum --disablerepo="*" --enablerepo="dremi-safe" list php[7-9][0-9].x86_64`
+`yum --disablerepo="*" --enablerepo="remi-safe" list php[7-9][0-9].x86_64`
 
 Chúng ta sẽ thấy đầu ta như sau :
 
