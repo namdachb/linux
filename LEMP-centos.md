@@ -241,5 +241,11 @@ Bây giờ chúng ta có thể kiểm tra
  
  `htttp://server_host_or_IP/info.php`
 
+Sau khi kiểm tra thông tin xong, chúng ta nên xóa tệp đã tạo vì nó chứa thông tin nhạy cảm về môi trường PHP và máy chủ Centos
 
+Chúng ta có thể sử dụng `rm` để xóa tệp đó :
+
+ `rm /usr/share/nginx/html/info.php`
+
+ 
 
