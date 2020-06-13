@@ -101,7 +101,11 @@ Bây giờ ta cài đặt đủ các thành phần của LEMP. Nhưng vẫn cầ
             deny all;
     }
 }
- ``` 
+  ``` 
 
 **Trong đó**:
-  * 
+  
+  * `listen` : Xác định cổng Nginx lắng nghe. Trong trường hợp này là cổng 80 (mặc định của HTTP)
+  * `root` : xác định gốc lưu trữ các tệp của trang web 
+  * `index` : thứ tự ưu tiên các file cấu hình, nếu chúng tồn tại
+  
