@@ -130,11 +130,11 @@ Bây giờ ta cài đặt đủ các thành phần của LEMP. Nhưng vẫn cầ
   `nginx -t`
     
     * Nếu không có lỗi gì sẽ có thông báo như sau
-    
-      ```
+
+ ```
       nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
-       ```
+ ```
 
  * Reload Nginx:
   
