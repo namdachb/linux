@@ -108,4 +108,54 @@ Bây giờ ta cài đặt đủ các thành phần của LEMP. Nhưng vẫn cầ
   * `listen` : Xác định cổng Nginx lắng nghe. Trong trường hợp này là cổng 80 (mặc định của HTTP)
   * `root` : xác định gốc lưu trữ các tệp của trang web 
   * `index` : thứ tự ưu tiên các file cấu hình, nếu chúng tồn tại
+  * `server_name` : Xác định khối máy chủ nào được sử dụng. Nó trỏ đến tên miền hoặc IP public của bạn
+  * `location /` :Kiểm tra sự tồn tại của các tệp khớp với uri. Nếu nginx không thể tìm thấy tệp thích hợp, nó sẽ trả về 404
+  * `location ~ \.php$` : khai báo nơi xử lý PHP bằng cách trỏ Nginx vào tệp cấu hình fastcgi-php.conf và tệp php7.2-fpm.sock
+  * `location ~/\.ht` : xử lí các tệp .htaccess mà Nginx không xử lí. Bằng cách deny all chỉ thị, nếu bất kì tệp .htaccess xảy ra để tìm đường vào tài liệu gốc thì chúng sẽ không được phục vụ cho khách truy cập
+
+ * Tạo liên kết tượng trưng từ file cấu hình server ở trên (trong thư mục `/etc/nginx/sites-available/`) tới thư mục `/etc/nginx/sites-enabled/`
+
+  `ln -s /etc/nginx/sites-available/nam.xyz /etc/nginx/sites-enabled/`
+
+ * Hủy liên kết file cấu hình mặc định khỏi thư mục `sites-enabled/` :
+
+  `unlink /etc/nginx/sites-enabled/default`
+ 
+  **Lưu ý**: Nếu bạn cần khôi phục cấu hình mặc định, bạn có thể tạo liên kết lại với file mặc định:
+
+   `ln -s/etc/nginx/sites-avalable/default /etc/nginx/sites-enabled/`
+
+ * Kiểm tra xem file cấu hình mới có lỗi gì không:
+
+  `nginx -t`
+    
+    * Nếu không có lỗi gì sẽ có thông báo như sau
+      ```
+      nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+       ```
+
+ * Reload Nginx:
+  
+   `systemctl reload nginx`
+
+ * Tạo file `/var/www/html/info.php`
+   
+   `vi /var/www/html/info.php`
+
+ * Thêm vào nội dung sau:
+   ```
+   <?php
+   phpinfo():
+   ```
+
+ * Dùng trinh duyệt gõ vào thành URL
+   
+   `<địa chỉ ip>/info.php`
+
+   ![Imgur](https://i.imgur.com/l9ldtIC.png)
+
+ * Sau khi caì đặt xong, bạn nên xóa file `info.php`, vì nó có thể cho người dùng trái phép 1 số gợi ý về cấu hình của trang web và giúp họ cố gắng đột nhập
+
+  `rm /var/www/html/info.php`
   
