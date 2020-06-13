@@ -130,6 +130,7 @@ Bây giờ ta cài đặt đủ các thành phần của LEMP. Nhưng vẫn cầ
   `nginx -t`
     
     * Nếu không có lỗi gì sẽ có thông báo như sau
+    
       ```
       nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
@@ -158,4 +159,3 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
  * Sau khi caì đặt xong, bạn nên xóa file `info.php`, vì nó có thể cho người dùng trái phép 1 số gợi ý về cấu hình của trang web và giúp họ cố gắng đột nhập
 
   `rm /var/www/html/info.php`
-  
