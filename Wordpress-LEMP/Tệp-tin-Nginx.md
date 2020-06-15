@@ -44,4 +44,5 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
  * Cài đặt bắt đầu với những tên biến và sau đó một đối số hay một loại các đối số cách nhau bởi dấu cách
  * Một số thiết lập được đặt trong một cặp dấu ngoặc nhọn ({}). Các dấu ngoặc nhọn có thể được lồng vào nhau cho nhiều khối lệnh, cần nhớ là khi đã mở ngoặc nhọn thì phải nhớ đóng lại nếu không sẽ dẫn tới nginx không chạy được
  * Sử dụng tab hay space để phân cấp đoạn mã sẽ giúp dễ dàng chỉnh sửa hay tìm ra lỗi
- 
+
+## 2. Tìm hiểu chi tiết về config file
