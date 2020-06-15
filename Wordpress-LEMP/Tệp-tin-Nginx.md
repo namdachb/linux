@@ -9,6 +9,6 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
  * Nginx bao gồm các module được điều khiển bởi các directive trong file cấu hình. "Directive" được định nghĩa như 1 **instruction**(chỉ dẫn) hay **direct**. Directives được chia thành các directive đơn giản và các block directive 
     * Cấu trúc của 1 directive đơn giản gồm tên và tham số được phân tách bởi dấu cách và kết thúc bằng dấu chấm phẩy (;). Ví dụ về 1 directive đơn giản:
 
-     `worker_processses 1;`
+        `worker_processses 1;`
 
     * 
