@@ -11,4 +11,17 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
 
         `worker_processses 1;`
 
-    * 
+    * Một block directive có cấu trúc tương tự như một directive đơn giản nhưng thay vì sử dụng dấu ; nó sẽ sử dụng cặp dấu {} để bắt đầu và kết thúc 1 blcok directive
+
+### 1.2 Cách sử dụng config file hợp lý và hiệu quả
+ * Tạo 1 file cấu hình riêng cho mỗi tên miền sẽ giúp server dễ quản lý và hiệu quả hơn
+ * NGINX không có Virtual host, thay vào đó là `Server Blocks` sử dụng `server_name` và nghe các chỉ thị để liên kết với các tcp sockets. Tất cả các file server block phải có định dạng là `.conf` và được lưu trong thư mục `/etc/nginx/conf.d` hoặc `/etc/nginx/conf`
+ * Nếu bạn là có 1 domain là `mydomain.com` thì bạn nên đặt tên file cấu hình là `mydomain.con.cnf`
+ * Các file nhật ký Nginx (`access.log` và `error.log`) được đặt trong thư mục `/var/log/nginx/`. Nên có một tệp nhật ký `access` và `error` khác nhau cho mỗi server block
+ * Bạn có thể đặt document root directory của tên miền của bạn đến bất kỳ vị trí nào bạn muốn. Một số vị trí thường được dùng cho webroot bao gồm:
+    * /home/<user_name>/<site_name>
+    * /var/www/<site_name>
+    * /var/www/html/<site_name>
+    * /opt/<site_name>
+    * /usr/share/nginx/html
+    
