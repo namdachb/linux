@@ -167,4 +167,29 @@ Tiếp theo, hãy kích hoạt tệp bằng cách tạo một liên kết từ n
 
  `ln -s /etc/nginx/sites-available/nam.com /etc/nginx/sites-enabled/`
 
- 
+Để tránh sự cố bộ nhớ nhóm có thể phát sinh từ việc thêm tên máy chủ bổ sung, cần phải điều chỉnh một giá trị trong `/etc/nginx/nginx.conf`. Mở tập tin:
+
+ `vi /etc/nginx/nginx.conf`
+
+Tìm lệnh `server_names_hash_bucket_size` và xóa `#` ký hiệu để bỏ dòng:
+
+Lưu và đóng tệp khi hoàn thành
+
+Tiếp theo, kiểm tra để đảm bảo rằng không có lỗi cú pháp trong bất kỳ tệp Nginx nào của bạn:
+
+ `nginx -t`
+
+```
+root@namdac:~# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+Nếu không có vấn đề gì, hãy khởi động lại Nginx để kích hoạt các thay đổi của bạn:
+
+ `systemctl restart nginx`
+
+Nginx hiện đang phục vụ tên miền của bạn Bạn có thể kiểm tra điều này bằng cách điều hướng đến nơi bạn sẽ thấy như thế này `http://nam.com`
+
+![Imgur](https://i.imgur.com/FKYXiG9.png)
+
