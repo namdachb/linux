@@ -115,7 +115,49 @@ Các **event** và **http** block là khu vực cho các directives bổ sung do
 **Location Context**
  * Được đặt trong server context
  * Sau khi đã chọn được server context nào sẽ tiếp nhận request này thì nginx sẽ tiếp tục phân tích URI của request để tìm ra hướng xử lí của request dựa vào các location context có syntax(cú pháp) như sau:
-
-  `location optinal_modifier location_match {
+```
+  location optinal_modifier location_match {
    ...
-  }`   
+  }
+```
+
+   * optional_modifier: chúng ta có thể tạm hiểu nó là kiểu so sánh để tìm ra để đối chiếu với `location_match`. Có mấy loại option như sau:
+     * (none) : Nếu không khai báo gì thì Nginx sẽ hiểu tất cả các request có URI bắt đầu bằng phần location_match sẽ được chuyển cho location block này xử lý
+     * = : Khai báo này chi ra rằng URI phải có chính xác giống như location_match (giống như so sánh string bình thường)
+     * ~ : Sử dụng regular expression cho các URI
+     * ~* : Sử dụng regular expression cho các URI cho phép pass cả chữ hoa và chữ thường
+
+**Index directive**
+index direct nằm bên trong location luôn được nginx trỏ tới đầu tiền khi xử lí điều hướng request. Định nghĩa trang mặc định mà Nginx sẽ phục vụ nếu không có tên tập tin được chỉ rõ trong yêu cầu (nói cách khác, trang chỉ mục). Chúng ta cs thể chỉ rõ nhiều tập tin và tập tin đầu tiên được tìm thấy sẽ được sử dụng. Nếu không có tập tin cụ thể nào được tìm thấy, Nginx sẽ hoặc là cố gắng phát sinh 1 chỉ mục tự động của các tập tin 
+ ```
+ location = / {
+     index index.html;
+ }
+ ```
+
+**try_files directive**
+Cố gắng phục vụ các tập tin được chỉ rõ (các tham số từ 1 đến N-1 trong chỉ thị), nếu không có tập tin nào tồn tại, nhảy đến khối location được khai báo(tham số cối cùng trong chỉ thụ) hoặc phục vụ 1 URI được chỉ định
+  ```
+  location / {
+      try_files $uri $uri.html $uri/ /fallback/index.html;
+  }    
+  ```
+
+**rewrite directive**
+Khác với Apache, Nginx không sử dụng file .htaccess nên khi bạn cần rewrite url sẽ phải convert qua rule của Nginx
+
+**error_page directive**
+Chỉ thị khi không tìm thấy file tham chiếu
+
+```
+location / {
+    error_page 404 = @fallback;
+}
+
+location @fallback{
+    proxy_pass http:backend;
+}
+```
+ 
+ * Xử lý trong `location context`
+   * Nginx sẽ đọc `root`
