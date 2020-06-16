@@ -160,4 +160,5 @@ location @fallback{
 ```
  
  * Xử lý trong `location context`
-   * Nginx sẽ đọc `root`
+   * Nginx sẽ đọc `root` directive để xác định thư mục chứa trang client yêu cầu. Thứ tự các trang được ưu tiên sẽ được khai báo trong `index` directive
+   * Nếu không tìm được nội dung mà client yêu cầu, nginx sẽ điều hướng sang location context khác và thông báo lỗi cho người dùng
