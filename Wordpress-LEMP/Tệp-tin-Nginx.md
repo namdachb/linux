@@ -48,9 +48,11 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
 ## 2. Tìm hiểu chi tiết về config file
 
 **Core Contexts**
+
 Đây là nhóm đầu tiên của contexts, được nginx sử dụng để tạo ra 1 cây phân cấp và tách biệt các cấu hình giữa các block. Trong đây cũng bao gồm các cấu hình chính của nginx
 
 **Main Context**
+
 Cũng có thể coi là global context. Đây là context chung nhất bao gồm tất cả các directive đơn giản, block directive và các context khác
 
  * File bắt đầu cùng với 4 directives(chỉ thị): user, worker_processes, error_log và pid. Chúng nằm ngoài bất kỳ block hay context cụ thể nào do đó chúng nằm trong main context(bối cảnh chính)
@@ -76,4 +78,6 @@ Các **event** và **http** block là khu vực cho các directives bổ sung do
     `# max clients = worker_connections * worker_processes`
 
  **Events Context**
+
+
 
