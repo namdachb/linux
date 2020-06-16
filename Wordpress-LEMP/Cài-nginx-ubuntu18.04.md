@@ -200,3 +200,4 @@ Nginx hiện đang phục vụ tên miền của bạn Bạn có thể kiểm tr
 
 ![Imgur](https://i.imgur.com/FKYXiG9.png)
 
+Tham khảo bài viết tại [đây](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04#step-6-%E2%80%93-getting-familiar-with-important-nginx-files-and-directories)
