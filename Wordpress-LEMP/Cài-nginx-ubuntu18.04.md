@@ -134,7 +134,7 @@ Quyền của root web của bạn phải chính xác nếu bạn chưa sửa đ
 
 Tiếp theo, tạo 1 `index.html`
 
- `vi /usr/www/nam.com/html/index.html`
+ `vi /usr/share/nam.com/html/index.html`
 
 Bên trong, thêm HTML mẫu sau:
 
