@@ -122,7 +122,7 @@ Khi sử dụng máy chủ web Nginx, các khối máy chủ có thể được 
 
 Tạo thư mục cho **nam.com** như sau, sử dụng `-p` để tạo bất kỳ thư mục mẹ cần thiết :
 
- `mkdir -p /usr/share/nam.com.html`
+ `mkdir -p /usr/share/nam.com/html`
 
 Tiếp theo gán quyền sở hữu của thư mục với `$USER` biến môi trường:
 
@@ -188,6 +188,13 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 Nếu không có vấn đề gì, hãy khởi động lại Nginx để kích hoạt các thay đổi của bạn:
 
  `systemctl restart nginx`
+
+>Lưu ý: Ở máy Window chúng vào :
+
+ `C: Window -> System 32 -> drives -> etc -> host ` 
+để sửa thông tin 
+
+![Imgur](https://i.imgur.com/bqi7wCP.png)
 
 Nginx hiện đang phục vụ tên miền của bạn Bạn có thể kiểm tra điều này bằng cách điều hướng đến nơi bạn sẽ thấy như thế này `http://nam.com`
 
