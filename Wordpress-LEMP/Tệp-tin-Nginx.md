@@ -46,3 +46,34 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
  * Sử dụng tab hay space để phân cấp đoạn mã sẽ giúp dễ dàng chỉnh sửa hay tìm ra lỗi
 
 ## 2. Tìm hiểu chi tiết về config file
+
+**Core Contexts**
+Đây là nhóm đầu tiên của contexts, được nginx sử dụng để tạo ra 1 cây phân cấp và tách biệt các cấu hình giữa các block. Trong đây cũng bao gồm các cấu hình chính của nginx
+
+**Main Context**
+Cũng có thể coi là global context. Đây là context chung nhất bao gồm tất cả các directive đơn giản, block directive và các context khác
+
+ * File bắt đầu cùng với 4 directives(chỉ thị): user, worker_processes, error_log và pid. Chúng nằm ngoài bất kỳ block hay context cụ thể nào do đó chúng nằm trong main context(bối cảnh chính)
+Các **event** và **http** block là khu vực cho các directives bổ sung do đó chúng cũng nằm trong main context
+
+ * Giải thích cụ thể:
+   * **user**: Định nghĩa cho biết người dùng hệ thống Linux nào sẽ có quyền chạy các máy chủ Nginx. Có những trường hợp sử dụng nhất định mà được hưởng lợi từ việc thay đổi người dùng, Ví dụ, chúng ta chạy 2 máy chủ web cùng một lúc, hoặc cần người sử dụng của một chương trình khác để có thể kiểm soát Nginx
+   * **worker_process**: Có giá trị mặc định là 1. Nó định nghĩa số lượng worker process Nginx sử dụng. Số lượng worker process nên được set bằng giá trị với số core của CPU. Ví dụ với các web server hay sử dụng về SSL, gzip thì ta nên đặt chỉ số của worker_process này lên cao hơn. Nếu website của chúng ta có số lượng các tệp tin tĩnh nhiều và dung lượng của chúng lớn hơn bộ nhớ RAM thì việc tăng worker_process sẽ tối ưu băng thông địa của hệ thống. Để xác định số cores của CPU của hệ thống ta có thể thực hiện lệnh:
+
+    `cat /proc/cpuinfo | grep processor`
+
+   * **access_log**&**error_log**: những file mà Nginx sẽ sử dụng để log lại toàn bộ error và access request. Phần log này thường được sử dụng để debug
+
+   * **pid**: xác định nơi Nginx sẽ ghi lại master process ID, hoặc PID. PID được sử dụng bởi hệ điều hành để theo dõi và gửi tín hiệu đến quá trình Nginx. Bạn có thể xác định thông tin về PID(master process và worker process) của nginx bằng câu lệnh:
+    
+    `ps -ax | grep nginx`
+   
+   * **worker_connections**: cho biết số lượng connection mà mỗi worker_process có thể xử lý. Mặc định, số lượng connection này được thiết lập là 1024. Để xem về mức giới hạn sử dụng của hệ thống bạn có thể dùng lệnh:
+    
+    `ulimit ulimit -n`
+
+   Con số thiết lập của worker_connections nên nhỏ hơn hoặc bằng giới hạn này?
+    `# max clients = worker_connections * worker_processes`
+
+ **Events Context**
+
