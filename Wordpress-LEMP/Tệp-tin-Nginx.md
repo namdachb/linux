@@ -91,3 +91,31 @@ Các **event** và **http** block là khu vực cho các directives bổ sung do
  * Khi cấu hình Nginx như một web server hoặc reverse proxy, http context sẽ giữ phần lớn cấu hình. Context này sẽ chứa tất cả các directive và những context(block directive) cần thiết khác để xác định cách chương trình sẽ xử lý các kết nối HTTP và HTTPS
  * Giải thích một số directive:
    * **include**: Chỉ thị include (include /etc/nginx/mime.types) của nginx có vai trò trong việc thêm nội dung từ một file khác vào trong cấu hình nginx. Điều này có nghĩa là bất cứ điều gì được viết trong tập tin mime.types sẽ được hiểu là nó được viết bên trong khôi http{}. Điều này cho phép bạn bao gồm một số lượng dài các chỉ thị trong khối http{} mà không gây lộn xộn lên các tập tin cấu hình chính. Và nó giúp tránh quá nhiều dòng mã cho mục đích dễ đọc. Bạn luôn có thể bảo gồm (include) tất cả các tập tin trong một thư mục nhất định với các chỉ thị: include /etc/nginx/conf/*; Bạn cũng có thể bảo gồm tất cả các file theo một định dạng nào đó, như ví dụ sau: include /etc/nginx/conf/**.conf; -> Nó sẽ bao gồm các tập tin có đuôi .conf
+   * **gzip**: Chỉ thị gzip sẽ giúp nén các dữ liệu trước khi chuyển chúng tới Client, hạn chế số lượng băng thông sử dụng và tăng tốc độ dịch chuyển dữ liệu. Điều này tương đương với mod_deflate của Apache
+
+**Server Context**
+ * Được khai báo trong **http context**. Đây cũng là một ví dụ về context lồng nhau được đặt trong ngoặc. Đây cũng là context đầu tiên cho phép khai báo nhiều lần
+ * Định dạng chung của server context có thể trông như sau:
+ ```
+   # main context
+   http {
+     # http context
+     server {
+         # first server context
+     }
+     server {    
+         # second server context
+     }        
+   }
+ ``` 
+ * Dựa vào yêu cầu phía client, Nginx sẽ sử dụng thuật toán lựa chọn để quyết định server context nào được sử dụng. Các directive được sử dụng để quyết định server context nào được sử dụng là
+   * **listen**: sự kết hợp của IP/port mà server block này được thiết kế để đáp ứng. Nếu một yêu cầu từ phía client phù hợp với giá trị này, block này có thể được lựa chọn để xử lý kết nối
+   * **server_name**: nếu có nhiều server block đáp ứng được yêu cầu của listen directive, nginx sau đó sẽ tiến hành phân tích cú pháp tiêu đề "Host" của yêu cầu để lựa chọn block phù hợp
+
+**Location Context**
+ * Được đặt trong server context
+ * Sau khi đã chọn được server context nào sẽ tiếp nhận request này thì nginx sẽ tiếp tục phân tích URI của request để tìm ra hướng xử lí của request dựa vào các location context có syntax(cú pháp) như sau:
+
+  `location optinal_modifier location_match {
+   ...
+  }`   
