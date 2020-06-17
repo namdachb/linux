@@ -35,7 +35,7 @@ Tiến hành cấp quyền quản lý cơ sở dữ liệu wordpress cho user m�
 
 Sau đó xác thực lại những thay đổi về quyền:
 
-`FLUSH PRIVILIGES;`
+`FLUSH PRIVILEGES;`
 
 Sau khi hoàn tất, thoát khỏi mariadb:
 
