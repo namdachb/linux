@@ -154,9 +154,9 @@ Cài đặt bao gồm cả gói php-mysql và php-fpm:
 
 Tiếp theo chúng ta cần thực hiện một vài điều chỉnh cho cấu hình mặc định
 
-Mở `/etc/php-fpm.d/www/conf` tệp cấu hình bằng `vi`
+Mở `/etc/php-fpm.d/www.conf` tệp cấu hình bằng `vi`
 
- `vi /etc/php-fpm.d/www.còn`
+ `vi /etc/php-fpm.d/www.conf`
 
 Chúng ta tìm kiến `user` và `group`
 
