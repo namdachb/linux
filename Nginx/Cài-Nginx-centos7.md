@@ -102,6 +102,7 @@ server_names_hash_bucket_size 64;
 Dòng đầu tiên hướng dẫn Nginx tìm kiếm các khối máy chủ trong sites-enabledthư mục, trong khi dòng thứ hai tăng dung lượng bộ nhớ được phân bổ để phân tích tên miền (vì chúng ta hiện đang sử dụng nhiều tên miền)
 
  **Tạo tệp khối máy chủ đầu tiên**
+
 Theo mặc định, Nginx chứa 1 khối máy chủ được gọi là mẫu `default.conf` mà chúng ta có thể sử dụng làm mẫu cho các cấu hình của mình
 
  `cp /etc/nginx/conf.d/default.conf /etc/nginx/sites-available/namdac2.com.conf`
@@ -152,6 +153,7 @@ server {
 ```
 
  **Tạo tệp khối máy chủ 2**
+ 
 Bây giờ chúng ta tạo tệp 2 bằng cách sao chép từ tệp 1 và điều chỉnh nếu cần
 
  `cp /etc/nginx/sites-available/namdac2.com.conf /etc/nginx/sites-available/namdac3.com.conf`
