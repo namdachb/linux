@@ -6,4 +6,3 @@ Sử dụng phổ biến cho một máy chủ reverse proxy bao gồm:
   * **Web acceleration**(tăng tốc web) -Proxy ngược có thể nén dữ liệu không giới hạn, cũng như lưu trữ nội dung thường được yêu cầu, cả hai đều tăng tốc lưu lượng giữa máy khách và máy chủ. Họ cũng có thể thực hiện các tác vụ bổ sung như mã hóa SSL để tải xuống các máy chủ web của bạn, do đó tăng hiệu suất của chúng
   * **Security and anonymity**(bảo mật và ẩn danh) -Bằng cách chặn các yêu cầu hướng đến máy chủ phụ trợ của bạn , reserve proxy sẽ bảo vệ danh tính của họ và hoạt động như 1 biện pháp bảo về bổ sung chống lại các cuộc tấn công bảo mật. Nó cũng đảm bảo rằng nhiều máy chủ có thể  được truy cập từ một trình định vị bản ghi hoặc URL bất kể cấu trúc của mạng cục bộ của bạn
 
-## Lợi ích của việc sử dụng Reverse Proxy 
