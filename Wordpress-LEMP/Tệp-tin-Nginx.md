@@ -6,12 +6,6 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
  * Tát cả file cấu hình của nginx nằm trong thư mục - `/etc/nginx`
  * File cấu hình chính của nginx là - `/etc/nginx/nginx.conf`
  * Document root directory - `/usr/share/nginx/html`
- * Nginx bao gồm các module được điều khiển bởi các directive trong file cấu hình. "Directive" được định nghĩa như 1 **instruction**(chỉ dẫn) hay **direct**. Directives được chia thành các directive đơn giản và các block directive 
-    * Cấu trúc của 1 directive đơn giản gồm tên và tham số được phân tách bởi dấu cách và kết thúc bằng dấu chấm phẩy (;). Ví dụ về 1 directive đơn giản:
-
-        `worker_processses 1;`
-
-    * Một block directive có cấu trúc tương tự như một directive đơn giản nhưng thay vì sử dụng dấu ; nó sẽ sử dụng cặp dấu {} để bắt đầu và kết thúc 1 blcok directive
 
 **Thư mục nội dung website**
 
