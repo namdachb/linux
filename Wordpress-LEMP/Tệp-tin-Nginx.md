@@ -14,6 +14,7 @@ Bài viết tìm hiểu về cấu trúc và một số khái niệm trong tệp
     * Một block directive có cấu trúc tương tự như một directive đơn giản nhưng thay vì sử dụng dấu ; nó sẽ sử dụng cặp dấu {} để bắt đầu và kết thúc 1 blcok directive
 
 **Thư mục nội dung website**
+
 Mặc định có thể nằm tại thư mục `/var/www/html/` hoặc `/usr/share/html/`, nhưng cũng có thể thay đổi đường dẫn thư mục 
 ### 1.2 Cách sử dụng config file hợp lý và hiệu quả
  * Tạo 1 file cấu hình riêng cho mỗi tên miền sẽ giúp server dễ quản lý và hiệu quả hơn
