@@ -49,7 +49,7 @@ systemctl enable httpd
 
  * Hoặc các bạn có thể `vi` vào `var/www/html/index.html` để chỉnh sửa
 
- ![Imgur](https://i.imgur.com/MeadIMk.png)
+ ![Imgur](https://i.imgur.com/Ph5u2JH.png)
 
 **Truy cập website với địa chỉ IP của máy webserver**
 
@@ -162,3 +162,12 @@ hoặc
 
 Lưu ý rằng mặc dù website được đặt trên máy chủ `192.168.213.148` nhưng domain sẽ được trỏ về `192.168.213.174`, đây là việc sử dụng tính năng reverse proxy của nginx để điều hướng các kết nối của người dùng và máy chủ gốc(origin)
 
+ * Kiểm tra nội dung web và xem reverse proxy hoạt động hay chưa bằng cách truy cập vào địa chỉ namdac123.com Trong ảnh này tôi sử dụng thêm mode của phím F12 để có thể show được các kết nối từ client tới webserver. Ta quan sát thấy nội dung của web được hiển thị và địa chỉ IP của Nginx reserver proxy.
+
+![Imgur](https://i.imgur.com/FMJYunP.png)
+
+![Imgur](https://i.imgur.com/Poodtk9.png)
+
+Hoặc chúng ta có thể sử dụng phần mềm Mobaxterm để sử dụng lênh `curl -I` để kiểm chứng, kết quả như trong hính dưới 
+
+![Imgur](https://i.imgur.com/oIhO9tR.png)
