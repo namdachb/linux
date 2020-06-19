@@ -1,4 +1,4 @@
-## Cách thiết lập khối máy chủ trên Centos7
+## Cách thiết lập khối máy chủ trên Centos7 
 
 Để thêm kho lưu trữ CentOS 7, ta sử dụng lệnh
 
@@ -153,7 +153,7 @@ server {
 ```
 
  **Tạo tệp khối máy chủ 2**
- 
+
 Bây giờ chúng ta tạo tệp 2 bằng cách sao chép từ tệp 1 và điều chỉnh nếu cần
 
  `cp /etc/nginx/sites-available/namdac2.com.conf /etc/nginx/sites-available/namdac3.com.conf`
