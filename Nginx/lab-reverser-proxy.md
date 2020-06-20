@@ -171,3 +171,79 @@ Lưu ý rằng mặc dù website được đặt trên máy chủ `192.168.213.1
 Hoặc chúng ta có thể sử dụng phần mềm Mobaxterm để sử dụng lênh `curl -I` để kiểm chứng, kết quả như trong hính dưới 
 
 ![Imgur](https://i.imgur.com/oIhO9tR.png)
+
+### 4. Cấu hình caching cho nginx
+Cache có nhiệm vụ giúp để tăng tốc độ truy cập dữ liệu và giảm tắc nghẽn về băng thông khi có quá nhiều người dùng truy cập đồng thời vào dữ liệu cần dùng
+
+Trong phần trên, mình đã cấu hình nginx reverse proxy cơ bản và phần này mình sẽ khai báo thêm các tùy chọn để biến nginx thành máy chủ cache
+
+ * Trước tiên cần tạo thư mục chứa các file cache
+```
+mkdir -p /var/lib/nginx/cache
+chown nginx /var/lib/nginx/cache
+chmod 700 /var/lib/nginx/cache
+```
+
+ * Mở file `namdac1998.com.conf` ở phần trên và thêm các dòng sau vào phần đầu của file (nằm ngoài block `server`)
+```
+proxy_cache_path /var/lib/nginx/cache levels=1:2 keys_zone=backcache:8m max_size=50m;
+proxy_cache_key "$scheme$request_method$host$request_uri$is_args$args";
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 404 1m;
+```
+
+ * Tiếp tục thêm dòng dưới vào directive `localtion`
+```
+proxy_cache backcache;
+add_header X-Proxy-Cache $upstream_cache_status;
+```
+
+Nội dung của file `/etc/nginx/conf.d/namdac1998.com.conf` sẽ như sau khi chúng ta khai báo thêm các tùy chọn dành cho cache
+
+```
+proxy_cache_path /var/lib/nginx/cache levels=1:2 keys_zone=backcache:8m max_size=50m;
+proxy_cache_key "$scheme$request_method$host$request_uri$is_args$args";
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 404 1m;
+
+server {
+    listen 80;
+    server_name namdac1998.com;
+    access_log /var/log/nginx/namdac.access.log;
+    error_log /var/log/nginx/namdac.error.log;
+
+    location / {
+        proxy_cache backcache;
+        add_header X-Proxy-Cache $upstream_cache_status;
+
+        proxy_pass http://192.168.213.148:80/;
+        # Input any other settings you may need that are not already contained in the default snippets.
+    }
+}
+```
+
+ * Kiểm tra lại khai báo về cache ở trên bằng dòng lệnh `nginx -t` ,kết quả như sau là thành công
+
+![Imgur](https://i.imgur.com/22Wyu6K.png)
+
+ * Thực hiện khởi động lại nginx hoặc nạp file cấu hình bằng các lệnh 
+
+`nginx -s reload` hoặc `systemctl restart nginx`
+
+**Kiểm tra xem cache hoạt động hay chưa**
+
+Đứng trên máy client thực hiện
+ 
+ * Sử dụng lệnh `CURL`: Đứng từ máy client vào web hoặc dùng công cụ mobaxterm để thông qua lệnh `curl` thực hiện truy cập vào website. Ta thực hiện 2 lần và quan sát dòng `X-Proxy-Cache` sẽ thấy trạng thái `MISS` hoặc `HIT`
+
+![Imgur](https://i.imgur.com/vFDX7wq.png)
+![Imgur](https://i.imgur.com/E2Fe052.png)
+
+ * Sử dụng trình duyệt
+
+Lần 1:
+`X-Proxy-Cache: Miss`
+
+Lần 2:
+
+![Imgur](https://i.imgur.com/obD3N2s.png)
