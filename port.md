@@ -16,15 +16,15 @@ Port có tổng cộng là 65535 cổng, được chia làm 3 phần: Well Known
 
 Theo quy định của IANA thì WkP và RP phải được đăng ký với IANA trước khi sử dụng
 
- * 20-TPC -File Transfer - FTP data: cho phép upload và dowload dữ liệu từ server
- * 21-TPC -File Transfer - FTP control: Khi có máy tính muốn kết nối với dịch vụ FTP của máy bạn, máy đó sẽ tự động phải thêm Port và tìm cách kết nối đến cổng 21 theo mặc định. Khi đầu bit khớp cổng 21 mở cho máy muốn tới FTP để đăng nhập và nối tới server của các bạn
- * 22- TPC /UDP -SSH Remote Login Protocol: Nếu bạn chạy SSH Secure Shell, cổng 22 được yêu cầu cho người dùng SSH để kết nối tới người phục vụ của bạn
- * 23 - TPC - Telnet: Trường hợp bạn chạy một người phục vụ Telnet, cổng này được yêu cầu cho người dùng Telnet kết nối tới người phục vụ của các bạn. Telnet có thể được sử dụng để kiểm tra công tác dịch vụ ở cả các cổng khác
- * 25 - TPC - Simple Mail Transfer Protocol(SMTP): Khi có thư tới server SMTP của bạn, chúng sẽ cố gắng tiến vào server thông qua Cổng 25 theo mặc định
- * 38 - TPC - Route Access Protocol(RAP)
- * 42 - TPC - Host Name Server - Microsoft WINS
- * 45 - TPC - Message Processing Module (receive)
- * 46 - TPC - Message Processing Module(send)
- * 50 - TPC - Remote Mail Checking Protocol(RMCP)
- * 80 - Hyper-Text Transfer Protocol (HTTP):  Khi có người dùng sử dụng địa chỉ IP hay tên miền của bạn, bộ duyệt sẽ giám sát địa chỉ IP trên cổng 80 theo mặc định dành cho website, đồng thời hỗ trợ HTML và các tệp website khác ví dụ như ASP – Active Server Pages
- * 110 - TCP UDP - Post Office Protocol(POP) version 3
+ * **20**-TPC -File Transfer - FTP data: cho phép upload và dowload dữ liệu từ server
+ * **21**-TPC -File Transfer - FTP control: Khi có máy tính muốn kết nối với dịch vụ FTP của máy bạn, máy đó sẽ tự động phải thêm Port và tìm cách kết nối đến cổng 21 theo mặc định. Khi đầu bit khớp cổng 21 mở cho máy muốn tới FTP để đăng nhập và nối tới server của các bạn
+ * **22**- TPC /UDP -SSH Remote Login Protocol: Nếu bạn chạy SSH Secure Shell, cổng 22 được yêu cầu cho người dùng SSH để kết nối tới người phục vụ của bạn
+ * **23** - TPC - Telnet: Trường hợp bạn chạy một người phục vụ Telnet, cổng này được yêu cầu cho người dùng Telnet kết nối tới người phục vụ của các bạn. Telnet có thể được sử dụng để kiểm tra công tác dịch vụ ở cả các cổng khác
+ * **25** - TPC - Simple Mail Transfer Protocol(SMTP): Khi có thư tới server SMTP của bạn, chúng sẽ cố gắng tiến vào server thông qua Cổng 25 theo mặc định
+ * **38** - TPC - Route Access Protocol(RAP)
+ * **42** - TPC - Host Name Server - Microsoft WINS
+ * **45** - TPC - Message Processing Module (receive)
+ * **46** - TPC - Message Processing Module(send)
+ * **50** - TPC - Remote Mail Checking Protocol(RMCP)
+ * **80** - Hyper-Text Transfer Protocol (HTTP):  Khi có người dùng sử dụng địa chỉ IP hay tên miền của bạn, bộ duyệt sẽ giám sát địa chỉ IP trên cổng 80 theo mặc định dành cho website, đồng thời hỗ trợ HTML và các tệp website khác ví dụ như ASP – Active Server Pages
+ * **110** - TCP UDP - Post Office Protocol(POP) version 3
