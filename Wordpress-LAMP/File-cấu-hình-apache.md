@@ -32,8 +32,46 @@ Group apache
 </Directory>
 ```
 Trong đó:
- 
+
 `AllowOverride` : chỉ định chỉ thị nào được khai báo trong tệp .htaccess có thể ghi đè chỉ thị cấu hình
 
 `Require all denied` : từ chối tất cả các máy khác truy cập vào thư mục đang được cấu hình. Ngược lại nếu giá trị `require all granted` thì có nghĩa là cho phép
   
+ * `DocumentRoot` : Chị thị đường dẫn đến thư mục chứa các tài liệu là source code của trang web (thường là các tệp html)
+ * `Options FollowSymLinks` : Option này cho phép bạn truy cập theo symbolic link (giống như short trong windows)
+ * `DirectoryIndex index.html` : Khi các bạn truy cập vào thư mục (không chỉ rõ cụ thể là file nào) thì file `index.html` sẽ được gọi
+ * `ErrorLog` : chỉ định đường dẫn của file log khi có lỗi (không bắt buộc)
+
+`ErrorLog "logs/error_log"`
+
+ * `LogLevel` : Kiểm soát số lượng tin nhắn được ghi vào `error_log`. Các giá trị có thể bao gồm: gỡ lỗi (debug), thông tin (info), thông báo (notice), cảnh báo (warn), lỗi (error), crit,alert, emerg...
+
+`LogLevel warn`
+
+ * `Customlog` : lưu lại thông tin mà người dùng truy cập vào tên miền
+
+`Customlog "logs/access_log" combined`
+
+ * `ServerAlias` : các tên miền khác cũng có thể phù hợp với máy chủ ảo này
+ * `<Files></Files>` : Khai báo các định dạng file nào được/ không được quyền truy cập. Mặc định apache sẽ từ chối tất cả các máy client truy cập vào 2 tệp `.htaccess` và `htpasswd`
+
+```
+<Files ".ht*">
+    Require all denied
+</Files>
+```
+ 
+ * `EnableMMAP` và `EnableSendfile` : trên các hệ thống hỗ trợ nó, ánh xã bộ nhớ (memory-mapping) hoặc sendfile có thể được sử dụng để phân phối các tệp. Điều này thường cái thiện hiệu suất của máy chủ, nhưng phải được tắt khi phục vụ từ các hệ thống tệp được gắn magnj hoặc nếu hỗ trợ cho các function này bị phá vỡ trên hệ thống của bạn. Mặc định EnableMMAP bật hoặc EnableSendfile tắt
+
+```
+#EnableMMAP off
+EnableSendfile on
+```
+ * `IncludeOptional` : Tùy chọn mở rộng. Mặc định apache có 1 thư mục `conf.d` trong `/etc/httpd` để bạn có thể tạo file cấu hình các virtual host mà không cần thực hiện trên file cấu hình chính `httpd.conf`. Bạn nên đặt tên file trùng vói tên virtual host để dễ quản lý. Điều này rất hữu ích khi bạn cấu hình sai 1 tệp thì sẽ không ảnh hưởng đến các website còn lại. Apache hỗ trợ đọc tất cả các tệp `.conf` bằng chỉ thị:
+
+`IncludeOptional conf.d/*.conf`
+
+Như vậy chúng ta đã tìm hiểu cơ bản nội dung file cấu hình của Apache Web server. Khi chỉnh sửa file các bạn cần chú ý tuân thủ đúng cú pháp cấu hình tránh tình trạng lỗi code dẫn đến hệ thống không thực thi được. Trong trường hợp xảy ra lỗi, bạn có thể gõ lệnh sau để kiểm tra và khắc phục:
+
+ `systemctl status httpd.service`
+ 
