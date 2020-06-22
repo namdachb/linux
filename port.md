@@ -32,3 +32,45 @@ Theo quy định của IANA thì WkP và RP phải được đăng ký với IAN
  * **443** https HTTP Secure
  * **465** SMTP (SSL) Simple Mail Transfer with SSL
  * **587** SMTP (TLS) Simple Mail Tranfer with TLS
+
+## Cách kiểm tra port trong Linux
+### 1. Sử dụng lệnh netstat
+Cú pháp:
+
+ `netstat [option]`
+
+Lưu ý: cài đặt `net-tools` để sử dụng lệnh `netstat`
+
+ `netstat -tuan | grep 80`
+
+Trong đó ý nghĩa của các tùy chọn:
+  * `-t` : hiển thị thông tin kết nối TCP
+  * `-u` : hiển thị thông tin kết nối UDP
+  * `-a` : hiển thị tất cả socket(ổ cắm)(all)
+  * `-n` : hiện thị địa chỉ thay vì cố gắng xác định tên máy chủ, cổng hoặc tên người dùng tượng trưng
+
+### 2. Sử dụng lệnh telnet
+Từ máy client ta sẽ sử dụng lệnh telnet để kiểm tra kết nối đến máy chủ thông qua một port cụ thể
+
+Cú pháp:
+ 
+ `telnet địa_chỉ_IP tên_port`
+
+### 3. Sử dụng lệnh curl
+Cú pháp:
+
+ `curl địa_chỉ_ip:ten_port`
+
+### 4. Sử dụng lệnh ss
+Bạn có thể sử dụng lệnh `ss` để check thông tin port
+
+Ví dụ check port 8000 thì sẽ gõ lệnh:
+  
+  `ss -lan | grep 8000`
+
+Ý nghĩa tùy chọn:
+ * `-l` : listenning
+ * `-a` : all
+ * `-n` : numberic
+
+Vừa rồi là tổng hợp các cách để check thông tin port khi bạn muốn khắc phục sự cố về mạng hoặc tìm cách cải thiện bảo mật cho hệ thống của mình
