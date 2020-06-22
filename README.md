@@ -8,9 +8,6 @@
 7. [NetworkFileSystem](turotial/NFS.md)
 8. [iSCSI](turotial\iSCSI.md)
 
-# fundamental
-17. [FileGlobbing](fundamental/fileglobbing.md)
-
 # Conmmand
 1. [Grep](Conmmand/Grep.md)
 2. [SCP](Conmmand/SCP.md)
