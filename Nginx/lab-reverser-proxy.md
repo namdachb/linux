@@ -162,7 +162,7 @@ hoặc
 
 Đối với môi trường thật thì việc cấu hình này sẽ có IP Public và domain chuẩn, nhưng do đây là môi trường lab nên ta dùng thủ thuật nhỏ để trỏ domain thông qua file host. Cụ thể là sẽ mở file host trê windows hoặc `/etc/hosts` của linux để khai báo file host. Mục tiêu là nói cho client biết địa chỉ `namdac123.com` sẽ nằm ở máy chủ nào
 
- * Đối với windows: Ta thêm dòng `192.168.213.133 namdac123.com` vào file `C:\Windows\System32\drivers\etc\hosts`
+ * Đối với windows: Ta thêm dòng `192.168.213.174 namdac123.com` vào file `C:\Windows\System32\drivers\etc\hosts`
 
 ![Imgur](https://i.imgur.com/YT3I9Wr.png)
 
