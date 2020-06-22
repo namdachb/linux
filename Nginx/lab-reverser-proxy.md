@@ -7,12 +7,20 @@ Trong mô hình này mình sẽ thực hiện các cấu hình:
  * Cài đặt máy webserver sử dụng Apache, sau đó up các file ảnh hoặc tạo ra một site html
  * Cài đặt máy Nginx làm chức năng reverse proxy
  * Cấu hình file host ở các máy người dùng với domain namdac123.com trỏ về IP của máy chủ Nginx
+ *
 
 **IP Planning**
 
 IP Nginx: 192.168.213.174 IP WebServer: 192.168.213.148
 
 **Triển khai**
+
+Tiến hành tắt tường lửa và SElinux trên cả 2 máy:
+```
+systemctl stop firewalld
+setenforce 0
+```
+
 ### 1. Cài đặt Apache
 **Cài đặt các gói cơ bản**
 
