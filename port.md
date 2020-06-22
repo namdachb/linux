@@ -29,3 +29,6 @@ Theo quy định của IANA thì WkP và RP phải được đăng ký với IAN
  * **80** - Hyper-Text Transfer Protocol (HTTP):  Khi có người dùng sử dụng địa chỉ IP hay tên miền của bạn, bộ duyệt sẽ giám sát địa chỉ IP trên cổng 80 theo mặc định dành cho website, đồng thời hỗ trợ HTML và các tệp website khác ví dụ như ASP – Active Server Pages
  * **110** - TCP UDP - Post Office Protocol(POP) version 3: Nhận mail từ server
  * **143** - TCP UDP - Internet Message Access Protocol (IMAP) Mail Server: Giao thức truy cập thông báo Internet ngày càng trở nên phổ biến hơn bao giờ hết và cho phép sử dụng từ xa. Vì thế, các thông báo đều được giữ ở server để dễ dàng truy cập trực tuyến, online, offline.
+ * **443** https HTTP Secure
+ * **465** SMTP (SSL) Simple Mail Transfer with SSL
+ * **587** SMTP (TLS) Simple Mail Tranfer with TLS
