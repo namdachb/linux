@@ -22,3 +22,27 @@ Flow(lưu lượng) của bộ nhớ đệm web cache được phổ biến như
  * Nếu đối tượng được lưu trữ cache, web cache sẽ giữ lại bản sao và gửi cho request tiếp theo
 
 
+## Tác dụng của web cache
+Việc sử dụng web cache đem tới cho người dùng rất nhiều lợi ích khác nhau như:
+ * Giúp cải thiện tốc độ, đáp ứng các yêu cầu một cách kịp thời
+ * Giảm thiểu hoạt động mạng, băng thông, tránh tình trạng lặp lại nhiều lần không cần thiết
+ * Tăng hiệu suất phần cứng, đồng thời làm giảm các xử lý thông qua CPU
+ * Đáp ứng nhu cầu truy cập của người dùng ngay cả khi mạng bị gián đoạn 
+ * Đáp ứng được mức lưu lượng lớn đối với các gói hosting có hỗ trợ cache
+
+## Nội dung cache được lưu trữ ở đâu
+Như chúng ta đã biết, cache chỉ lưu trữ nội dung để tái sử dụng cho các lượt truy cập tiếp theo sau đó của người dùng. Những nội dung có thể được lưu trong web cache như:
+ * Logo, banner, tiêu đề, hình ảnh tĩnh,...
+ * Các file định dạng Javascript, CSS,...
+ * Các tệp tin tải về, tin media,..
+
+Những nội dung trên sẽ được lưu trữ ở nhiều nơi khác nhau như trên server, các web server hoặc giữa các client. Tùy vào từng nơi lưu trữ khác nhau mà web cache có thể chia thành 3 loại sau:
+
+### Browser Cache
+Trình duyệt phân phối lượng nhất định, lưu trữ trên đĩa cứng của máy tính. Dung lượng này dùng để lưu trữ những nội dung bạn đã xem và cho phép truy xuất thông tin nhanh trực tiếp từ máy tính thay vì tải qua đường truyền mạng
+
+### Proxy Cache
+**Proxy Cache** có thể giúp tận dụng tối đa các tài nguyên phần cứng, chúng được lấy từ các máy chủ nắm giữa khách hàng và máy chủ của website và cache nội dung như mong muốn 
+
+### Surrogate cache
+Surrogate cache(hay là Reverse proxy cache hoặc Gateway Cache)
