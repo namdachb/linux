@@ -32,7 +32,7 @@ Group apache
 </Directory>
 ```
 
-Trong đó:
-+ `AllowOverride` : chỉ định chỉ thị nào được khai báo trong tệp .htaccess có thể ghi đè chỉ thị cấu hình
-+ `Require all denied` : từ chối tất cả các máy khác truy cập vào thư mục đang được cấu hình. Ngược lại nếu giá trị `require all granted` thì có nghĩa là cho phép
+Trong đó: - `AllowOverride` : chỉ định chỉ thị nào được khai báo trong tệp .htaccess có thể ghi đè chỉ thị cấu hình
+
+          - `Require all denied` : từ chối tất cả các máy khác truy cập vào thư mục đang được cấu hình. Ngược lại nếu giá trị `require all granted` thì có nghĩa là cho phép
   
