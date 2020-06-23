@@ -10,3 +10,8 @@ Web server là máy tính lớn được kết nối với tập hợp mạng m�
 |Tên|Mô tả|
 |-|-|
 |Web Server Apache|Apache là một phần mềm mã nguồn mở, hỗ trợ gần như tất cả hệ điều hành bao gồm Linux, Unix, Windows, FreeBSD, Mac OS X và các hệ điều hành khác nữa|
+|Web server IIS|Microsoft là nhà phát triển của web server này, do đó nó chạy được trên tất cả các nền tảng của hệ điều hành windows|
+|Web server Nginx|hiệu suất cao, tính ổn định, cấu hình đơn giản và sử dụng tài nguyên thấp. Web này hiện đang phổ biến trên toàn thể giói và lưu trữ 7.5% tên miền trên toàn thế giới|
+|Web server Lightspeed|là một drop-in replacement Apache hiệu suất cao. LSWS là web server phổ biến thứ 4 trên internet và là một web server thương mại|
+
+### 3. Nguyên tắc hoạt động
