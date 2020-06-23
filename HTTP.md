@@ -19,4 +19,4 @@ HTTP/3 là sự kế thừa từ sản phẩm HTTP/2 và thay đổi bằng các
 |**HTTP/1.0**|**HTTP/1.1**|**HTTP/2**|
 |-|-|-|
 |Khi truyền tải thông tin dữ liệu qua kết nối TCP thì mỗi một kết nối chỉ truyền tải một tài nguyên độc lập gây nên việc tốn thời gian để truyền tải thông tin dữ liệu một trang web|Khi truyền tải thông tin thì có thể truyền tải nhiều thông tin dữ liệu qua cùng một kết nối điều đó làm giảm thiểu việc phải tạo ra nhiều kết nối điều đó làm giảm thiểu việc phải tạo ra nhiều kết nối TCP nhưng khi truyền tải dữ liệu cần phải đùng thự tự vì khi này không thể nhận biết được thứ tự các yêu cầu. Nên các response sẽ phải tuân thủ quy tắc xử lý lần lượt|Đã khắc phục bằng cách đánh dấu các response khác nhau và thứ tự của chúng nên việc xử lý theo thứ tự đã được giải quyết. Và HTTP/2 cũng đã nén dữ liệu xuống kkhoong còn gửi dưới dạng text như HTTP/1 khiến nó nhẹ hơn|
-
+|dữ liệu truyền đi dưới dạng text|dữ liệu truyền đi dưới dạng text|dữ liệu truyền đi dưới dạng nhị phân|
