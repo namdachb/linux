@@ -30,7 +30,7 @@ setenforce 0
 ```
 yum update -y
 yum install -y epel-release
-yum install -t wget byobu
+yum install -y wget byobu
 ```
 
 **Cài đặt Apache**
