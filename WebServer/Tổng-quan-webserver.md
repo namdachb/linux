@@ -15,3 +15,19 @@ Web server là máy tính lớn được kết nối với tập hợp mạng m�
 |Web server Lightspeed|là một drop-in replacement Apache hiệu suất cao. LSWS là web server phổ biến thứ 4 trên internet và là một web server thương mại|
 
 ### 3. Nguyên tắc hoạt động
+Trình duyệt web chia địa chỉ website thành 3 phần
+ 
+ * Tên giao thức
+ * Tên miền của web server
+ * Tên tệp html
+
+Trình duyệt sẽ liên hệ với web server để chuyển đổi tên miền thành địa chỉ ip tương ứng
+
+Sau đó trình duyệt sẽ gửi tiếp một kết nối tới máy chủ có địa chỉ ip tương ứng qua port 80
+
+Dựa trên giao thức HTTP trình duyệt gửi yêu cầu GET đến máy chủ và yêu cầu tệp HTML. Sau đó máy chủ sẽ gửi một file văn bản có thể html đến trình duyệt web
+
+Sau đó trình duyệt web đọc các thể html để xác lập định dạng trang web và xuất ra màn hình
+
+### 4. Mục đích
+Mục đích chính của web server là lưu trữ các tệp của website và phát chúng qua internet để khách truy cập web có thể xem được. Khi ai đó truy cập trang trên web của bạn, trình duyệt của họ sẽ giao tiếp với web server của bạn, gửi và nhận các thông tin mà chúng được ra lệnh để xuất hiện trên màn hình máy tính của khách truy cập. Như vậy, vai trò chủ yếu của web server là lưu trữ và chuyển tải dữ liệu website theo yêu cầu từ trình duyệt của khách truy cập
