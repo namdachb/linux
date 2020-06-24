@@ -43,3 +43,21 @@ location / {
             proxy_pass http://192.168.213.148;
         }
 ```
+
+Kiểm tra
+
+![Imgur](https://i.imgur.com/UEUuiRD.png)
+
+Reload lại nginx
+
+`nginx -s reload`
+
+Bây giờ truy cập vào trang web
+
+![Imgur](https://i.imgur.com/EpDM2J9.png)
+
+Mình nhấn `F5` để load lại trang web khi chưa đến 2s
+
+![Imgur](https://i.imgur.com/8uWV8u1.png)
+
+ Nginx trả về lỗi 503
