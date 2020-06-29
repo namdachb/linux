@@ -201,3 +201,6 @@ echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random
  * Bạn cũng có thể mô phỏng quá trình gia hạn chứng chỉ bằng lệnh bên dưới để đảm bảo quá trình gia hạn diễn ra suôn sẻ
 
 `/usr/local/bin/certbot-auto renew --dry-run`
+
+
+Bài viết tham khảo tại [đây](https://www.itzgeek.com/how-tos/linux/centos-how-tos/how-to-setup-lets-encrypt-ssl-certificate-with-nginx-on-rhel-8-centos-7-rhel-7.html)
