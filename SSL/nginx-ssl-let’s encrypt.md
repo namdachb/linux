@@ -77,11 +77,11 @@ echo "hihi @namdac.xyz" > /opt/nginx/namdac.xyz/index.html
 #### Tạo/Cập nhật bản ghi Dns
  * Truy cập vào công cụ quản lý DNS hoặc trang quản lý tên miền của bạn để tạo bản ghi A tới tên miền 
 
-![Imgur](https://i.imgur.com/ADKJq6I.png)
+![Imgur](https://i.imgur.com/tjhskW1.png)
 
  * Kiểm tra việc truyền DNS với câu lệnh nslookup: `yum install -y bind-utils`
 
-![Imgur](https://i.imgur.com/X0bKP3R.png)
+![Imgur](https://i.imgur.com/etFert4.png)
 
 #### Thiết lập nhận chứng chỉ miễn phí Let's Encrypt
  * Sử dụng câu lệnh `certbot` để tạo và cài đặt chứng chỉ Let's Encrypt
