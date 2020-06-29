@@ -21,7 +21,7 @@ yum -y install gcc mod_ssl python3-virtualenv redhat-rpm-config augeas-libs libf
 
  * Tải về certbot script
 
-`curl -0 https://dl.eff.org/certbot-auto`
+`curl -O https://dl.eff.org/certbot-auto`
 
  * Sau khi tải xuống hoàn tất, di chuyển file **certbot-auto** tới thư mục `usr/local/bin` và cấp quyền cho file **certbot-auto**
 
@@ -33,12 +33,12 @@ chmod 0755 /usr/local/bin/certbot-auto
 #### Tạo Virtualhost
  * Tạo 1 file cấu hình virtual host(server block) cho tên miền **namdac.xyz**
 
-`vi /etc/nginx/conf.d/namdac.xyz`
+`vi /etc/nginx/conf.d/namdac.xyz.conf`
 
 Thêm vào nội dung bên dưới:
 ```
 server {
-      server_name namdac.xyz;
+      server_name hi.namdac.xyz;
       root /opt/nginx/namdac.xyz;
 
       location / {
