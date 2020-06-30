@@ -46,6 +46,7 @@ yum install nginx
 Nếu chưa tạo một bản ghi tên miền, hãy truy cập zonedns để tạo một bản ghi
 
 **Tạo file config site**:
+
 Sau khi kiểm tra bản ghi đã tồn tại, ta sẽ tạo file config của tên miền, mỗi site sẽ được khai báo tương ứng với 1 file nằm trong thư mục `/etc/nginx/conf.d/`
 
 Tạo file có tên là tên miền của mình với phần mở rộng là `conf` và thêm vào file nội dung sau
@@ -214,6 +215,28 @@ server {
 Khởi động lại nginx
 
 `systemctl restart nginx`
+
+## Cấu hình trên webserver cài WordPress
+
+Sửa file `wp-config.php`
+
+Tiến hành vào file `wp-config.php` tại `/var/www/html/wp-config.php`
+
+`vi /var/ww/html/wp-config.php`
+
+Thêm vào những dòng sau:
+
+```
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){ $_SERVER['HTTPS']='on'; } if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) { $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST']; } 
+```
+
+File `/var/www/html/wp-config.php`
+
+![Imgur](https://i.imgur.com/9L4lGyk.png)
+
+Khởi động lại dịch vụ http
+
+`systemctl restart httpd`
 
 Truy cập trang web bằng địa chỉ  `https://wp.namdac.xyz/` đã có SSL
 
