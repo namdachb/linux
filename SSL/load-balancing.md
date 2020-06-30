@@ -257,6 +257,23 @@ systemctl start httpd
   }
  ```
 
+### Load balancing kết hợp thuật toán
+ * Các thuận toán không bao giờ có thể hữu dụng trong tất cả các trường hợp, việc lựa chọn thuận toán dựa trên cơ sở hạ tầng chúng ta có cũng như mục đích sử dụng, để có thể tối ưu hóa hơn trong việc cân bằng tải thông thường chúng ta sẽ kết hợp các thuật toán lại với nhau để có thể đưa ra được giải pháp cân bằng tải hợp lý nhất cho hệ thống. Sau đây là một số giải pháp kết hợp
+
+#### Kết hợp least balancing và weight load balancing
+ * Thuật toán least load balancing giúp hệ thống có thể lựa chọn server đang xử lý ít hơn để gửi request cho server đó xử lý. Ngoài ra nó còn có thể tự loại bỏ server bị lỗi trong vòng xử lý của nó. Tuy nhiên least load balancing chỉ hữu hiệu khi chúng ta có 2 server nó cùng cấu hình. Giả sử chúng ta có 2 server, server1 có cấu hình mạnh gấp 2 lần server2 thì chúng ta dùng least load balancing thì đến một thời điểm nào đó con server2 rất dễ bị chết. Do đó để trành trường hợp này chúng ta có một giải pháp có thể giảm thiểu khả năng chết của con thứ 2 đó là kết hợp thêm thuật toán weighted load balancing
+ * Chi tiết cấu hình trong trường hợp trên như sau
+
+ ```
+ http {
+
+    upstream backends {
+        least_conn;
+        server 192.168.11.149:80 weight=2;
+        server 192.168.11.148:80 weight=1;
+    }
+ ```
+ 
 ### Chú ý:
  * `weight` : trọng số ưu tiên của server này
  * `max_fails` : số lần tối đa mà load balancer không liên lạc được với server này (trong khoảng fail_timeout) trước khí server này bị coi là down
