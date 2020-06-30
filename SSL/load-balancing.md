@@ -214,7 +214,7 @@ systemctl start httpd
 `vi /etc/nginx/nginx.conf`
 
 ### Round Robin
- * Round Robin là thuật toán mặc định của nginx khi chúng ta không có cấu hình gì thêm trong block http
+ * Round Robin là thuật toán mặc định của nginx khi chúng ta không có cấu hình gì thêm trong block `http`
  * Đặc điểm của thuật toán này là các request sẽ được luân chuyển liên tục 1:1 giữa các server, điều này sẽ làm giải tỏa cho các hệ thống có lượng request lớn
  * Cấu hình chi tiết trong file config
   ```
@@ -229,7 +229,7 @@ systemctl start httpd
 
 ### Least connection
  * Đây là thuật toán nâng cấp của round robin và weighted load balancing, thuật toán này sẽ giúp tối ưu hóa cân bằng tải cho hệ thống
- * Đặc điểm của thuật toán này là sẽ chuyển request đến cho server đang xử lý request hơn, thích hợp đối với các hệ thống mà có các session duy trì trong thời gian dài, tránh được trường họp các session duy trì quá lâu mà các request được chuyển luân phiên theo quy tắc định sẵn, dễ bị down 1 server nào đó do xử lý quá khả năng của nó
+ * Đặc điểm của thuật toán này là sẽ chuyển request đến cho server đang xử lý ít hơn làm việc, thích hợp đối với các hệ thống mà có các session duy trì trong thời gian dài, tránh được trường họp các session duy trì quá lâu mà các request được chuyển luân phiên theo quy tắc định sẵn, dễ bị down 1 server nào đó do xử lý quá khả năng của nó
  * Cấu hình chi tiết
  ```
  http {
@@ -242,7 +242,7 @@ systemctl start httpd
  ```
 
 ### Health check 
- * Thuật toán này xác định máy chủ xác định sẵn sàng xử lý request để gửi request đến server, điều này tránh được việc phải bỏ thủ công một máy chủ không sẵn sàng xử lý
+ * Thuật toán này xác định máy chủ sẵn sàng xử lý request để gửi request đến server, điều này tránh được việc phải bỏ thủ công một máy chủ không sẵn sàng xử lý
  * Các hoạt động của thuật toán này là nó sẽ gửi một kết nối TCP đến máy chủ, nếu như máy chủ đó lắng nghe trên địa chỉ và port đã cấu hình thì nó mới gửi request đến cho server xử lý
  * Tuy nhiên health check vẫn có lúc kiểm tra xem máy chủ có sẵn sàng hay không, đối với các máy chủ cơ sở dữ liệu thì health check không thể làm điều này
  * Cấu hình chi tiết 
