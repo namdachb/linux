@@ -134,3 +134,130 @@ firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 ```
 
+ * Truy cập vào địa chỉ IP của server để kiểm tra
+
+ * Sửa file config của Nginx
+
+`vi /etc/nginx/nginx.conf`
+
+ * Thêm vào http block cấu hình sau
+
+```
+upstream backends {
+    server 192.168.11.149:80 weight=3;
+    server 192.168.11.148:80 weight=2;
+}
+```
+Cấu hình trên có nghĩa là cứ 5 request gửi tới server sẽ có 3 request vào web 1 và 2 request vào web2
+
+ * Tại block server thêm hoặc sửa các cấu hình thành như sau
+
+```
+server {
+
+    listen      80 default_server;
+    listen      [::]:80 default_server;
+    server_name _;
+
+    proxy_redirect           off;
+    proxy_set_header         X-Real-IP $remote_addr;
+    proxy_set_header         X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header         Host $http_host;
+
+    location / {
+        proxy_pass http://backends;
+    }
+```
+
+ * Restart lại nginx
+
+ `nginx -s reload`
+
+**[Trên các node Apache Web server]**
+
+ * Cài đặt Apache
+
+`yum install -y httpd`
+
+ * Khởi động apache
+
+```
+systemctl enable httpd
+systemctl start httpd
+```
+ 
+ * Truy cập thư mục `/var/www/html`
+   * Tạo file `index.html`
+          
+        `vi index.html`
+   * Thêm nội dung vào file index.html
+
+        ```
+        <h1>
+        DAY LA WEBSERVER 1 (2)
+        </h1>
+        ```
+
+**Kiểm tra**
+ 
+ * Truy cập vào địa chỉ của máy cài Nginx
+    * Lần 1
+
+    ![Imgur](https://i.imgur.com/gizKKRf.png)
+
+    * Lần 2
+
+    ![Imgur](https://i.imgur.com/c2HzRNL.png)
+
+## Cấu hình với các thuật toán
+
+### Round Robin
+ * Round Robin là thuật toán mặc định của nginx khi chúng ta không có cấu hình gì thêm trong block http
+ * Đặc điểm của thuật toán này là các request sẽ được luân chuyển liên tục 1:1 giữa các server, điều này sẽ làm giải tỏa cho các hệ thống có lượng request lớn
+ * Cấu hình chi tiết trong file config
+  ```
+  nginx
+  http {
+
+  upstream backends {
+      server 192.168.11.149:80;
+      server 192.168.11.148:80;
+  }
+  ```
+
+### Least connection
+ * Đây là thuật toán nâng cấp của round robin và weighted load balancing, thuật toán này sẽ giúp tối ưu hóa cân bằng tải cho hệ thống
+ * Đặc điểm của thuật toán này là sẽ chuyển request đến cho server đang xử lý request hơn, thích hợp đối với các hệ thống mà có các session duy trì trong thời gian dài, tránh được trường họp các session duy trì quá lâu mà các request được chuyển luân phiên theo quy tắc định sẵn, dễ bị down 1 server nào đó do xử lý quá khả năng của nó
+ * Cấu hình chi tiết
+ ```
+ http {
+
+  upstream backends {
+      least_conn;
+      server 192.168.11.149:80;
+      server 192.168.11.148:80;
+  }
+ ```
+
+### Health check 
+ * Thuật toán này xác định máy chủ xác định sẵn sàng xử lý request để gửi request đến server, điều này tránh được việc phải bỏ thủ công một máy chủ không sẵn sàng xử lý
+ * Các hoạt động của thuật toán này là nó sẽ gửi một kết nối TCP đến máy chủ, nếu như máy chủ đó lắng nghe trên địa chỉ và port đã cấu hình thì nó mới gửi request đến cho server xử lý
+ * Tuy nhiên health check vẫn có lúc kiểm tra xem máy chủ có sẵn sàng hay không, đối với các máy chủ cơ sở dữ liệu thì health check không thể làm điều này
+ * Cấu hình chi tiết 
+ 
+ ```
+   http {
+
+  upstream backends {
+      server 192.168.11.149:80;
+      server 192.168.11.148:80 max_fails=3 fail_timeout=5s;
+      server 192.168.11.147:80;
+  }
+ ```
+
+### Chú ý:
+ * `weight` : trọng số ưu tiên của server này
+ * `max_fails` : số lần tối đa mà load balancer không liên lạc được với server này (trong khoảng fail_timeout) trước khí server này bị coi là down
+ * `fail_timeout` : khoảng thời gian mà một server phải trả lời load balancer, nếu không trả lời thì server này sẽ bị coi là down. Đây cũng là thời gian downtime của server này
+ * `backup` : những server nào có thông số này sẽ chỉ nhận request từ load balancer một khi tất cả các server khác đều bị down
+ * `down` : chỉ thị này cho biết server này hiện không thể xử lý các request được gửi tới. Load balancer vẫn lưu server này trong danh sách nhưng sẽ không phân tải cho server này cho đến khi chỉ thị này được gỡ bỏ
