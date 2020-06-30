@@ -217,6 +217,7 @@ Khởi động lại nginx
 `systemctl restart nginx`
 
 ## Cấu hình trên webserver cài WordPress
+**Cách cài lamp và wordpress tại** [đây](https://github.com/namdachb/linux/blob/master/Wordpress-LAMP/C%C3%A0i-%C4%91%E1%BA%B7t-wp-lamp.md)
 
 Sửa file `wp-config.php`
 
