@@ -178,7 +178,7 @@ Cấu hình firewall cho phép các yêu cầu HTTPS
 ```
 firewall-cmd --permanent --add-port=443/tcp
 
-firewall-cmd -reload
+firewall-cmd --reload
 ```
 
 #### Xác nhận chứng nhận Let's Encrypt
