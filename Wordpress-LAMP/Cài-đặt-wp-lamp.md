@@ -8,7 +8,7 @@ Trong bài này, mình sẽ cài đặt WordPress trên hệ điều hành CentO
 
 ## 2. Các bước cài đặt
 ### Bước 1 : chuẩn bị
-Trước khi tiến hành cài đặt WordPress, chúng ta cần phải cài bộ LAMP trên máy của chúng ta . Đây là cách cài đặt [LAMP](https://github.com/namdachb/linux/blob/master/Wordpress/LAMP.md)
+Trước khi tiến hành cài đặt WordPress, chúng ta cần phải cài bộ LAMP trên máy của chúng ta . Đây là cách cài đặt [LAMP](https://github.com/namdachb/linux/blob/master/Wordpress-LAMP/LAMP.md)
 
 ### Bước 2 : tạo cơ sở dữ liệu và tài khoản cho WordPress
 Ở bước chuẩn bị, mình đã cài mariadb cho cơ sở dữ liệu. Chúng ta cũng có thể thao tác tương tự với MySQL. Đầu tiên, ta cần đăng nhập vào tài khoản root của cơ sở dữ liệu bằng câu lệnh :
