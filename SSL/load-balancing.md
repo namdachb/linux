@@ -211,6 +211,8 @@ systemctl start httpd
 
 ## Cấu hình với các thuật toán
 
+`vi /etc/nginx/nginx.conf`
+
 ### Round Robin
  * Round Robin là thuật toán mặc định của nginx khi chúng ta không có cấu hình gì thêm trong block http
  * Đặc điểm của thuật toán này là các request sẽ được luân chuyển liên tục 1:1 giữa các server, điều này sẽ làm giải tỏa cho các hệ thống có lượng request lớn
