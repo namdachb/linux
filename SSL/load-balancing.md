@@ -177,6 +177,8 @@ server {
 
  * Cài đặt Apache
 
+ `yum install -y epel-release`
+
 `yum install -y httpd`
 
  * Khởi động apache
