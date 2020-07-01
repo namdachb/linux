@@ -50,6 +50,7 @@ Extended Validation(EV): cho khách hàng của bạn thấy Website đang đư�
 #### Wildcard SSL
 Wildcard SSL dành cho các website có nhu cầu sử dụng SSL cho nhiều subdomain khác nhau. Wildcard SSL khác với các loại SSL bình thường là có thể chạy không giới hạn tên miền phụ với một chứng chỉ ssl duy nhất
 
+#### SANs SSL
 
 ### 7.SSL có nhược điểm không?
 SSL có nhược điểm:
