@@ -86,7 +86,7 @@ echo "hihi @namdac.xyz" > /opt/nginx/namdac.xyz/index.html
 #### Thiết lập nhận chứng chỉ miễn phí Let's Encrypt
  * Sử dụng câu lệnh `certbot` để tạo và cài đặt chứng chỉ Let's Encrypt
 
-`usr/local/bin/certbot-auto --nginx`
+`/usr/local/bin/certbot-auto --nginx`
 
 **OUTPUT**
 
