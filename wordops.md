@@ -25,7 +25,7 @@ WordOps có thể cài đặt trên các thiết bị cấp thấp như Raspberr
  * 100 MB dung lượng trống
  * RAM 512MB
 
-### Cài đặt
+## Cài đặt
 #### Cài đặt trang web
 **Tải về các phụ thuộc**
 
