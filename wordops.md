@@ -51,51 +51,44 @@ Bạn có thể lựa chọn để cài đặt danh sách các thành phần Wor
 
 Chờ đến khi lệnh chạy xong, WordOps sẽ cài đặt các thành phần như sau
 
-```root@namdac:~# wo stack install
-WP-CLI is already installed
-Start : wo-kernel [OK]
-Adding repository for MySQL, please wait...
-Adding repository for NGINX, please wait...
-Adding repository for PHP, please wait...
-Updating apt-cache              [OK]
-Installing APT packages         [OK]
-Applying Nginx configuration templates
-Testing Nginx configuration     [OK]
-Restarting Nginx                [OK]
-Testing Nginx configuration     [OK]
-Restarting Nginx                [OK]
-Configuring php7.3-fpm
-Restarting php7.3-fpm           [OK]
-Tuning MariaDB configuration
-Stop  : mysql     [OK]
-Start : mysql     [OK]
-Restarting fail2ban             [OK]
-Configuring Fail2Ban
-Reloading fail2ban              [OK]
-Downloading PHPMyAdmin           [Done]
-Downloading phpRedisAdmin        [Done]
-Downloading Composer             [Done]
-Downloading Adminer              [Done]
-Downloading Adminer theme        [Done]
-Downloading MySQLTuner           [Done]
-Downloading Netdata              [Done]
-Downloading WordOps Dashboard    [Done]
-Downloading eXtplorer            [Done]
-Downloading cheat.sh             [Done]
-Downloading bash_completion      [Done]
-Downloading clean.php            [Done]
-Downloading opcache.php          [Done]
-Downloading Opgui                [Done]
-Downloading OCP.php              [Done]
-Downloading Webgrind             [Done]
-Downloading pt-query-advisor     [Done]
-Downloading Anemometer           [Done]
-Installing composer             [OK]
-Installing Netdata              [OK]
-Restarting netdata              [OK]
-Configuring packages            [OK]
-HTTP Auth User Name: WordOps
-HTTP Auth Password : yGCyV7IrSxzpWQuU9ziX2MZC
-WordOps backend is available on https://117.4.255.125:22222 or https://namdac:22222
-Successfully installed packages
+![Imgur](https://i.imgur.com/9LyuOU9.png)
+ 
+ * Tài khoản authen để truy cập web
+ * Password authen để truy cập web
+
+#### Đặt lại tài khoản và mật khẩu authen khi truy cập web
+Chạy lệnh sau để đặt lại tài khoản và mật khẩu để truy cập web
+
+`wo secure --auth`
+
 ```
+root@namdac:~# wo secure --auth
+Provide HTTP authentication user name [Nguyen The Nam] :user
+Provide HTTP authentication password [NXUzmMBR5Tvp0bxO7ePQmnhX] :
+```
+
+Sau khi chạy lệnh, bạn sẽ được nhắc nhập vào user và password và sử dụng để truy cập vào web monitoring WordOps:
+ * Nhập vào user
+ * Nhập password
+
+Sau khi nhập vào user và password, nếu muốn truy cập web monitoring, chuyển đến trình duyệt và điều hướng đến link sau: `https://your.server.ip:22222`
+
+### Tạo trang web
+#### Tạo 1 trang wordpress
+Để tạo 1 trang wordpress, bạn chỉ cần chạy câu lệnh sau:
+
+`wo site create w.namdac.xyz --wp`
+
+Sau khi chạy lệnh trên, WordOps sẽ tạo 1 trang wordpress với domain là `w.namdac.xyz`. Sau khi lệnh cài đặt xong sẽ có tài khoản và mật khẩu sử dụng để truy cập trang quản trị của wordpress
+
+![Imgur](https://i.imgur.com/ebz2Kyd.png)
+
+ * User sử dụng để đăng nhập vào trang quản trị của WordPress
+ * Password để đăng nhập trang quản trị WordPress
+
+Sau đó truy cập vào url với tên miền **w.namdac.xyz** để kiểm tra
+
+![Imgur](https://i.imgur.com/mY48szv.png)
+
+ta thấy rằng đã có một trang wordpress được tạo với tên miền trên
+ 
