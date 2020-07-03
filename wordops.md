@@ -23,13 +23,48 @@ WordOps là dự án mã nguồn mở được phát triển với mục đích 
  * Raspbian 9 (stretch)
  * Raspbian 10 (buster)
 
-## Cài đặt wordops trên ubuntu 18.04
-WordOps có thể cài đặt trên các thiết bị cấp thấp như Raspberry PI với yêu cầu tối thiểu là:
- * 100 MB dung lượng trống
+### Điều kiện tiên quyết 
+**Yêu cầu phần cứng**
+
+**Tài nguyên**
+
+**Tối thiểu**
+
+WordOps rất nhẹ, nó không đòi hỏi nhiều tài nguyên và có thể được cài đặt trên các thiết bị cấp thấp như Raspberry PI. Yêu cầu tối thiểu là
+ * ~100 MB dung lượng lưu trữ
  * RAM 512MB
 
-## Cài đặt
-#### Cài đặt trang web
+**Đề xuất**
+
+Tuy nhiên, nếu bạn định sử dụng WordOps trong sản xuất, một số dịch vụ như MySQL hoặc Redis có thể cần nhiều tài nguyên hơn và chạy các ngăn xếp WordOps mà không có đủ tài nguyên có thể ảnh hưởng đến hiệu suất trang web của bạn. Việc sử dụng tài nguyên cũng phụ thuộc nhiều vào lưu lượng truy cập trang web của bạn:
+
+Bạn có thể đề nghị cấu hình phần cứng cho quá trình
+
+**Ảo hóa**
+
+Các nền tảng ảo hóa sau được hỗ trợ
+ * VMware
+ * XEN
+ * OpenVZ
+ * KVM
+ * Hyper-V
+ * LXC/LXD
+WordOps cũng tương tích với Ubuntu chạy trên Windows Linux subsystem (WSL)
+
+**Cổng**
+
+|Service|Port|Inbound(trong nước)|Outbound(ra nước ngoài)|Notes|
+|-|-|-|-|-|
+|SSH|22|x|x|SSH mặc định hoặc cổng tùy chỉnh|
+|HTTP|80|x|x|Nginx lắng nghe trên cổng 80|
+|HTTPS|443|x|x|Nginx lắng trên cổng 443|
+|WordOps Backend|22222|x|x|WordOps backend có sẵn trên cổng 22222 và được bảo vệ bằng mật khẩu|
+|GnuPG|1137| |x|Cần thiết để nhập các khóa GPG kho lưu trữ|
+
+
+## Cài đặt wordops trên ubuntu 18.04
+
+### Cài đặt trang web
 **Tải về các phụ thuộc**
 
 Để làm việc với WordOps rất đơn giản vì đã được cung cấp 1 tập lệnh cài đặt để cài đặt phụ thuộc cần thiết, chạy câu lệnh sau để cài đặt
