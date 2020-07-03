@@ -51,15 +51,6 @@ Các nền tảng ảo hóa sau được hỗ trợ
  * LXC/LXD
 WordOps cũng tương tích với Ubuntu chạy trên Windows Linux subsystem (WSL)
 
-**Cổng**
-
-|Service|Port|Inbound(trong nước)|Outbound(ra nước ngoài)|Notes|
-|-|-|-|-|-|
-|SSH|22|x|x|SSH mặc định hoặc cổng tùy chỉnh|
-|HTTP|80|x|x|Nginx lắng nghe trên cổng 80|
-|HTTPS|443|x|x|Nginx lắng trên cổng 443|
-|WordOps Backend|22222|x|x|WordOps backend có sẵn trên cổng 22222 và được bảo vệ bằng mật khẩu|
-|GnuPG|1137| |x|Cần thiết để nhập các khóa GPG kho lưu trữ|
 
 ### Cách sử dụng 
 `wo site create  [<site_name>] [options]`
