@@ -200,19 +200,6 @@ Ngoài ra nếu muồn cài wordpress với Let's Encrypt, hãy sử dụng lệ
 
 `wo site create w.namdac.xyz --wp -le`
 
-### Tạo các trang web khác
-Nếu không cài wordpress, ta có thể sử dụng các tùy chọn của WordOps để cài các trang web cơ bản như:
- * Tạo trang web html
-
-`wo site create html.namdac.xyz --html`
-
- * Tạo trang web PHP
-
-`wo site create php.namdac.xyz --php`
-
- * Tạo trang web PHP + MySQL
-
-`wo site create web.namdac.xyz --mysql`
 
 ### Cập nhật và xem thông tin trang web
 **Xem thông tin trang web**
