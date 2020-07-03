@@ -233,13 +233,34 @@ Kiểm tra
 
 sau khi chạy lệnh sẽ hiển thị ra danh sách các web site đã được tạo
 
-![Imgur](https://i.imgur.com/7BhBIzt.png)
+![Imgur](https://i.imgur.com/wNn3B6F.png)
 
 Muốn xem thông tin chi tiết của 1 web site, ta sử dụng site info:
 
 `wo site info hihi.namdachb.com`
 
 ![Imgur](https://i.imgur.com/6WFAUNx.png)
+
+**Cập nhật trang web**
+
+Nếu trước đó bạn có tạo 1 trang web với WordOps mà chưa có let's encript, bạn có thể sử dụng lệnh sau để cập nhật chứng chỉ SSL cho site như sau:
+
+`wo site update w.namdac.xyz -le`
+
+sau khi tạo ssl sẽ có thời hạn 80 ngày, nhưng tất cả các chứng chỉ được tự động gia hạn 60 ngày bởi `acme.sh` bằng cách sử dụng cronjob
+
+Khi ta tạm thời không có nhu cầu sử dụng trang web nữa, ta có thể vô hiệu hóa trang web như sau:
+
+`wo site disable html.namdachb.com`
+
+khi muốn sử dụng lại ta dùng lệnh
+
+`wo site enable html.namdachb.com`
+
+Muốn xóa 1 trang web ta sử dụng tùy chọn delete:
+
+`wo site delete html.namdachb.com`
+
 
 ### Truy cập trang web monitoring
 Sau khi cài đặt trang web, để theo dõi tải cũng như hiệu năng của trang web ta có thể truy cập theo địa chỉ `http://your.server.ip:22222` để theo dõi tải cũng như các thông số giám sát của Web
