@@ -61,6 +61,32 @@ WordOps cũng tương tích với Ubuntu chạy trên Windows Linux subsystem (W
 |WordOps Backend|22222|x|x|WordOps backend có sẵn trên cổng 22222 và được bảo vệ bằng mật khẩu|
 |GnuPG|1137| |x|Cần thiết để nhập các khóa GPG kho lưu trữ|
 
+### Cách sử dụng 
+`wo site create  [<site_name>] [options]`
+
+**Trang web cơ bản**
+
+**Trang web HTML**
+
+Để tạo trang web html đơn giản, sử dụng lệnh 
+
+`wo site create site.tld --html`
+
+**Trang web PHP**
+
+Để tạo trang web php đơn giản không có cơ sở dữ liệu, hãy sử dụng lệnh
+
+`wo site create site.tld --php`
+
+**Trang web PHP + MySQL**
+
+Để tạo trang web php đơn giản với cơ sở dữ liệu, hãy sử dụng lệnh này
+
+`wo site create site.tld --mysql`
+
+> Lưu ý : chúng ta có thể tìm thấy chi tiết cơ sở dữ liệu MySQL trong `/var/www/site.tld/wo-config.php`
+
+
 
 ## Cài đặt wordops trên ubuntu 18.04
 
