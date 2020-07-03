@@ -247,13 +247,13 @@ Nếu trước đó bạn có tạo 1 trang web với WordOps mà chưa có let'
 
 `wo site update w.namdac.xyz -le`
 
-sau khi tạo ssl sẽ có thời hạn 80 ngày, nhưng tất cả các chứng chỉ được tự động gia hạn 60 ngày bởi `acme.sh` bằng cách sử dụng cronjob
+Sau khi tạo ssl sẽ có thời hạn 80 ngày, nhưng tất cả các chứng chỉ được tự động gia hạn 60 ngày bởi `acme.sh` bằng cách sử dụng cronjob
 
 Khi ta tạm thời không có nhu cầu sử dụng trang web nữa, ta có thể vô hiệu hóa trang web như sau:
 
 `wo site disable html.namdachb.com`
 
-khi muốn sử dụng lại ta dùng lệnh
+Khi muốn sử dụng lại ta dùng lệnh
 
 `wo site enable html.namdachb.com`
 
