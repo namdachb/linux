@@ -117,9 +117,17 @@ Kích hoạt trình chặn xấu Ultimate Nginx trên trang web mới
 
 `wo site create site.tld --ngxblocker`
 
+### Cấu trúc wordops
+**Thư mục wordops**
+|Path|Description|
+|-|-|
+|/etc/wo|Cấu hình chung|
+|/var/lib/wo/dbase.db|Cơ sở dữ liệu trang web WordOps|
+|/var/lib/wo/tmp|Thư mục tmp|
+|usr/lib/wo/templates|Mẫu WordOps|
 
 
-## Cài đặt wordops trên ubuntu 18.04
+# Cài đặt wordops trên ubuntu 18.04
 
 ### Cài đặt trang web
 **Tải về các phụ thuộc**
