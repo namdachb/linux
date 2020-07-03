@@ -86,6 +86,47 @@ WordOps cũng tương tích với Ubuntu chạy trên Windows Linux subsystem (W
 
 > Lưu ý : chúng ta có thể tìm thấy chi tiết cơ sở dữ liệu MySQL trong `/var/www/site.tld/wo-config.php`
 
+**Trang web proxy**
+
+Để tạo trang web với cấu hình Proxy, bạn có thể sử dụng --proxy trong khi tạo trang web
+
+`wo site create site.tld --proxy=127.0.0.1:3000`
+
+Điều này sẽ tạo ra trang web proxy.tld với đích proxy là 127.0.0.1:3000. Cổng là tùy chọn. Cổng mặc định: 80
+
+**WordPress**
+
+Sau đây là các loại trang web WordPress bạn có thể tạo trang web dựa trên cơ chế bộ đệm
+
+Trang web WordPress chuẩn
+
+`wo site create site.tld --wp`
+
+Trang web WordPress + Nginx fastcgi_cache
+
+`wo site create site.tld --wpfc`
+
+Trang web WordPress + Redis cache
+
+`wo site create site.tld --wpsc`
+
+Trang web WordPress + WP-super-cache
+
+`wo site create site.tld --wpsc`
+
+Trang web WordPress + bộ đệm WP-Rocket
+
+`wo site create site.tld --wprocket`
+
+Trang web WordPress + Trình tạo bộ đệm
+
+`wo site create site.tld --wpce`
+
+Kích hoạt trình chặn xấu Ultimate Nginx trên trang web mới
+
+`wo site create site.tld --ngxblocker`
+
+
 
 
 ## Cài đặt wordops trên ubuntu 18.04
