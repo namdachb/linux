@@ -128,7 +128,6 @@ Kích hoạt trình chặn xấu Ultimate Nginx trên trang web mới
 
 
 
-
 ## Cài đặt wordops trên ubuntu 18.04
 
 ### Cài đặt trang web
@@ -197,3 +196,54 @@ Sau đó truy cập vào url với tên miền **w.namdac.xyz** để kiểm tra
 
 ta thấy rằng đã có một trang wordpress được tạo với tên miền trên
  
+Ngoài ra nếu muồn cài wordpress với Let's Encrypt, hãy sử dụng lệnh sau:
+
+`wo site create w.namdac.xyz --wp -le`
+
+### Tạo các trang web khác
+Nếu không cài wordpress, ta có thể sử dụng các tùy chọn của WordOps để cài các trang web cơ bản như:
+ * Tạo trang web html
+
+`wo site create html.namdac.xyz --html`
+
+ * Tạo trang web PHP
+
+`wo site create php.namdac.xyz --php`
+
+ * Tạo trang web PHP + MySQL
+
+`wo site create web.namdac.xyz --mysql`
+
+### Cập nhật và xem thông tin trang web
+**Xem thông tin trang web**
+
+Để biết các tùy chọn khi sử dụng lệnh `wo`, ta sử dụng -help hoặc -h :
+
+`wo site -h`
+
+Để liệt kê các web site được tạo và quản lý bởi WordOps, ta sử dụng
+
+`wo site list`
+
+sau khi chạy lệnh sẽ hiển thị ra danh sách các web site đã được tạo
+
+![Imgur](https://i.imgur.com/7BhBIzt.png)
+
+Muốn xem thông tin chi tiết của 1 web site, ta sử dụng site info:
+
+`wo site info hihi.namdachb.com`
+
+![Imgur](https://i.imgur.com/aOYabHZ.png)
+
+### Truy cập trang web monitoring
+Sau khi cài đặt trang web, để theo dõi tải cũng như hiệu năng của trang web ta có thể truy cập theo địa chỉ `http://your.server.ip:22222` để theo dõi tải cũng như các thông số giám sát của Web
+
+Truy cập trang web monitoring `http://192.168.213.193:22222/` để kiểm tra
+
+Nhập vào tài khoản và mật khẩu authen đã đặt lại ở trên
+
+![Imgur](https://i.imgur.com/NcKYuz9.png)
+
+Sau đó ta sẽ được điều hướng đến trang web để view các thông số giám sát trang web
+
+![Imgur](https://i.imgur.com/Dt83Jc3.png)
