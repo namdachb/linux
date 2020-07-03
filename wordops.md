@@ -243,21 +243,21 @@ Muốn xem thông tin chi tiết của 1 web site, ta sử dụng site info:
 
 **Cập nhật trang web**
 
-Nếu trước đó bạn có tạo 1 trang web với WordOps mà chưa có let's encript, bạn có thể sử dụng lệnh sau để cập nhật chứng chỉ SSL cho site như sau:
+ * Nếu trước đó bạn có tạo 1 trang web với WordOps mà chưa có let's encript, bạn có thể sử dụng lệnh sau để cập nhật chứng chỉ SSL cho site như sau:
 
 `wo site update w.namdac.xyz -le`
 
-Sau khi tạo ssl sẽ có thời hạn 80 ngày, nhưng tất cả các chứng chỉ được tự động gia hạn 60 ngày bởi `acme.sh` bằng cách sử dụng cronjob
+ * Sau khi tạo ssl sẽ có thời hạn 80 ngày, nhưng tất cả các chứng chỉ được tự động gia hạn 60 ngày bởi `acme.sh` bằng cách sử dụng cronjob
 
-Khi ta tạm thời không có nhu cầu sử dụng trang web nữa, ta có thể vô hiệu hóa trang web như sau:
+ * Khi ta tạm thời không có nhu cầu sử dụng trang web nữa, ta có thể vô hiệu hóa trang web như sau:
 
 `wo site disable html.namdachb.com`
 
-Khi muốn sử dụng lại ta dùng lệnh
+ * Khi muốn sử dụng lại ta dùng lệnh
 
 `wo site enable html.namdachb.com`
 
-Muốn xóa 1 trang web ta sử dụng tùy chọn delete:
+ * Muốn xóa 1 trang web ta sử dụng tùy chọn delete:
 
 `wo site delete html.namdachb.com`
 
