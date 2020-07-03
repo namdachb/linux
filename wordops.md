@@ -149,6 +149,7 @@ Kích hoạt trình chặn xấu Ultimate Nginx trên trang web mới
 `source /etc/bash_completion.c/wo_auto.rc`
 
 **Cài đặt WordOps stacks**
+
 Bạn có thể lựa chọn để cài đặt danh sách các thành phần WordOps (Nginx, php,mysql,..) hoặc không cài và đến khi thiết lập trang web cần các phụ thuộc nào thì WordOps sẽ tự động cài thành phần đó
 
 `wo stack install`
