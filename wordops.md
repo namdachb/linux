@@ -220,7 +220,7 @@ Muốn xem thông tin chi tiết của 1 web site, ta sử dụng site info:
 
 `wo site info hihi.namdachb.com`
 
-![Imgur](https://i.imgur.com/aOYabHZ.png)
+![Imgur](https://i.imgur.com/6WFAUNx.png)
 
 ### Truy cập trang web monitoring
 Sau khi cài đặt trang web, để theo dõi tải cũng như hiệu năng của trang web ta có thể truy cập theo địa chỉ `http://your.server.ip:22222` để theo dõi tải cũng như các thông số giám sát của Web
