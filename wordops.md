@@ -5,6 +5,8 @@ WordOps là một trình cài đặt tự động dựa trên **EasyEngine**. N�
 
 WordOps là một công cụ dòng lệnh giúp dễ dàng quản trị máy chủ bằng cách cung cấp khả năng thiết lập năng xếp LEMP được tối ưu hóa (Nginx,PHP,MySQL) và triển khai các trang web WordPress bằng các lệnh đơn giản. Nó cũng đi kèm với bảng điều khiển web nơi các số liệu máy chủ chính được hiển thị với các liên kết đến tất cả các công cụ khác được cung cấp với WordOps
 
+WordOps cung cấp khả năng triển khai WordPress nhanh và bảo mật với Nginx bằng cách sử dụng lệnh đơn giản và dễ nhớ. Được bổ sung từ EasyEnginee v3, nó đã hơn nhiều so với phiên bản EEv3 cập nhật với một số tính năng mới bao gồm chứng chỉ SSL mã hóa ký tự đại diện với hỗ trợ xác thực API DNS, tối ưu hóa nhân Linux hoặc gói Nginx tùy chỉnh mới với TLS vl.3 và hỗ trợ HPACK của Cloudflare HTTP /2
+
 ### Các tính năng chính của WordOps
 
  * Hỗ trợ cài đặt stack lemp bao gồm Mariadb, Nginx, Php
