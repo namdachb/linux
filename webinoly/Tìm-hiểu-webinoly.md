@@ -96,5 +96,132 @@ Nếu không muốn sử dụng cache nữa bạn có thể dùng lệnh
 
 `site wp.namdac.com -cache=off`
 
+### Sử dụng Reverse Proxy
+Tạo reverse proxy cho một site với nginx trên server của bạn
+
+`site proxy.namdac.com -proxy=[http://ip:80]`
+
+### Bật tắt tạm thời website
+Tắt tạm thời website
+
+`site wp.namdac.com -off`
+
+Bật trở lại 
+
+`site wp.namdac.com -on`
+
+Liệt kê các website trên server
+
+`site -list`
+
+Nó sẽ thống kê toàn bộ các website đang được tạo trên server
+
+```
+root@namdac:~# site -list
+
+ + html.namdac.com
+ + po.pi.vn
+ + wp2.namdac.com
+ + wp.namdac.com
+
+```
+
+### Xóa một website
+Bạn có thể sử dụng tùy chọn này để xóa một site khỏi server. Nhưng bạn cần cân nhắc kỹ khi sử dụng option này, bạn không thể khôi phục lại các file khi đã bị xóa
+
+`site wp.namdac.com -delete`
+
+### Clone site
+Bạn có thể clone một site từ một site có sẵn. Điều này rất có ích trong quá trình site của bạn đang phát triển
+
+ví dụ mình clone site `wp2.namdac.com` từ một site có sẵn là `wp.namdac.com`
+
+`site wp2.namdac.com -clone-from=wp.namdac.com`
+
+Kết quả như sau là đã clone thành công
+
+```
+root@namdac:~# site wp2.namdac.com -clone-from=wp.namdac.com
+Site 'wp2.namdac.com' is now a successfull clone of 'wp.namdac.com'
+```
+
+### Thay đổi version PHP
+Ta có thể kiểm tra version hiện tại của PHP
+
+```
+root@namdac:~# php -v
+PHP 7.4.7 (cli) (built: Jun 12 2020 07:44:05) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v7.4.7, Copyright (c), by Zend Technologies
+```
+
+Ta thấy server đang sử dụng version `7.4.6` nhưng site của bạn không phù hợp với version này. Bạn muốn sử dụng version `7.2` bạn có thể sử dụng lệnh sau
+
+`stack -php-vẻ=7.2`
+
+Sau khi caì đặt trong ta kiểm tra lại version 
+
+```
+```
+
+### Xóa PHPMyAdmin
+Mặc định khi cài đặt Webinoly thì phpmyadmin sẽ được cài đặt. Nếu ta không muốn sử dụng nó thì có thể xóa bằng cách
+
+`stack -pma -purge`
+
+Hệ thống sẽ hỏi ta có muốn xóa không. Nhập `y` để đồng ý xóa
+
+### Xem username và password của database
+Bạn chỉ có thể xem được username và mật khẩu đăng nhập database khi database này được tạo bằng `webinoly`
+
+`webinoly -dbpass`
+
+Hoặc ta có thê thay đôi mật khẩu của `root` và `admin`
+
+`webinoly -mysql-password`
+
+### Import MySQL database
+Ta có thể import DB từ một file bằng cách sử dụng lệnh sau đây
+
+`webinoly -db-import -file=/file_name`
+
+Sau khi import thành công ta sẽ nhận được thông báo như sau
+
+`Database successfully imported!`
+
+### Chặn IP truy cập site
+Nếu bạn muốn chặn địa chỉ IP không cho nó truy cập các site trên server của bạn. Ví dị ta muốn chặn địa chỉ `192.168.213.100`
+
+`webinoly -blockip=192.168.213.100`
+
+Để hiển thị các IP bị chặn
+
+`webinoly -blockip -list -raw`
+
+Để bỏ chặn một IP
+
+`webinoly -blockip=192.168.213.100 -purge`
+
+### Xem log
+Xem log access của website
+
+`log wp.namdac.com`
+
+Mặc định log access sẽ bị tắt. Để cho phép ghi log này bạn cần dùng lệnh sau
+
+`log wp.namdac.com -only-error=off`
+
+Bạn cũng có thể xem các log của các dịch vụ khác ví dụ như `php` `ssh` hay `mail`
+
+`log -ssh`
+
+`log -php`
+
+`log-mail`
+
+### Update version mới nhất của webinoly
+
+`webinoly -update`
 
 
