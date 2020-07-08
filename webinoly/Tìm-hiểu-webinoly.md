@@ -21,3 +21,80 @@ Webinoly mới chỉ hỗ trợ trên hệ điều hành là Ubuntu 16.04 và Ub
  * Tích hợp dữ liệu gốc để theo dõi và phân tích
  * Sửa đổi cấu hình máy chủ của bạn bất cứ lúc nào theo yêu cầu của bạn
 
+
+# Cách sử dụng Webinoly
+**Cấu hình đề nghị**
+
+Để cài đặt và quản lý website sử dụng webinoly, chúng ta nên sử dụng server có cấu hình tối thiểu như sau
+
+  * Hệ điều hành: Ubuntu 18.04
+  * CPU: 1 Core
+  * RAM: 1GB
+  * DISK: 10GB
+  * NETWORK: 1 interface (trong bài mình sử dụng IP có địa chỉ 192.168.213.193)
+
+## Cài đặt
+Việc cài đặt webinoly rất đơn giản chỉ cần 1 lệnh duy nhất
+
+`wget -qO weby qrok.es/wy && sudo bash weby 3`
+
+Việc cài đặt sẽ mất một vài phút. Sau khi cài xong ta sẽ thấy kết quả như sau
+
+![Imgur](https://i.imgur.com/th1ordD.png)
+
+> Lưu ý: Ta cần lưu lại thông tin đăng nhập database để thuận tiện cho việc quản trị sau này
+
+## Sử dụng
+
+### Tạo một site wordpress
+Trước tiên bạn cần trỏ domain. Domain phải được trỏ về chính server của bạn
+
+Tạo ra site wordpress bằng một lệnh duy nhất
+
+`site wp.namdac.com -wp`
+
+Thông báo trả về như sau là bạn đã thành công
+
+`Site wp.namdac.com has been successfully created!`
+
+Để bỏ quả bước xác thực HTTP khi truy cập trang admin của trang vừa tạo
+
+`httpauth wp.namdac.com -wp-admin=off`
+
+Bây giờ gõ sử dụng trình duyệt web để truy nhập domain để cấu hình website của bạn
+
+![Imgur](https://i.imgur.com/OdYOfWt.png)
+
+Sau khi cấu hình xong trên web là chúng ta đã có 1 website bằng wordpress
+
+Chúng ta cũng có thể tạo các site khác trên server. Các site không nhất thiết phải là wordpress mà chỉ là các site có sử dụng **html php** hay **mysql**. Khi tạo site ta chỉ cần thay thế option **-wp** thành **-html** hoặc **-php** hoặc **-mysql**. Ví dụ ta tạo 1 site chỉ dùng **html** ta dùng lệnh sau
+
+`site html.namdac.com -html`
+
+### Để thêm SSL cho website của bạn
+
+`site wp.namdac.com -ssl=on`
+
+Hệ thống sẽ kiểm tra các chứng chỉ và nó sẽ renew nếu chứng chỉ nào còn thời hạn dưới 30 ngày
+
+`site -ssl=renew`
+
+Bạn cũng có thể sử dụng chứng chỉ có sẵn cho website của bnaj
+
+`site example.com -ssl=on -ssl-key=/path/cert.key -ssl-crt=/path/cert.crt -ssl-ocsp=/path/cert.pem`
+
+> Lưu ý: bạn thay thế đường dẫn đến các chứng chỉ của bạn. Tham số `-ssl-ocsp` là một tùy chọn hỗ trợ OCSP
+
+### Tạo cache cho website
+Để tăng hiệu năng cho trang web ta có thể sử dụng cache cho nó bằng
+
+Để sử dụng cache
+
+`site wp.namdac.com -cache=on`
+
+Nếu không muốn sử dụng cache nữa bạn có thể dùng lệnh
+
+`site wp.namdac.com -cache=off`
+
+
+
