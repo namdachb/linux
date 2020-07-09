@@ -125,3 +125,72 @@ Kích hoạt trình chặn xấu Ultimate Nginx trên trang web mới
 |/var/lib/wo/dbase.db|Cơ sở dữ liệu trang web WordOps|
 |/var/lib/wo/tmp|Thư mục tmp|
 |usr/lib/wo/templates|Mẫu WordOps|
+
+
+## Command
+ * wo [options] {arguments}
+
+**Options**
+
+ * --version: hiển thị phiên bản đang sử dụng
+ * info : hiển thị các thông tin như Nginx, PHP, MySQL
+ * **log** : wo log (gzip| reset|show) [tên domain] {arguments}
+    * gzip : nén file nhật ký
+    * reset : xóa nhật ký tệp
+    * show : hiển thị các file nhật ký
+    
+    * **Arguments**
+       * -all : reser all logs file
+       * --nginx : reset nginx error logs file
+       * --php : reset PHP error logs file
+       * --fpm : reset PHP-FPM slow logs file
+       * --mysql : reset MySQL logs file
+       * --wp : reset site specific WordPress logs file 
+       * --access : reset Nginx access log file
+
+    
+ * **stack** :
+    * **install** : cài đặt tất cả các gói phụ trợ WordOps hoặc cài từng phần riêng biệt bằng cách thêm các gói phụ trợ
+       * --mysql
+       * --nginx
+       * --php
+       * --phpmyadmin
+    * **conmand** : wo stack install --nginx --php
+       * remove : xóa tất cả gói phụ trợ hoặc xóa các gói k cần thiết bằng cách thêm gói phụ trợ
+       * purge : gỡ cài đặt và lọc bỏ tất cả các gói hoặc các gói chỉ định
+       * upgrade : cập nhật tất cả các gói hoặc các gói chỉ định
+       * status : trạng thái tất cả các gọi hoặc các gói chỉ định
+       * stop : dừng dịch vụ tất cả các gọi hoặc các gói chỉ định
+       * reload : reload tất cả các gói hoặc các chỉ định
+       * restart : restart tất cả các gói hoặc cái gói chỉ định
+
+
+ * **site** :
+    * cd [domain] : cd đến thư mục web
+    * list --enabled/--disabled : liệt kê danh sách các site đang được kích hoạt/ chưa được kích hoạt  
+    * info [domain] : thông tin domain, user/pass
+    * show : thông tin các file cấu hình và các cấu hình gọi vào site
+    * enable / disable : kích hoạt hoặc tạm ngưng dịch vụ của trang web
+    * edit : sửa các file cấu hình của site muốn chọn
+
+ * **site create/update example.com** : tạo hoặc update một site
+    
+    * --html : tạo hoặc update site --html
+    * --php73
+    * --mysql : tạo một website PHP + MySQL
+    * --wpfc : tạo trang web WordPress với Nginx fastcgi_cache
+ 
+ * **site delete example.com**
+    
+    * --db : xóa database của trang web
+    * --files : xóa trang web chính
+    * --no-prompt : không cần xác nhận khi xóa
+
+ * **secure [--auth | --port| --ip | --ssh| --sshport]**
+    
+    * --auth : cập nhật thông tin xác thực của HTTP
+    * --port : thay đổi port WordOps Admin hiện tại là 22222
+    * --ip
+    * --ssh : bảo mật ssh cứng. Tạo khóa ssh RSA
+    * --sshport : thay đổi port ssh mặc định là 22
+   
