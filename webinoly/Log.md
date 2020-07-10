@@ -15,6 +15,7 @@ Lệnh **Log** cho phép chúng ta hình dung các bản ghi trong thời gian t
  * -purge
  * -ssh
  * -wp
+ * -only-error
 
 ### Cách xem nhật ký truy cập của trang web của mình
 Để xem nhật ký cho một trang web cụ thể
@@ -36,3 +37,17 @@ Ngoài ra, chúng ta có tùy chọn (bật /tắt) chế độ gỡ lỗi
 
 `sudo log example.com -wp=on`
 
+### Nginx Access Logs
+Mặc định, nhật ký Nginx Access bị tắt
+
+Để kích hoạt nhật lý truy cập chung và áp dụng cho tất cả các trang web mới được tạo sau này
+
+`sudo log -only-error=off`
+
+Để kích hoạt nhật ký của một trang web cụ thể
+
+`sudo log example.com -only-error=off`
+
+Xóa toàn bộ file log đã được nén lại thành file *.gz (log được rotate) trong thư mục /var/log bằng cách sử dụng lệnh
+
+`log -purge`
